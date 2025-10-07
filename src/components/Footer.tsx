@@ -1,8 +1,6 @@
 import logo from "@/assets/logo.png";
-
 const Footer = () => {
-  return (
-    <footer className="bg-background border-t border-border py-12">
+  return <footer className="bg-background border-t border-border py-12">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center space-y-6">
           <div className="flex items-center space-x-2">
@@ -26,16 +24,9 @@ const Footer = () => {
             Copyright © Boost08. All rights reserved.
           </p>
 
-          <a 
-            href="https://reiterate.se" 
-            className="text-xs text-muted-foreground hover:text-primary transition-colors"
-          >
-            Reiterate
-          </a>
+          
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
-
 export default Footer;
