@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import logo from "@/assets/logo.png";
 
 const Navigation = () => {
   return (
@@ -6,7 +7,7 @@ const Navigation = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center space-x-2">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-secondary"></div>
+            <img src={logo} alt="Boost08 Logo" className="w-8 h-8" />
             <span className="text-xl font-bold">BOOST<sup className="text-sm">08</sup></span>
           </div>
 
