@@ -1,4 +1,4 @@
-import { MapPin, Star, BarChart3, CheckCircle2 } from "lucide-react";
+import { MapPin, Star, ChartBar as BarChart3, CircleCheck as CheckCircle2 } from "lucide-react";
 
 const FeaturesSection = () => {
   const features = [

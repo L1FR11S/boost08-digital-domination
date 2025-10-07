@@ -1,4 +1,4 @@
-import { Target, Settings, BarChart, TrendingUp } from "lucide-react";
+import { Target, Settings, ChartBar as BarChart, TrendingUp } from "lucide-react";
 
 const HowItWorks = () => {
   const steps = [
