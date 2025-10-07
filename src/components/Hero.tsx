@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import dashboardImage from "@/assets/dashboard-hero.png";
+import logo from "@/assets/logo.png";
 
 const Hero = () => {
   return (
@@ -8,7 +9,7 @@ const Hero = () => {
         <div className="text-center max-w-4xl mx-auto mb-16">
           <div className="mb-8 flex justify-center">
             <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center shadow-soft">
-              <div className="w-12 h-12 rounded-xl bg-white/90"></div>
+              <img src={logo} alt="Boost08" className="w-12 h-12 rounded-xl" />
             </div>
           </div>
 
