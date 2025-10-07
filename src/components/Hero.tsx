@@ -1,8 +1,33 @@
 import { Button } from "@/components/ui/button";
 import dashboardImage from "@/assets/dashboard-hero.png";
 import logo from "@/assets/logo.png";
+import { useEffect, useRef, useState } from "react";
 
 const Hero = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const imageRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (imageRef.current) {
+      observer.observe(imageRef.current);
+    }
+
+    return () => {
+      if (imageRef.current) {
+        observer.unobserve(imageRef.current);
+      }
+    };
+  }, []);
+
   return (
     <section className="pt-32 pb-20 bg-gradient-hero overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -34,7 +59,14 @@ const Hero = () => {
           </div>
         </div>
 
-        <div className="relative max-w-5xl mx-auto">
+        <div 
+          ref={imageRef}
+          className={`relative max-w-5xl mx-auto transition-all duration-1000 ${
+            isVisible 
+              ? 'translate-y-0 opacity-100' 
+              : 'translate-y-20 opacity-0'
+          }`}
+        >
           <div className="rounded-2xl overflow-hidden shadow-card border border-border bg-white p-4">
             <img 
               src={dashboardImage} 
