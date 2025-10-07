@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import dashboardImage from "@/assets/dashboard-hero.png";
 import logo from "@/assets/logo.png";
 import { useEffect, useRef, useState } from "react";
+import { Star } from "lucide-react";
 
 const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -29,9 +30,9 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="pt-32 pb-20 bg-gradient-hero overflow-hidden">
+    <section className="pt-32 pb-24 bg-gradient-hero overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-4xl mx-auto mb-16">
+        <div className="text-center max-w-4xl mx-auto mb-20">
           <div className="mb-8 flex justify-center">
             <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center shadow-soft">
               <img src={logo} alt="Boost08" className="w-12 h-12 rounded-xl" />
@@ -80,9 +81,9 @@ const Hero = () => {
           <p className="text-foreground font-medium mb-4">
             Rekommenderas av + 2,000 nöjda företag & kedjor världen över!
           </p>
-          <div className="flex items-center justify-center gap-2">
+          <div className="flex items-center justify-center gap-1">
             {[...Array(5)].map((_, i) => (
-              <span key={i} className="text-secondary text-2xl">⭐</span>
+              <Star key={i} className="w-6 h-6 fill-secondary text-secondary" />
             ))}
           </div>
         </div>

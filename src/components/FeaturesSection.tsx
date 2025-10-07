@@ -1,7 +1,10 @@
+import { MapPin, Star, BarChart3, CheckCircle2 } from "lucide-react";
+
 const FeaturesSection = () => {
   const features = [
     {
       badge: "Listning",
+      Icon: MapPin,
       title: "Smart Automatisering",
       subtitle: "Som Driver Lokal Tillväxt.",
       description: "Säkra er lokala närvaro och locka fler kunder – med mindre ansträngning än någonsin.",
@@ -13,6 +16,7 @@ const FeaturesSection = () => {
     },
     {
       badge: "Recensioner",
+      Icon: Star,
       title: "Bygg förtroende med smart",
       subtitle: "recensionshantering.",
       description: "Goda omdömen är avgörande för nya kunder. Med Boost08 kan ni enkelt samla in, övervaka och proaktivt svara på recensioner från en enda plattform – direkt från era nöjda kunder.",
@@ -24,6 +28,7 @@ const FeaturesSection = () => {
     },
     {
       badge: "Analytics",
+      Icon: BarChart3,
       title: "Få full kontroll med kraftfulla insikter",
       description: "Fatta smartare beslut med Boost08:s intuitiva instrumentpanel. Få en tydlig översikt över er lokala synlighet, era kundbeteenden och viktig statistik – allt samlat på ett ställe.",
       benefits: [
@@ -35,7 +40,7 @@ const FeaturesSection = () => {
   ];
 
   return (
-    <section id="tjanster" className="py-20 bg-accent/30">
+    <section id="tjanster" className="py-24 bg-accent/30">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <span className="inline-block bg-foreground text-background px-6 py-2 rounded-full text-sm font-medium mb-6">
@@ -52,42 +57,47 @@ const FeaturesSection = () => {
         </div>
 
         <div className="space-y-24">
-          {features.map((feature, index) => (
-            <div 
-              key={index}
-              className={`grid md:grid-cols-2 gap-12 items-center ${index % 2 === 1 ? 'md:flex-row-reverse' : ''}`}
-            >
-              <div className={index % 2 === 1 ? 'md:order-2' : ''}>
-                <span className="inline-block bg-primary/10 text-primary px-4 py-1 rounded-full text-sm font-medium mb-6">
-                  {feature.badge}
-                </span>
-                <h3 className="text-2xl sm:text-3xl font-bold mb-2">
-                  {feature.title}
-                </h3>
-                {feature.subtitle && (
-                  <h4 className="text-2xl sm:text-3xl font-bold mb-6 text-primary">
-                    {feature.subtitle}
-                  </h4>
-                )}
-                <p className="text-muted-foreground mb-6 leading-relaxed">
-                  {feature.description}
-                </p>
-                <ul className="space-y-3">
-                  {feature.benefits.map((benefit, i) => (
-                    <li key={i} className="flex items-start gap-3">
-                      <span className="text-primary mt-1">✓</span>
-                      <span className="text-foreground">{benefit}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className={index % 2 === 1 ? 'md:order-1' : ''}>
-                <div className="bg-primary/10 rounded-2xl p-8 aspect-video flex items-center justify-center">
-                  <div className="text-6xl">📊</div>
+          {features.map((feature, index) => {
+            const Icon = feature.Icon;
+            return (
+              <div
+                key={index}
+                className={`grid md:grid-cols-2 gap-12 items-center ${index % 2 === 1 ? 'md:flex-row-reverse' : ''}`}
+              >
+                <div className={index % 2 === 1 ? 'md:order-2' : ''}>
+                  <span className="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-6">
+                    {feature.badge}
+                  </span>
+                  <h3 className="text-2xl sm:text-3xl font-bold mb-2">
+                    {feature.title}
+                  </h3>
+                  {feature.subtitle && (
+                    <h4 className="text-2xl sm:text-3xl font-bold mb-6 text-primary">
+                      {feature.subtitle}
+                    </h4>
+                  )}
+                  <p className="text-muted-foreground mb-8 leading-relaxed text-lg">
+                    {feature.description}
+                  </p>
+                  <ul className="space-y-4">
+                    {feature.benefits.map((benefit, i) => (
+                      <li key={i} className="flex items-start gap-3">
+                        <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                        <span className="text-foreground">{benefit}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className={index % 2 === 1 ? 'md:order-1' : ''}>
+                  <div className="bg-gradient-to-br from-primary/5 via-secondary/5 to-primary/10 rounded-2xl p-12 aspect-video flex items-center justify-center border border-primary/10">
+                    <div className="w-32 h-32 bg-gradient-to-br from-primary to-secondary rounded-3xl flex items-center justify-center shadow-lg">
+                      <Icon className="w-16 h-16 text-white" />
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

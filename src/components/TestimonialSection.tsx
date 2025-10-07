@@ -1,14 +1,15 @@
 import testimonialImage from "@/assets/testimonial-person.png";
+import { Star } from "lucide-react";
 
 const TestimonialSection = () => {
   return (
-    <section className="py-20 bg-accent/20">
+    <section className="py-24 bg-accent/20">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
           <div className="bg-card rounded-3xl p-8 sm:p-12 shadow-card border border-border">
-            <div className="flex justify-center mb-6">
+            <div className="flex justify-center gap-1 mb-6">
               {[...Array(5)].map((_, i) => (
-                <span key={i} className="text-secondary text-2xl">⭐</span>
+                <Star key={i} className="w-6 h-6 fill-secondary text-secondary" />
               ))}
             </div>
             
