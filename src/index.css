@@ -40,8 +40,13 @@ All colors MUST be HSL.
 
     --gradient-hero: linear-gradient(135deg, hsl(186 80% 97%), hsl(290 75% 97%));
     --gradient-cta: linear-gradient(135deg, hsl(186 80% 45%), hsl(290 75% 55%));
+    --gradient-glass: linear-gradient(135deg, hsl(186 80% 98% / 0.7), hsl(290 75% 98% / 0.7));
     --shadow-soft: 0 4px 24px -4px hsl(186 80% 45% / 0.12);
     --shadow-card: 0 8px 32px -8px hsl(0 0% 0% / 0.08);
+    --shadow-glow: 0 0 40px hsl(186 80% 45% / 0.15);
+    
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 100%;
 
     --sidebar-background: 0 0% 98%;
 

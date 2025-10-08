@@ -2,7 +2,9 @@ import { Button } from "@/components/ui/button";
 import dashboardImage from "@/assets/dashboard-hero.png";
 import logo from "@/assets/logo.png";
 import { useEffect, useRef, useState } from "react";
-import { Star } from "lucide-react";
+import { Star, Play } from "lucide-react";
+import TrustBadges from "./TrustBadges";
+import SocialProofTicker from "./SocialProofTicker";
 
 const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -51,13 +53,17 @@ const Hero = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button variant="hero" size="lg" className="w-full sm:w-auto text-base px-8">
+            <Button variant="hero" size="lg" className="w-full sm:w-auto text-base px-8 shadow-glow">
               Boka En Kostnadsfri Demo
             </Button>
-            <Button variant="default" size="lg" className="w-full sm:w-auto text-base px-8">
-              Hur Funkar Boost08?
+            <Button variant="outline" size="lg" className="w-full sm:w-auto text-base px-8 group">
+              <Play className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform" />
+              Se Platform Demo
             </Button>
           </div>
+
+          <TrustBadges />
+          <SocialProofTicker />
         </div>
 
         <div 

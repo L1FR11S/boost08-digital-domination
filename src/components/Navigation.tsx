@@ -1,9 +1,23 @@
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/logo.png";
+import { useState, useEffect } from "react";
 
 const Navigation = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm border-b border-border">
+    <nav className={`fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm border-b border-border transition-all duration-300 ${
+      isScrolled ? "shadow-card py-2" : "py-0"
+    }`}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center space-x-2">
@@ -27,8 +41,12 @@ const Navigation = () => {
             <Button variant="ghost" className="hidden sm:inline-flex">
               Logga in
             </Button>
-            <Button variant="hero" size="lg">
-              Registrera
+            <Button 
+              variant="hero" 
+              size={isScrolled ? "default" : "lg"}
+              className={`transition-all duration-300 ${isScrolled ? "shadow-glow" : ""}`}
+            >
+              Boka Demo
             </Button>
           </div>
         </div>
