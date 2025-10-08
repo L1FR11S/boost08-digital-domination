@@ -1,104 +1,156 @@
-import { MapPin, Star, ChartBar as BarChart3, CircleCheck as CheckCircle2 } from "lucide-react";
+import { useState } from "react";
+import { MapPin, Star, BarChart3, Share2, FileText, TrendingUp } from "lucide-react";
+import { Badge } from "./ui/badge";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
+
+const features = [
+  {
+    id: "listings",
+    badge: "Listning",
+    Icon: MapPin,
+    title: "Förbättrad lokal synlighet",
+    subtitle: "Hitta nya kunder lokalt",
+    description: "Öka din digitala närvaro och säkerställ att ditt företag visas korrekt på alla viktiga plattformar som Google, Bing, och Apple Maps.",
+    benefits: [
+      "Automatisk uppdatering på 100+ plattformar",
+      "Korrekt företagsinformation överallt",
+      "Ökad synlighet i lokala sökresultat"
+    ]
+  },
+  {
+    id: "reviews",
+    badge: "Recensioner",
+    Icon: Star,
+    title: "Hantera recensioner enkelt",
+    subtitle: "Bygg förtroende med kundrecensioner",
+    description: "Samla, hantera och svara på recensioner från alla plattformar på ett ställe. Förvandla feedback till din bästa marknadsföring.",
+    benefits: [
+      "Centraliserad recensionshantering",
+      "Automatiska notifikationer för nya recensioner",
+      "AI-driven sentimentanalys"
+    ]
+  },
+  {
+    id: "analytics",
+    badge: "Analys",
+    Icon: BarChart3,
+    title: "Data-driven beslut",
+    subtitle: "Förstå din prestation",
+    description: "Få djupgående insikter om hur ditt företag presterar online med realtidsdata och omfattande rapporter.",
+    benefits: [
+      "Realtidsstatistik och insikter",
+      "Konkurrentanalys",
+      "Anpassningsbara rapporter"
+    ]
+  },
+  {
+    id: "social",
+    badge: "Social Media",
+    Icon: Share2,
+    title: "Social media-hantering",
+    subtitle: "Engagera din målgrupp",
+    description: "Planera, publicera och hantera ditt sociala innehåll från en enda plattform. Spara tid och öka din räckvidd.",
+    benefits: [
+      "Schemaläggning av inlägg",
+      "Multi-plattforms publicering",
+      "Engagemangsstatistik"
+    ]
+  },
+  {
+    id: "reports",
+    badge: "Rapporter",
+    Icon: FileText,
+    title: "Professionella rapporter",
+    subtitle: "Visa upp dina resultat",
+    description: "Skapa vackra, white-label rapporter som visar värdet av ditt arbete för kunder och intressenter.",
+    benefits: [
+      "Automatiska månatliga rapporter",
+      "Anpassningsbara templates",
+      "PDF och online-format"
+    ]
+  },
+  {
+    id: "growth",
+    badge: "Tillväxt",
+    Icon: TrendingUp,
+    title: "Kontinuerlig optimering",
+    subtitle: "Väx snabbare med AI",
+    description: "Låt vår AI-drivna plattform identifiera möjligheter och föreslå förbättringar för att maximera din tillväxt.",
+    benefits: [
+      "AI-drivna rekommendationer",
+      "Automatisk SEO-optimering",
+      "Prediktiv analys"
+    ]
+  }
+];
 
 const FeaturesSection = () => {
-  const features = [
-    {
-      badge: "Listning",
-      Icon: MapPin,
-      title: "Smart Automatisering",
-      subtitle: "Som Driver Lokal Tillväxt.",
-      description: "Säkra er lokala närvaro och locka fler kunder – med mindre ansträngning än någonsin.",
-      benefits: [
-        "Automatiska uppdateringar av era företagsuppgifter online.",
-        "Säkerställ korrekt information på över 50+ plattformar.",
-        "Höj er ranking i lokala sökresultat."
-      ]
-    },
-    {
-      badge: "Recensioner",
-      Icon: Star,
-      title: "Bygg förtroende med smart",
-      subtitle: "recensionshantering.",
-      description: "Goda omdömen är avgörande för nya kunder. Med Boost08 kan ni enkelt samla in, övervaka och proaktivt svara på recensioner från en enda plattform – direkt från era nöjda kunder.",
-      benefits: [
-        "Samla in fler positiva recensioner automatiskt",
-        "Övervaka omdömen i realtid på alla viktiga sajter.",
-        "Förbättra ert online-rykte och attrahera nya kunder."
-      ]
-    },
-    {
-      badge: "Analytics",
-      Icon: BarChart3,
-      title: "Få full kontroll med kraftfulla insikter",
-      description: "Fatta smartare beslut med Boost08:s intuitiva instrumentpanel. Få en tydlig översikt över er lokala synlighet, era kundbeteenden och viktig statistik – allt samlat på ett ställe.",
-      benefits: [
-        "Övervaka er lokal SEO-prestation.",
-        "Spåra recensionstrender och kundfeedback.",
-        "Identifiera områden för tillväxt och optimering."
-      ]
-    }
-  ];
+  const [activeTab, setActiveTab] = useState(features[0].id);
 
   return (
-    <section id="tjanster" className="py-24 bg-accent/30">
+    <section id="tjanster" className="py-24 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <span className="inline-block bg-foreground text-background px-6 py-2 rounded-full text-sm font-medium mb-6">
-            Lösning
-          </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
-            Boost08: <span className="text-primary">Smart Automatisering</span><br />
-            Som Driver Lokal Tillväxt.
+          <h2 className="text-4xl sm:text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+            Allt Du Behöver För Att Växa Lokalt
           </h2>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            Säkra er lokala närvaro och locka fler kunder<br />
-            – med mindre ansträngning än någonsin.
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            En komplett plattform för att hantera och förbättra din digitala närvaro
           </p>
         </div>
 
-        <div className="space-y-24">
-          {features.map((feature, index) => {
-            const Icon = feature.Icon;
-            return (
-              <div
-                key={index}
-                className={`grid md:grid-cols-2 gap-12 items-center ${index % 2 === 1 ? 'md:flex-row-reverse' : ''}`}
+        <Tabs value={activeTab} onValueChange={setActiveTab} className="max-w-6xl mx-auto">
+          <TabsList className="grid grid-cols-3 lg:grid-cols-6 mb-12 h-auto gap-2 bg-transparent">
+            {features.map((feature) => (
+              <TabsTrigger
+                key={feature.id}
+                value={feature.id}
+                className="flex flex-col items-center gap-2 py-4 px-3 data-[state=active]:bg-card data-[state=active]:shadow-soft data-[state=active]:border data-[state=active]:border-primary/20"
               >
-                <div className={index % 2 === 1 ? 'md:order-2' : ''}>
-                  <span className="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-6">
-                    {feature.badge}
-                  </span>
-                  <h3 className="text-2xl sm:text-3xl font-bold mb-2">
+                <feature.Icon className="w-6 h-6" />
+                <span className="text-xs font-medium">{feature.badge}</span>
+              </TabsTrigger>
+            ))}
+          </TabsList>
+
+          {features.map((feature) => (
+            <TabsContent key={feature.id} value={feature.id} className="animate-fade-in">
+              <div className="grid lg:grid-cols-2 gap-12 items-center">
+                {/* Text Content */}
+                <div>
+                  <Badge variant="secondary" className="mb-4">{feature.badge}</Badge>
+                  <h3 className="text-3xl sm:text-4xl font-bold mb-3 text-foreground">
                     {feature.title}
                   </h3>
-                  {feature.subtitle && (
-                    <h4 className="text-2xl sm:text-3xl font-bold mb-6 text-primary">
-                      {feature.subtitle}
-                    </h4>
-                  )}
-                  <p className="text-muted-foreground mb-8 leading-relaxed text-lg">
+                  <p className="text-xl text-primary mb-4">{feature.subtitle}</p>
+                  <p className="text-muted-foreground leading-relaxed mb-6">
                     {feature.description}
                   </p>
-                  <ul className="space-y-4">
-                    {feature.benefits.map((benefit, i) => (
-                      <li key={i} className="flex items-start gap-3">
-                        <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                  <ul className="space-y-3">
+                    {feature.benefits.map((benefit, idx) => (
+                      <li key={idx} className="flex items-start gap-3">
+                        <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                          <div className="w-2 h-2 rounded-full bg-primary"></div>
+                        </div>
                         <span className="text-foreground">{benefit}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
-                <div className={index % 2 === 1 ? 'md:order-1' : ''}>
-                  <div className="bg-gradient-to-br from-primary/5 via-secondary/5 to-primary/10 rounded-2xl p-12 aspect-video flex items-center justify-center border border-primary/10">
-                    <div className="w-32 h-32 bg-gradient-to-br from-primary to-secondary rounded-3xl flex items-center justify-center shadow-lg">
-                      <Icon className="w-16 h-16 text-white" />
+
+                {/* Visual Element */}
+                <div>
+                  <div className="relative group">
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-3xl blur-3xl group-hover:blur-2xl transition-all duration-500"></div>
+                    <div className="relative bg-card/80 backdrop-blur-sm border border-border rounded-3xl p-12 shadow-card flex items-center justify-center min-h-[300px]">
+                      <feature.Icon className="w-32 h-32 text-primary group-hover:scale-110 transition-transform duration-500" strokeWidth={1.5} />
                     </div>
                   </div>
                 </div>
               </div>
-            );
-          })}
-        </div>
+            </TabsContent>
+          ))}
+        </Tabs>
       </div>
     </section>
   );
