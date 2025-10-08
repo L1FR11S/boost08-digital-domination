@@ -112,7 +112,7 @@ const Footer = () => {
                 Få månatliga tips om lokal SEO
               </p>
               <p className="text-xs text-muted-foreground mb-3">
-                Gå med 3,500+ subscribers
+                Gå med 3,500+ prenumeranter
               </p>
               <form onSubmit={handleNewsletterSubmit} className="flex gap-2">
                 <Input

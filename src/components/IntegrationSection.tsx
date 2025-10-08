@@ -25,7 +25,7 @@ const IntegrationSection = () => {
           </h2>
           <p className="text-lg text-muted-foreground mb-12">
             Vi integrerar enkelt med era befintliga system som Slack, Mailchimp, 
-            Airtable, Salesforce CRM och många fler – allt för sömlöst.
+            Airtable, Salesforce CRM och många fler – helt sömlöst.
           </p>
 
           <div className="grid grid-cols-4 gap-6 max-w-xl mx-auto mb-12">

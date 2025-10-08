@@ -31,7 +31,7 @@ const ProblemSection = () => {
             Problem
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
-            Känner du igen dig i dessa utmaningar?
+            Känner ni igen er i dessa utmaningar?
           </h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
             Att driva ett företag med fysiska platser kräver att ni syns rätt online. Men 

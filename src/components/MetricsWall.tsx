@@ -20,7 +20,7 @@ const MetricsWall = () => {
     {
       icon: TrendingUp,
       value: "99.8%",
-      label: "Platform Uptime",
+      label: "Plattformstillgänglighet",
       color: "text-success",
     },
     {

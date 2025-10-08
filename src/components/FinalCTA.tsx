@@ -7,13 +7,13 @@ const FinalCTA = () => {
         <div className="max-w-4xl mx-auto">
           <div className="bg-gradient-to-r from-primary to-secondary rounded-3xl p-12 text-center shadow-card">
             <span className="inline-block bg-foreground text-background px-6 py-2 rounded-full text-sm font-medium mb-6">
-              Börja bli synlig idag!
+              Bli synlig idag!
             </span>
             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
               Redo att få fler kunder – automatiskt?
             </h2>
             <p className="text-lg text-white/90 mb-8">
-              Över + 2,000 lokala företag visar snabbare än någonsin tack vare Boost08.
+              Över 2,000 lokala företag växer snabbare än någonsin tack vare Boost08.
             </p>
             <Button 
               variant="secondary" 

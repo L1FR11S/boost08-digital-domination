@@ -90,7 +90,7 @@ const Hero = () => {
 
         <div className="mt-16 text-center animate-slide-up" style={{ animationDelay: '400ms' }}>
           <p className="text-foreground font-medium mb-4">
-            Rekommenderas av + 2,000 nöjda företag & kedjor världen över!
+            Rekommenderas av 2,000+ nöjda företag världen över!
           </p>
           <div className="flex items-center justify-center gap-1">
             {[...Array(5)].map((_, i) => (

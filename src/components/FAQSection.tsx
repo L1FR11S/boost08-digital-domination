@@ -35,8 +35,8 @@ const faqs = [
         a: "Du får notifikationer när nya recensioner kommer in, kan svara direkt från plattformen, och får AI-förslag på professionella svar. Alla recensioner samlas på ett ställe oavsett källa."
       },
       {
-        q: "Vad är included i rapporterna?",
-        a: "Våra rapporter visar synlighetsstatistik, recensionsutveckling, konkurrentjämförelser, sökord-rankings och ROI-mätningar. Du kan schemalägga automatiska rapporter eller skapa custom rapporter när du vill."
+        q: "Vad ingår i rapporterna?",
+        a: "Våra rapporter visar synlighetsstatistik, recensionsutveckling, konkurrentjämförelser, sökord-rankings och ROI-mätningar. Du kan schemalägga automatiska rapporter eller skapa anpassade rapporter när du vill."
       },
       {
         q: "Kan jag schemalägga inlägg i sociala medier?",

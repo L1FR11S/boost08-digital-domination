@@ -8,7 +8,7 @@ const HowItWorks = () => {
     {
       Icon: Target,
       number: "01",
-      title: "Anslut Era Profiler",
+      title: "Anslut era profiler",
       description: "Koppla enkelt era befintliga företagsprofiler (t.ex. Google Business Profile) till Boost08. Vi hjälper er att synkronisera all grundinformation."
     },
     {
