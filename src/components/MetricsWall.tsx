@@ -1,30 +1,8 @@
-import { useEffect, useRef, useState } from "react";
 import { TrendingUp, Users, Star, Clock } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const MetricsWall = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.2 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
-  }, []);
+  const { ref, isVisible } = useScrollAnimation();
 
   const metrics = [
     {
@@ -54,22 +32,24 @@ const MetricsWall = () => {
   ];
 
   return (
-    <section ref={sectionRef} className="py-20 bg-gradient-hero">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section ref={ref} className="py-20 bg-gradient-hero relative overflow-hidden">
+      <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
           {metrics.map((metric, index) => (
             <div
               key={index}
-              className={`text-center transition-all duration-700 delay-${index * 100} ${
+              className={`text-center transition-all duration-700 ${
                 isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
               }`}
+              style={{ transitionDelay: `${index * 150}ms` }}
             >
               <div className="flex justify-center mb-4">
-                <div className="w-16 h-16 rounded-2xl bg-card shadow-soft border border-border flex items-center justify-center">
+                <div className="w-16 h-16 rounded-2xl bg-card shadow-soft border border-border flex items-center justify-center hover-scale hover-glow">
                   <metric.icon className={`w-8 h-8 ${metric.color}`} />
                 </div>
               </div>
-              <div className="text-4xl font-bold text-foreground mb-2">
+              <div className="text-4xl font-bold text-foreground mb-2 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
                 {metric.value}
               </div>
               <div className="text-sm text-muted-foreground font-medium">
