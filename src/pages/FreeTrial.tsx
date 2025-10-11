@@ -2,6 +2,13 @@ import Layout from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Check } from "lucide-react";
 import TrustBadges from "@/components/TrustBadges";
 
@@ -51,12 +58,46 @@ const FreeTrial = () => {
                     <Input id="email" type="email" placeholder="anna@mittforetag.se" required />
                   </div>
                   <div>
-                    <Label htmlFor="phone">Telefon</Label>
+                    <Label htmlFor="phone">Telefon (valfritt)</Label>
                     <Input id="phone" type="tel" placeholder="+46 70 123 45 67" />
+                  </div>
+                  <div>
+                    <Label htmlFor="locations">Antal platser</Label>
+                    <Select>
+                      <SelectTrigger id="locations">
+                        <SelectValue placeholder="Välj antal" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="1">1 plats</SelectItem>
+                        <SelectItem value="2-3">2-3 platser</SelectItem>
+                        <SelectItem value="4-10">4-10 platser</SelectItem>
+                        <SelectItem value="10+">10+ platser</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div>
+                    <Label htmlFor="industry">Bransch</Label>
+                    <Select>
+                      <SelectTrigger id="industry">
+                        <SelectValue placeholder="Välj bransch" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="healthcare">Kliniker & Vård</SelectItem>
+                        <SelectItem value="beauty">Skönhetssalonger & Spa</SelectItem>
+                        <SelectItem value="retail">Butikskedjor</SelectItem>
+                        <SelectItem value="restaurant">Restauranger & Caféer</SelectItem>
+                        <SelectItem value="other">Annat</SelectItem>
+                      </SelectContent>
+                    </Select>
                   </div>
                   <Button variant="hero" className="w-full" size="lg">
                     Starta Min Testperiod
                   </Button>
+                  <p className="text-xs text-center text-muted-foreground">
+                    Genom att starta testperioden godkänner du våra{" "}
+                    <a href="#" className="underline hover:text-primary">användarvillkor</a> och{" "}
+                    <a href="#" className="underline hover:text-primary">integritetspolicy</a>
+                  </p>
                 </form>
 
                 <div className="mt-8 p-6 bg-muted/30 rounded-xl">

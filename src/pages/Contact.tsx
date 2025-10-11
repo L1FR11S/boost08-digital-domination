@@ -3,7 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Mail, Phone } from "lucide-react";
+import { Mail, Phone, MapPin } from "lucide-react";
+import FAQShortcuts from "@/components/contact/FAQShortcuts";
 
 const Contact = () => {
   return (
@@ -58,56 +59,50 @@ const Contact = () => {
               <div>
                 <div className="bg-card border border-border rounded-2xl p-8 mb-6">
                   <h2 className="text-xl font-bold mb-6">Kontaktinformation</h2>
-                  <div className="space-y-4">
-                    <div className="flex items-center">
-                      <Phone className="w-5 h-5 text-primary mr-3" />
+                  <div className="space-y-6">
+                    <div className="flex items-start gap-4">
+                      <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                        <Phone className="w-5 h-5 text-primary" />
+                      </div>
                       <div>
-                        <p className="text-sm text-muted-foreground">Telefon</p>
-                        <p className="font-medium">+46 XX XXX XX XX</p>
+                        <p className="text-sm text-muted-foreground mb-1">Telefon</p>
+                        <p className="font-semibold">+46 XX XXX XX XX</p>
+                        <p className="text-xs text-muted-foreground mt-1">Mån-Fre 9:00-17:00</p>
                       </div>
                     </div>
-                    <div className="flex items-center">
-                      <Mail className="w-5 h-5 text-primary mr-3" />
+                    <div className="flex items-start gap-4">
+                      <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                        <Mail className="w-5 h-5 text-primary" />
+                      </div>
                       <div>
-                        <p className="text-sm text-muted-foreground">E-post</p>
-                        <p className="font-medium">hej@boost08.se</p>
+                        <p className="text-sm text-muted-foreground mb-1">E-post</p>
+                        <p className="font-semibold">hej@boost08.se</p>
+                        <p className="text-xs text-muted-foreground mt-1">Vi svarar inom 24 timmar</p>
                       </div>
                     </div>
-                    <div className="flex items-center">
-                      <Mail className="w-5 h-5 text-primary mr-3" />
+                    <div className="flex items-start gap-4">
+                      <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                        <Mail className="w-5 h-5 text-primary" />
+                      </div>
                       <div>
-                        <p className="text-sm text-muted-foreground">Support</p>
-                        <p className="font-medium">support@boost08.se</p>
+                        <p className="text-sm text-muted-foreground mb-1">Support</p>
+                        <p className="font-semibold">support@boost08.se</p>
+                        <p className="text-xs text-muted-foreground mt-1">För befintliga kunder</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-4">
+                      <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                        <MapPin className="w-5 h-5 text-primary" />
+                      </div>
+                      <div>
+                        <p className="text-sm text-muted-foreground mb-1">Adress</p>
+                        <p className="font-semibold">Stockholm, Sverige</p>
                       </div>
                     </div>
                   </div>
                 </div>
 
-                <div className="bg-muted/30 rounded-2xl p-8">
-                  <h3 className="font-semibold mb-4">Vanliga frågor vi får:</h3>
-                  <ul className="space-y-3">
-                    <li>
-                      <a href="#" className="text-primary hover:underline">
-                        Hur kommer jag igång?
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#" className="text-primary hover:underline">
-                        Vad kostar det?
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#" className="text-primary hover:underline">
-                        Hur funkar testperioden?
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#" className="text-primary hover:underline">
-                        Vilka integrationer finns?
-                      </a>
-                    </li>
-                  </ul>
-                </div>
+                <FAQShortcuts />
               </div>
             </div>
           </div>

@@ -2,7 +2,9 @@ import Layout from "@/components/Layout";
 import MetricsWall from "@/components/MetricsWall";
 import IntegrationSection from "@/components/IntegrationSection";
 import TrustBadges from "@/components/TrustBadges";
-import { Button } from "@/components/ui/button";
+import OurStory from "@/components/about/OurStory";
+import OurValues from "@/components/about/OurValues";
+import CTASection from "@/components/shared/CTASection";
 
 const About = () => {
   return (
@@ -10,79 +12,44 @@ const About = () => {
       title="Om Oss - Boost08"
       description="Vi hjälper svenska företag bli synliga lokalt. Läs mer om vår mission och vad som gör oss annorlunda."
     >
-      <section className="pt-32 pb-24">
+      {/* Hero */}
+      <section className="pt-32 pb-16 bg-gradient-to-br from-primary/5 via-background to-secondary/5">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto text-center mb-16">
-            <h1 className="text-4xl sm:text-5xl font-bold mb-6">
+          <div className="max-w-4xl mx-auto text-center">
+            <span className="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-4">
+              Om Oss
+            </span>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
               Vi hjälper svenska företag bli synliga lokalt
             </h1>
             <p className="text-xl text-muted-foreground">
               Vår mission är att göra lokal tillväxt tillgänglig för alla
             </p>
           </div>
+        </div>
+      </section>
 
-          <div className="max-w-3xl mx-auto mb-16">
-            <div className="bg-card border border-border rounded-2xl p-8 mb-8">
-              <h2 className="text-2xl font-bold mb-4">Vår Historia</h2>
-              <p className="text-muted-foreground mb-4">
-                Vi såg att svenska företag behövde en enkel, kraftfull lösning för att hantera sin digitala närvaro. 
-                Internationella verktyg förstod inte den svenska marknaden, och manuell hantering var för tidskrävande.
-              </p>
-              <p className="text-muted-foreground">
-                Därför skapade vi Boost08 - en intelligent tillväxtplattform byggd för svenska företag.
-              </p>
-            </div>
+      <OurStory />
 
-            <div className="bg-card border border-border rounded-2xl p-8 mb-12">
-              <h2 className="text-2xl font-bold mb-4">Vad som gör oss annorlunda</h2>
-              <ul className="space-y-4">
-                <li className="flex items-start">
-                  <div className="w-2 h-2 rounded-full bg-primary mt-2 mr-3 flex-shrink-0" />
-                  <div>
-                    <strong className="text-foreground">Support på svenska</strong>
-                    <p className="text-muted-foreground">Vi förstår svenska affärer</p>
-                  </div>
-                </li>
-                <li className="flex items-start">
-                  <div className="w-2 h-2 rounded-full bg-primary mt-2 mr-3 flex-shrink-0" />
-                  <div>
-                    <strong className="text-foreground">Lokal expertis</strong>
-                    <p className="text-muted-foreground">Byggt för svenska marknaden</p>
-                  </div>
-                </li>
-                <li className="flex items-start">
-                  <div className="w-2 h-2 rounded-full bg-primary mt-2 mr-3 flex-shrink-0" />
-                  <div>
-                    <strong className="text-foreground">Data-driven resultat</strong>
-                    <p className="text-muted-foreground">Konkreta metrics, inga tomma ord</p>
-                  </div>
-                </li>
-                <li className="flex items-start">
-                  <div className="w-2 h-2 rounded-full bg-primary mt-2 mr-3 flex-shrink-0" />
-                  <div>
-                    <strong className="text-foreground">Transparens</strong>
-                    <p className="text-muted-foreground">Inga dolda avgifter eller lock-in</p>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
+      <OurValues />
 
-          <MetricsWall />
-          
-          <div className="my-16">
+      <MetricsWall />
+
+      <section className="py-16">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-4xl mx-auto">
             <TrustBadges />
-          </div>
-
-          <IntegrationSection />
-
-          <div className="text-center mt-16">
-            <h2 className="text-2xl font-bold mb-4">Vill du veta mer?</h2>
-            <p className="text-muted-foreground mb-6">Boka ett möte med oss</p>
-            <Button variant="hero" size="lg">Boka Möte</Button>
           </div>
         </div>
       </section>
+
+      <IntegrationSection />
+
+      <CTASection
+        title="Vill du veta mer?"
+        subtitle="Boka ett möte med oss och upptäck hur vi kan hjälpa ert företag växa"
+        ctaText="Boka Möte"
+      />
     </Layout>
   );
 };
