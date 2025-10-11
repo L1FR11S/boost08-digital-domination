@@ -49,7 +49,7 @@ export const trackFormSubmission = (formName: string) => {
 // Page View Tracking (enhanced)
 export const trackPageView = (pagePath: string, pageTitle: string) => {
   if (typeof window !== 'undefined' && (window as any).gtag) {
-    (window as any).gtag('config', 'GA_MEASUREMENT_ID', {
+    (window as any).gtag('config', 'G-PLVH21LRJS', {
       page_path: pagePath,
       page_title: pageTitle,
     });
