@@ -46,7 +46,7 @@ const Hero = () => {
           </div>
 
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-            Boost08 hjälper Lokala företag <span className="text-primary">dominera</span> sin lokala marknad
+            Boost08 hjälper lokala företag <span className="text-primary">dominera</span> sin lokala marknad
           </h1>
 
           <p className="text-lg sm:text-xl text-muted-foreground mb-6 max-w-3xl mx-auto">
