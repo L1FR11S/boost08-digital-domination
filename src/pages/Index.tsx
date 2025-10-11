@@ -7,7 +7,6 @@ import IndustryShowcase from "@/components/IndustryShowcase";
 import SocialProofHighlights from "@/components/SocialProofHighlights";
 import FinalCTA from "@/components/FinalCTA";
 import Footer from "@/components/Footer";
-import ExitIntentPopup from "@/components/ExitIntentPopup";
 import SchemaMarkup from "@/components/seo/SchemaMarkup";
 import { Helmet } from "react-helmet-async";
 import { useScrollDepth } from "@/hooks/useScrollDepth";
@@ -49,7 +48,6 @@ const Index = () => {
       <SocialProofHighlights />
       <FinalCTA />
       <Footer />
-      <ExitIntentPopup />
     </div>
   );
 };

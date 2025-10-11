@@ -18,7 +18,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "./ui/dialog";
-import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 
 const ROICalculator = () => {
@@ -59,11 +58,15 @@ const ROICalculator = () => {
     };
 
     try {
-      const { error } = await supabase.functions.invoke('send-roi-email', {
-        body: data,
+      const response = await fetch('https://vllpaaomsmuhcngiikhf.supabase.co/functions/v1/send-roi-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
       });
 
-      if (error) throw error;
+      if (!response.ok) throw new Error('Failed to send email');
 
       toast({
         title: "Din rapport har skickats!",

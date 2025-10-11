@@ -5,7 +5,6 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Mail, Phone, MapPin } from "lucide-react";
 import FAQShortcuts from "@/components/contact/FAQShortcuts";
-import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
 
@@ -26,11 +25,15 @@ const Contact = () => {
     };
 
     try {
-      const { error } = await supabase.functions.invoke('send-contact-email', {
-        body: data,
+      const response = await fetch('https://vllpaaomsmuhcngiikhf.supabase.co/functions/v1/send-contact-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
       });
 
-      if (error) throw error;
+      if (!response.ok) throw new Error('Failed to send email');
 
       toast({
         title: "Tack för ditt meddelande!",

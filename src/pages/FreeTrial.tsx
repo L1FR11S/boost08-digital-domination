@@ -11,7 +11,6 @@ import {
 } from "@/components/ui/select";
 import { Check } from "lucide-react";
 import TrustBadges from "@/components/TrustBadges";
-import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
 
@@ -36,11 +35,15 @@ const FreeTrial = () => {
     };
 
     try {
-      const { error } = await supabase.functions.invoke('send-trial-email', {
-        body: data,
+      const response = await fetch('https://vllpaaomsmuhcngiikhf.supabase.co/functions/v1/send-trial-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
       });
 
-      if (error) throw error;
+      if (!response.ok) throw new Error('Failed to send email');
 
       toast({
         title: "Registreringen lyckades!",
