@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import TrackableCTA from "@/components/analytics/TrackableCTA";
 
 const FinalCTA = () => {
   return (
@@ -15,13 +15,16 @@ const FinalCTA = () => {
             <p className="text-lg text-white/90 mb-8">
               Över 2,000 lokala företag växer snabbare än någonsin tack vare Boost08.
             </p>
-            <Button 
+            <TrackableCTA
+              ctaText="Ja, jag är redo!"
+              location="final_cta"
               variant="secondary" 
               size="lg"
               className="bg-white hover:bg-white/90 text-secondary font-bold text-lg px-12"
+              onClick={() => window.open('https://zcal.co/boost08', '_blank')}
             >
               Ja, jag är redo!
-            </Button>
+            </TrackableCTA>
           </div>
         </div>
       </div>

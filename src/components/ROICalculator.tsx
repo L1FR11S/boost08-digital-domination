@@ -18,12 +18,17 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "./ui/dialog";
+import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/hooks/use-toast";
 
 const ROICalculator = () => {
+  const { toast } = useToast();
   const [industry, setIndustry] = useState("");
   const [locations, setLocations] = useState("");
   const [reviews, setReviews] = useState("");
   const [showResults, setShowResults] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   const calculateROI = () => {
     if (industry && locations && reviews) {
@@ -34,6 +39,50 @@ const ROICalculator = () => {
   const estimatedIncrease = parseInt(locations || "0") * 23 + parseInt(reviews || "0") * 0.8;
   const newCustomers = Math.round(estimatedIncrease / 10);
   const revenue = newCustomers * 850;
+
+  const handleReportSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    const formData = new FormData(e.currentTarget);
+    const data = {
+      name: formData.get('name') as string,
+      email: formData.get('email') as string,
+      phone: formData.get('phone') as string,
+      company: formData.get('company') as string,
+      industry,
+      locations: parseInt(locations),
+      reviews: parseInt(reviews),
+      estimatedIncrease: `+${Math.round(estimatedIncrease)}%`,
+      newCustomers: `+${newCustomers}`,
+      revenue: `${revenue.toLocaleString()} kr`,
+    };
+
+    try {
+      const { error } = await supabase.functions.invoke('send-roi-email', {
+        body: data,
+      });
+
+      if (error) throw error;
+
+      toast({
+        title: "Din rapport har skickats!",
+        description: "Kolla din e-post för den detaljerade rapporten.",
+      });
+
+      setIsDialogOpen(false);
+      (e.target as HTMLFormElement).reset();
+    } catch (error: any) {
+      console.error('Error:', error);
+      toast({
+        title: "Ett fel uppstod",
+        description: "Försök igen senare.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <section className="py-24 bg-gradient-to-b from-background to-accent/10 relative overflow-hidden">
@@ -143,7 +192,7 @@ const ROICalculator = () => {
                     <strong className="text-foreground">95%</strong> av liknande företag såg resultat inom <strong className="text-foreground">30 dagar</strong>
                   </p>
                   
-                  <Dialog>
+                  <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                     <DialogTrigger asChild>
                       <Button variant="hero" size="lg">
                         Få Min Personliga Rapport
@@ -156,27 +205,27 @@ const ROICalculator = () => {
                           Fyll i dina uppgifter så skickar vi en detaljerad rapport med exakt hur Boost08 kan hjälpa ditt företag.
                         </DialogDescription>
                       </DialogHeader>
-                      <div className="space-y-4 pt-4">
+                      <form className="space-y-4 pt-4" onSubmit={handleReportSubmit}>
                         <div>
                           <Label htmlFor="name">Namn</Label>
-                          <Input id="name" placeholder="Ditt namn" />
+                          <Input id="name" name="name" placeholder="Ditt namn" required />
                         </div>
                         <div>
                           <Label htmlFor="email">E-post</Label>
-                          <Input id="email" type="email" placeholder="din@email.se" />
+                          <Input id="email" name="email" type="email" placeholder="din@email.se" required />
                         </div>
                         <div>
                           <Label htmlFor="company">Företag</Label>
-                          <Input id="company" placeholder="Ditt företag" />
+                          <Input id="company" name="company" placeholder="Ditt företag" required />
                         </div>
                         <div>
-                          <Label htmlFor="phone">Telefon (valfritt)</Label>
-                          <Input id="phone" type="tel" placeholder="070-123 45 67" />
+                          <Label htmlFor="phone">Telefon</Label>
+                          <Input id="phone" name="phone" type="tel" placeholder="070-123 45 67" required />
                         </div>
-                        <Button className="w-full" variant="hero">
-                          Skicka Rapport Till Mig
+                        <Button className="w-full" variant="hero" type="submit" disabled={isLoading}>
+                          {isLoading ? "Skickar..." : "Skicka Rapport Till Mig"}
                         </Button>
-                      </div>
+                      </form>
                     </DialogContent>
                   </Dialog>
                 </div>

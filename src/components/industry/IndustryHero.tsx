@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import TrackableCTA from "@/components/analytics/TrackableCTA";
 import { ArrowRight } from "lucide-react";
 
 interface IndustryHeroProps {
@@ -25,10 +25,17 @@ const IndustryHero = ({ badge, title, subtitle, image }: IndustryHeroProps) => {
                 {subtitle}
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button variant="hero" size="lg" className="group">
+                <TrackableCTA
+                  ctaText="Boka Bransch-Demo"
+                  location="industry_hero"
+                  variant="hero"
+                  size="lg"
+                  className="group"
+                  onClick={() => window.open('https://zcal.co/boost08', '_blank')}
+                >
                   Boka Bransch-Demo
                   <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                </Button>
+                </TrackableCTA>
               </div>
             </div>
             {image && (

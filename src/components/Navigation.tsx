@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import TrackableCTA from "@/components/analytics/TrackableCTA";
 import logo from "@/assets/logo.png";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
@@ -109,13 +109,16 @@ const Navigation = () => {
 
           {/* CTA Button */}
           <div className="flex items-center space-x-4">
-            <Button 
+            <TrackableCTA
+              ctaText="Boka Demo"
+              location="navigation"
               variant="hero" 
               size="lg"
               className="hidden lg:inline-flex shadow-glow"
+              onClick={() => window.open('https://zcal.co/boost08', '_blank')}
             >
               Boka Demo
-            </Button>
+            </TrackableCTA>
             
             {/* Mobile menu button */}
             <button
@@ -176,9 +179,18 @@ const Navigation = () => {
               Om Oss
             </Link>
             
-            <Button variant="hero" className="w-full" onClick={() => setIsMobileMenuOpen(false)}>
+            <TrackableCTA
+              ctaText="Boka Demo"
+              location="navigation_mobile"
+              variant="hero"
+              className="w-full"
+              onClick={() => {
+                setIsMobileMenuOpen(false);
+                window.open('https://zcal.co/boost08', '_blank');
+              }}
+            >
               Boka Demo
-            </Button>
+            </TrackableCTA>
           </div>
         </div>
       )}

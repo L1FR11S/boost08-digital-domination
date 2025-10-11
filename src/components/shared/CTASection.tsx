@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import TrackableCTA from "@/components/analytics/TrackableCTA";
 import { ArrowRight } from "lucide-react";
 
 interface CTASectionProps {
@@ -27,14 +27,17 @@ const CTASection = ({
                 {subtitle}
               </p>
             )}
-            <Button 
+            <TrackableCTA
+              ctaText={ctaText}
+              location="cta_section"
               variant={ctaVariant}
               size="lg"
               className="bg-white hover:bg-white/90 text-primary font-bold text-lg px-12 group"
+              onClick={() => window.open('https://zcal.co/boost08', '_blank')}
             >
               {ctaText}
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-            </Button>
+            </TrackableCTA>
           </div>
         </div>
       </div>

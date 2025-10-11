@@ -5,8 +5,51 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Mail, Phone, MapPin } from "lucide-react";
 import FAQShortcuts from "@/components/contact/FAQShortcuts";
+import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/hooks/use-toast";
+import { useState } from "react";
 
 const Contact = () => {
+  const { toast } = useToast();
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    const formData = new FormData(e.currentTarget);
+    const data = {
+      name: formData.get('name') as string,
+      email: formData.get('email') as string,
+      company: formData.get('company') as string,
+      message: formData.get('message') as string,
+    };
+
+    try {
+      const { error } = await supabase.functions.invoke('send-contact-email', {
+        body: data,
+      });
+
+      if (error) throw error;
+
+      toast({
+        title: "Tack för ditt meddelande!",
+        description: "Vi återkommer inom kort.",
+      });
+
+      (e.target as HTMLFormElement).reset();
+    } catch (error: any) {
+      console.error('Error:', error);
+      toast({
+        title: "Ett fel uppstod",
+        description: "Försök igen senare.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <Layout
       title="Kontakt - Boost08"
@@ -27,30 +70,31 @@ const Contact = () => {
             <div className="grid lg:grid-cols-2 gap-12">
               {/* Left: Form */}
               <div>
-                <form className="space-y-6">
+                <form className="space-y-6" onSubmit={handleSubmit}>
                   <div>
                     <Label htmlFor="contact-name">Namn *</Label>
-                    <Input id="contact-name" placeholder="Anna Andersson" required />
+                    <Input id="contact-name" name="name" placeholder="Anna Andersson" required />
                   </div>
                   <div>
                     <Label htmlFor="contact-email">E-post *</Label>
-                    <Input id="contact-email" type="email" placeholder="anna@mittforetag.se" required />
+                    <Input id="contact-email" name="email" type="email" placeholder="anna@mittforetag.se" required />
                   </div>
                   <div>
                     <Label htmlFor="contact-company">Företag</Label>
-                    <Input id="contact-company" placeholder="Mitt Företag AB" />
+                    <Input id="contact-company" name="company" placeholder="Mitt Företag AB" />
                   </div>
                   <div>
                     <Label htmlFor="contact-message">Meddelande *</Label>
                     <Textarea 
-                      id="contact-message" 
+                      id="contact-message"
+                      name="message"
                       placeholder="Berätta hur vi kan hjälpa dig..."
                       rows={6}
                       required
                     />
                   </div>
-                  <Button variant="hero" size="lg" className="w-full">
-                    Skicka
+                  <Button variant="hero" size="lg" className="w-full" type="submit" disabled={isLoading}>
+                    {isLoading ? "Skickar..." : "Skicka"}
                   </Button>
                 </form>
               </div>

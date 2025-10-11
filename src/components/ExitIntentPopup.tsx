@@ -9,11 +9,15 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Gift } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/hooks/use-toast";
 
 const ExitIntentPopup = () => {
+  const { toast } = useToast();
   const [isOpen, setIsOpen] = useState(false);
   const [email, setEmail] = useState("");
   const [hasShown, setHasShown] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const handleMouseLeave = (e: MouseEvent) => {
@@ -30,10 +34,34 @@ const ExitIntentPopup = () => {
     };
   }, [hasShown]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Email submitted:", email);
-    setIsOpen(false);
+    setIsLoading(true);
+
+    try {
+      const { error } = await supabase
+        .from('exit_intent_leads')
+        .insert({ email });
+
+      if (error) throw error;
+
+      toast({
+        title: "Tack!",
+        description: "Vi skickar guiden till din e-post inom kort.",
+      });
+
+      setIsOpen(false);
+      setEmail("");
+    } catch (error: any) {
+      console.error('Error:', error);
+      toast({
+        title: "Ett fel uppstod",
+        description: "Försök igen senare.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -67,8 +95,8 @@ const ExitIntentPopup = () => {
             required
             className="w-full"
           />
-          <Button type="submit" variant="hero" size="lg" className="w-full">
-            Skicka Mig Guiden
+          <Button type="submit" variant="hero" size="lg" className="w-full" disabled={isLoading}>
+            {isLoading ? "Skickar..." : "Skicka Mig Guiden"}
           </Button>
           <button
             type="button"

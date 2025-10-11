@@ -11,8 +11,57 @@ import {
 } from "@/components/ui/select";
 import { Check } from "lucide-react";
 import TrustBadges from "@/components/TrustBadges";
+import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/hooks/use-toast";
+import { useState } from "react";
 
 const FreeTrial = () => {
+  const { toast } = useToast();
+  const [isLoading, setIsLoading] = useState(false);
+  const [locations, setLocations] = useState("");
+  const [industry, setIndustry] = useState("");
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    const formData = new FormData(e.currentTarget);
+    const data = {
+      companyName: formData.get('company') as string,
+      fullName: formData.get('name') as string,
+      email: formData.get('email') as string,
+      phone: formData.get('phone') as string,
+      locations: parseInt(locations),
+      industry,
+    };
+
+    try {
+      const { error } = await supabase.functions.invoke('send-trial-email', {
+        body: data,
+      });
+
+      if (error) throw error;
+
+      toast({
+        title: "Registreringen lyckades!",
+        description: "Vi kommer att kontakta dig inom kort.",
+      });
+
+      (e.target as HTMLFormElement).reset();
+      setLocations("");
+      setIndustry("");
+    } catch (error: any) {
+      console.error('Error:', error);
+      toast({
+        title: "Ett fel uppstod",
+        description: "Försök igen senare.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <Layout
       title="Prova Gratis - Boost08"
@@ -44,40 +93,40 @@ const FreeTrial = () => {
                   ))}
                 </div>
 
-                <form className="space-y-4 bg-card border border-border rounded-2xl p-8">
+                <form className="space-y-4 bg-card border border-border rounded-2xl p-8" onSubmit={handleSubmit}>
                   <div>
                     <Label htmlFor="company">Företagsnamn *</Label>
-                    <Input id="company" placeholder="Mitt Företag AB" required />
+                    <Input id="company" name="company" placeholder="Mitt Företag AB" required />
                   </div>
                   <div>
                     <Label htmlFor="name">Ditt namn *</Label>
-                    <Input id="name" placeholder="Anna Andersson" required />
+                    <Input id="name" name="name" placeholder="Anna Andersson" required />
                   </div>
                   <div>
                     <Label htmlFor="email">E-post *</Label>
-                    <Input id="email" type="email" placeholder="anna@mittforetag.se" required />
+                    <Input id="email" name="email" type="email" placeholder="anna@mittforetag.se" required />
                   </div>
                   <div>
-                    <Label htmlFor="phone">Telefon (valfritt)</Label>
-                    <Input id="phone" type="tel" placeholder="+46 70 123 45 67" />
+                    <Label htmlFor="phone">Telefon *</Label>
+                    <Input id="phone" name="phone" type="tel" placeholder="+46 70 123 45 67" required />
                   </div>
                   <div>
                     <Label htmlFor="locations">Antal platser</Label>
-                    <Select>
+                    <Select value={locations} onValueChange={setLocations} required>
                       <SelectTrigger id="locations">
                         <SelectValue placeholder="Välj antal" />
                       </SelectTrigger>
                       <SelectContent>
                         <SelectItem value="1">1 plats</SelectItem>
-                        <SelectItem value="2-3">2-3 platser</SelectItem>
-                        <SelectItem value="4-10">4-10 platser</SelectItem>
-                        <SelectItem value="10+">10+ platser</SelectItem>
+                        <SelectItem value="2">2-3 platser</SelectItem>
+                        <SelectItem value="5">4-10 platser</SelectItem>
+                        <SelectItem value="10">10+ platser</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
                   <div>
                     <Label htmlFor="industry">Bransch</Label>
-                    <Select>
+                    <Select value={industry} onValueChange={setIndustry} required>
                       <SelectTrigger id="industry">
                         <SelectValue placeholder="Välj bransch" />
                       </SelectTrigger>
@@ -90,8 +139,8 @@ const FreeTrial = () => {
                       </SelectContent>
                     </Select>
                   </div>
-                  <Button variant="hero" className="w-full" size="lg">
-                    Starta Min Testperiod
+                  <Button variant="hero" className="w-full" size="lg" type="submit" disabled={isLoading}>
+                    {isLoading ? "Bearbetar..." : "Starta Min Testperiod"}
                   </Button>
                   <p className="text-xs text-center text-muted-foreground">
                     Genom att starta testperioden godkänner du våra{" "}

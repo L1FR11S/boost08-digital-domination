@@ -1,6 +1,7 @@
 import logo from "@/assets/logo.png";
-import { Button } from "@/components/ui/button";
+import TrackableCTA from "@/components/analytics/TrackableCTA";
 import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { Mail, Phone } from "lucide-react";
 const Footer = () => {

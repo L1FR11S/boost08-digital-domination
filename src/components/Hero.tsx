@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import TrackableCTA from "@/components/analytics/TrackableCTA";
 import dashboardImage from "@/assets/dashboard-hero.png";
 import logo from "@/assets/logo.png";
 import { useEffect, useRef, useState } from "react";
@@ -54,9 +54,16 @@ const Hero = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-slide-up" style={{ animationDelay: '200ms' }}>
-            <Button variant="hero" size="lg" className="w-full sm:w-auto text-base px-12 shadow-glow animate-pulse-glow hover-lift group">
+            <TrackableCTA
+              ctaText="Boka Demo"
+              location="hero"
+              variant="hero"
+              size="lg"
+              className="w-full sm:w-auto text-base px-12 shadow-glow animate-pulse-glow hover-lift group"
+              onClick={() => window.open('https://zcal.co/boost08', '_blank')}
+            >
               Boka Demo
-            </Button>
+            </TrackableCTA>
           </div>
           
           <p className="text-sm text-muted-foreground mt-4">
