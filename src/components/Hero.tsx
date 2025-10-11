@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import dashboardImage from "@/assets/dashboard-hero.png";
 import logo from "@/assets/logo.png";
 import { useEffect, useRef, useState } from "react";
-import { Star, Play } from "lucide-react";
+import { Star } from "lucide-react";
 import TrustBadges from "./TrustBadges";
 import SocialProofTicker from "./SocialProofTicker";
 
@@ -46,25 +46,22 @@ const Hero = () => {
           </div>
 
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-            Maximera er lokala <span className="text-primary">kundtillväxt</span>
-            <br />
-            med <span className="text-primary">smart</span> automatisering
+            Hjälp lokala företag <span className="text-primary">dominera</span> sin marknad
           </h1>
 
-          <p className="text-lg sm:text-xl text-muted-foreground mb-8 max-w-3xl mx-auto">
-            <strong>Boost08</strong> säkrar er synlighet i <strong>Svenska</strong> lokala sökningar, hanterar recensioner
-            och optimerar företagsuppgifter för varje fysisk plats – helt automatiskt.
+          <p className="text-lg sm:text-xl text-muted-foreground mb-6 max-w-3xl mx-auto">
+            Med vår intelligenta tillväxtplattform hanterar du automatiskt online-närvaro, recensioner och lokal SEO - utan att lyfta ett finger
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-slide-up" style={{ animationDelay: '200ms' }}>
-            <Button variant="hero" size="lg" className="w-full sm:w-auto text-base px-8 shadow-glow animate-pulse-glow hover-lift group">
-              Boka En Kostnadsfri Demo
-            </Button>
-            <Button variant="outline" size="lg" className="w-full sm:w-auto text-base px-8 hover-lift group">
-              <Play className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform" />
-              Se Platform Demo
+            <Button variant="hero" size="lg" className="w-full sm:w-auto text-base px-12 shadow-glow animate-pulse-glow hover-lift group">
+              Boka Demo
             </Button>
           </div>
+          
+          <p className="text-sm text-muted-foreground mt-4">
+            Ingen bindningstid • Setup på 5 min • GDPR-säkert
+          </p>
 
           <TrustBadges />
           <SocialProofTicker />
