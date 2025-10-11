@@ -12,7 +12,7 @@ const features = [
     subtitle: "Hitta nya kunder lokalt",
     description: "Öka din digitala närvaro och säkerställ att ditt företag visas korrekt på alla viktiga plattformar som Google, Bing, och Apple Maps.",
     benefits: [
-      "Automatisk uppdatering på 100+ plattformar",
+      "Automatisk uppdatering på 50+ plattformar",
       "Korrekt företagsinformation överallt",
       "Ökad synlighet i lokala sökresultat"
     ]
