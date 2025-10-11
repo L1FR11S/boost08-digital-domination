@@ -1,5 +1,4 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
-import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.39.3';
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -24,27 +23,6 @@ serve(async (req) => {
     const { companyName, fullName, email, phone, locations, industry }: TrialRequest = await req.json();
 
     console.log('Processing free trial:', { companyName, fullName, email });
-
-    const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
-    const supabaseKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
-    const supabase = createClient(supabaseUrl, supabaseKey);
-
-    // Save to database
-    const { error: dbError } = await supabase
-      .from('free_trial_leads')
-      .insert({
-        company_name: companyName,
-        full_name: fullName,
-        email,
-        phone,
-        locations,
-        industry,
-      });
-
-    if (dbError) {
-      console.error('Database error:', dbError);
-      throw dbError;
-    }
 
     // Send email using Resend
     const resendApiKey = Deno.env.get('RESEND_API_KEY');
