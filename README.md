@@ -1,3 +1,90 @@
+# Boost08 - Intelligent Tillväxtplattform
+
+En modern webbplats byggd med React, TypeScript, Tailwind CSS och Vite.
+
+## 🚀 Funktioner
+
+- **SEO-optimerad**: Schema markup, meta tags, sitemap
+- **Prestanda**: Lazy loading, code splitting, optimerade bilder
+- **Analytics**: Google Analytics 4 integration med event tracking
+- **Responsiv Design**: Mobile-first approach
+- **Tillgänglighet**: WCAG 2.1 AA compliant
+- **Multi-page**: Solution pages, industry pages, case studies
+
+## 📦 Tech Stack
+
+- React 18
+- TypeScript
+- Tailwind CSS
+- Vite
+- React Router DOM
+- React Helmet Async (SEO)
+- Shadcn/ui Components
+- Lucide React Icons
+
+## 🛠️ Utveckling
+
+```bash
+# Installera dependencies
+npm install
+
+# Starta development server
+npm run dev
+
+# Bygg för production
+npm run build
+
+# Preview production build
+npm run preview
+```
+
+## 📊 Analytics Setup
+
+1. Ersätt `GA_MEASUREMENT_ID` i `src/utils/analytics.ts` med ditt Google Analytics ID
+2. Lägg till Google Analytics script i `index.html`
+
+```html
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'GA_MEASUREMENT_ID');
+</script>
+```
+
+## 🎯 SEO Checklist
+
+- ✅ Unique meta titles and descriptions for all pages
+- ✅ Schema.org structured data (Organization, LocalBusiness, FAQPage)
+- ✅ Sitemap.xml
+- ✅ Robots.txt
+- ✅ Canonical URLs
+- ✅ Open Graph tags
+- ✅ Alt text for all images
+- ✅ Semantic HTML
+
+## 📈 Performance Optimization
+
+- Image lazy loading
+- Code splitting per route
+- Optimized bundle size
+- CSS and JS minification
+- Gzip compression
+
+## 🔗 Viktiga URL:er
+
+- **Hem**: `/`
+- **Lösningar**: `/losningar`
+- **Bransch**: `/bransch/{industry}`
+- **Resultat**: `/resultat`
+- **Om Oss**: `/om-oss`
+- **Prova Gratis**: `/prova-gratis`
+- **Kontakt**: `/kontakt`
+
+---
+
 # Welcome to your Lovable project
 
 ## Project info
