@@ -4,7 +4,7 @@ const proofMessages = [
   "Pizzeria Milano fick 47% fler recensioner på 2 månader",
   "Stockholm Fitness ökade sin synlighet med 89% på Google Maps",
   "Svenska Café Kedjan hanterar nu 500+ recensioner automatiskt",
-  "Retail Store AB sparar 15 timmar/vecka på automatiserad hantering",
+  "Butiker sparar 15 timmar/vecka på automatiserad hantering",
   "Bilverkstad Norr fick 3.2x fler kundförfrågningar via Google",
 ];
 
