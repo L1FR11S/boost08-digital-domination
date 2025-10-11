@@ -1,85 +1,127 @@
 import Layout from "@/components/Layout";
+import { Button } from "@/components/ui/button";
+import { ArrowRight, Globe, MessageSquare, Sparkles, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
-import { MapPin, Star, Share2, BarChart3, ArrowRight } from "lucide-react";
 
 const SolutionsOverview = () => {
   const solutions = [
     {
-      icon: MapPin,
+      icon: Globe,
+      badge: "Närvaro",
       title: "Smart Närvarohantering",
-      description: "Automatisk synkronisering av 500+ datafält över alla plattformar. Var synlig överallt där dina kunder söker.",
-      link: "/losningar/smart-narvarohantering",
-      benefits: ["50+ plattformar", "Bulk-uppdateringar", "AI-optimering"]
+      description: "Var synlig överallt där dina kunder söker - automatiskt",
+      benefits: ["500+ datafält synkroniserade", "50+ plattformar", "10 tim/mån sparade"],
+      href: "/losningar/smart-narvarohantering"
     },
     {
-      icon: Star,
+      icon: MessageSquare,
+      badge: "Rykte",
       title: "Intelligent Rykteshantering",
-      description: "AI-drivna recensionssvar som låter naturliga. Förvandla recensioner till din tillväxtmotor.",
-      link: "/losningar/intelligent-rykteshantering",
-      benefits: ["AI-svar", "Automatiska kampanjer", "Sentimentanalys"]
+      description: "Förvandla recensioner till tillväxtmotorn för ert företag",
+      benefits: ["+47% fler recensioner", "AI-drivna svar", "20 tim/mån sparade"],
+      href: "/losningar/intelligent-rykteshantering"
     },
     {
-      icon: Share2,
+      icon: Sparkles,
+      badge: "Social Media",
       title: "Social Media-automatisering",
-      description: "AI-genererat innehåll anpassat för varje företag. Spara 10+ timmar/vecka med bättre resultat.",
-      link: "/losningar/social-media-automatisering",
-      benefits: ["AI-innehåll", "Flerkanalspublicering", "Automatisk schemaläggning"]
+      description: "Spara 10+ timmar/vecka på sociala medier med bättre resultat",
+      benefits: ["AI-genererat innehåll", "Multi-kanal publicering", "+156% räckvidd"],
+      href: "/losningar/social-media-automatisering"
     },
     {
-      icon: BarChart3,
+      icon: MapPin,
+      badge: "SEO",
       title: "Lokalt SEO-dominans",
-      description: "Grannskapsbaserad rankingspårning och hyperlokala SEO-insikter. Dominera dina lokala sökningar.",
-      link: "/losningar/lokalt-seo",
-      benefits: ["Grannskapsbaserad spårning", "Konkurrentanalys", "Automatisk optimering"]
+      description: "Dominera lokala sökningar i er stad och grannskaper",
+      benefits: ["Grannskapsbaserad spårning", "+120% visningar", "Top 3 ranking"],
+      href: "/losningar/lokalt-seo"
     }
   ];
 
   return (
     <Layout
-      title="Lösningar - Boost08"
-      description="Upptäck Boost08s fyra kärnpelare för lokal tillväxt: Smart närvarohantering, intelligent rykteshantering, social media-automatisering och lokalt SEO."
+      title="Våra Lösningar - Boost08"
+      description="Fyra kärnpelare för att dominera er lokala marknad. Automatisera närvaro, recensioner, social media och lokalt SEO."
     >
-      <section className="pt-32 pb-24 bg-gradient-hero">
+      <section className="pt-32 pb-24">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <h1 className="text-4xl sm:text-5xl font-bold mb-6">
-              Fyra pelare för lokal tillväxt
-            </h1>
-            <p className="text-xl text-muted-foreground">
-              Allt du behöver för att dominera din lokala marknad - på en intelligent plattform
-            </p>
-          </div>
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-16">
+              <span className="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-4">
+                Våra Lösningar
+              </span>
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
+                Fyra kärnpelare för lokal tillväxt
+              </h1>
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+                Allt ni behöver för att dominera er lokala marknad - automatiserat och intelligent
+              </p>
+            </div>
 
-          <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-            {solutions.map((solution, index) => (
-              <div
-                key={index}
-                className="p-8 rounded-2xl bg-card border border-border shadow-card hover:shadow-soft transition-all"
+            <div className="grid lg:grid-cols-2 gap-8 mb-16">
+              {solutions.map((solution, index) => {
+                const Icon = solution.icon;
+                return (
+                  <Link 
+                    key={index}
+                    to={solution.href}
+                    className="group"
+                  >
+                    <div className="h-full p-8 bg-card rounded-2xl border border-border hover:border-primary/50 transition-all hover:shadow-card">
+                      <div className="flex items-start gap-4 mb-6">
+                        <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors flex-shrink-0">
+                          <Icon className="h-7 w-7 text-primary" />
+                        </div>
+                        <div>
+                          <span className="inline-block bg-muted text-muted-foreground px-3 py-1 rounded-full text-xs font-medium mb-2">
+                            {solution.badge}
+                          </span>
+                          <h2 className="text-2xl font-bold mb-2 group-hover:text-primary transition-colors">
+                            {solution.title}
+                          </h2>
+                        </div>
+                      </div>
+                      
+                      <p className="text-muted-foreground mb-6">
+                        {solution.description}
+                      </p>
+                      
+                      <div className="space-y-2 mb-6">
+                        {solution.benefits.map((benefit, i) => (
+                          <div key={i} className="flex items-center gap-2 text-sm">
+                            <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
+                            <span>{benefit}</span>
+                          </div>
+                        ))}
+                      </div>
+                      
+                      <div className="flex items-center text-primary font-semibold group-hover:gap-3 gap-2 transition-all">
+                        Läs Mer
+                        <ArrowRight className="h-4 w-4" />
+                      </div>
+                    </div>
+                  </Link>
+                );
+              })}
+            </div>
+
+            <div className="bg-gradient-to-r from-primary to-secondary rounded-3xl p-12 text-center shadow-card">
+              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+                Vill du se alla lösningar i praktiken?
+              </h2>
+              <p className="text-lg text-white/90 mb-8">
+                Boka en demo så visar vi hur våra lösningar kan transformera ert företag
+              </p>
+              <Button 
+                variant="secondary"
+                size="lg"
+                className="bg-white hover:bg-white/90 text-primary font-bold text-lg px-12 group"
               >
-                <div className="w-16 h-16 rounded-xl bg-primary/10 flex items-center justify-center mb-6">
-                  <solution.icon className="w-8 h-8 text-primary" />
-                </div>
-                <h2 className="text-2xl font-bold mb-3 text-foreground">
-                  {solution.title}
-                </h2>
-                <p className="text-muted-foreground mb-6">{solution.description}</p>
-                <ul className="space-y-2 mb-6">
-                  {solution.benefits.map((benefit, idx) => (
-                    <li key={idx} className="flex items-center text-sm">
-                      <div className="w-1.5 h-1.5 rounded-full bg-primary mr-2" />
-                      {benefit}
-                    </li>
-                  ))}
-                </ul>
-                <Link
-                  to={solution.link}
-                  className="inline-flex items-center text-primary font-semibold hover:underline"
-                >
-                  Läs mer
-                  <ArrowRight className="w-4 h-4 ml-2" />
-                </Link>
-              </div>
-            ))}
+                Boka Demo
+                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              </Button>
+            </div>
           </div>
         </div>
       </section>
