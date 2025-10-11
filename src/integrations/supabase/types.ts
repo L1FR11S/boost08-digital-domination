@@ -14,7 +14,129 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      contact_leads: {
+        Row: {
+          company: string | null
+          created_at: string | null
+          email: string
+          id: string
+          message: string
+          name: string
+        }
+        Insert: {
+          company?: string | null
+          created_at?: string | null
+          email: string
+          id?: string
+          message: string
+          name: string
+        }
+        Update: {
+          company?: string | null
+          created_at?: string | null
+          email?: string
+          id?: string
+          message?: string
+          name?: string
+        }
+        Relationships: []
+      }
+      exit_intent_leads: {
+        Row: {
+          created_at: string | null
+          email: string
+          id: string
+        }
+        Insert: {
+          created_at?: string | null
+          email: string
+          id?: string
+        }
+        Update: {
+          created_at?: string | null
+          email?: string
+          id?: string
+        }
+        Relationships: []
+      }
+      free_trial_leads: {
+        Row: {
+          company_name: string
+          created_at: string | null
+          email: string
+          full_name: string
+          id: string
+          industry: string
+          locations: number
+          phone: string
+        }
+        Insert: {
+          company_name: string
+          created_at?: string | null
+          email: string
+          full_name: string
+          id?: string
+          industry: string
+          locations: number
+          phone: string
+        }
+        Update: {
+          company_name?: string
+          created_at?: string | null
+          email?: string
+          full_name?: string
+          id?: string
+          industry?: string
+          locations?: number
+          phone?: string
+        }
+        Relationships: []
+      }
+      roi_calculator_leads: {
+        Row: {
+          company: string
+          created_at: string | null
+          email: string
+          estimated_increase: string | null
+          id: string
+          industry: string
+          locations: number
+          name: string
+          new_customers: string | null
+          phone: string
+          revenue: string | null
+          reviews: number
+        }
+        Insert: {
+          company: string
+          created_at?: string | null
+          email: string
+          estimated_increase?: string | null
+          id?: string
+          industry: string
+          locations: number
+          name: string
+          new_customers?: string | null
+          phone: string
+          revenue?: string | null
+          reviews: number
+        }
+        Update: {
+          company?: string
+          created_at?: string | null
+          email?: string
+          estimated_increase?: string | null
+          id?: string
+          industry?: string
+          locations?: number
+          name?: string
+          new_customers?: string | null
+          phone?: string
+          revenue?: string | null
+          reviews?: number
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
