@@ -38,64 +38,88 @@ const Footer = () => {
           </div>
 
           <div>
-            <h4 className="font-bold text-foreground mb-4">Resurser</h4>
+            <h4 className="font-bold text-foreground mb-4">Lösningar</h4>
             <ul className="space-y-3">
               <li>
-                <a href="#" className="text-muted-foreground hover:text-primary transition-colors text-sm">
-                  Blogg
+                <a href="/losningar" className="text-muted-foreground hover:text-primary transition-colors text-sm">
+                  Översikt lösningar
                 </a>
               </li>
               <li>
-                <a href="#" className="text-muted-foreground hover:text-primary transition-colors text-sm">
-                  Guider & E-böcker
+                <a href="/losningar/smart-narvarohantering" className="text-muted-foreground hover:text-primary transition-colors text-sm">
+                  Smart Närvarohantering
                 </a>
               </li>
               <li>
-                <a href="#" className="text-muted-foreground hover:text-primary transition-colors text-sm">
-                  Webinars
+                <a href="/losningar/intelligent-rykteshantering" className="text-muted-foreground hover:text-primary transition-colors text-sm">
+                  Intelligent Rykteshantering
                 </a>
               </li>
               <li>
-                <a href="#" className="text-muted-foreground hover:text-primary transition-colors text-sm">
-                  Nyheter
+                <a href="/losningar/social-media-automatisering" className="text-muted-foreground hover:text-primary transition-colors text-sm">
+                  Social Media Automatisering
+                </a>
+              </li>
+              <li>
+                <a href="/losningar/lokalt-seo" className="text-muted-foreground hover:text-primary transition-colors text-sm">
+                  Lokalt SEO
                 </a>
               </li>
             </ul>
           </div>
 
           <div>
-            <h4 className="font-bold text-foreground mb-4">Plattform</h4>
+            <h4 className="font-bold text-foreground mb-4">Branscher</h4>
             <ul className="space-y-3">
               <li>
-                <a href="#tjanster" className="text-muted-foreground hover:text-primary transition-colors text-sm">
-                  Tjänster
+                <a href="/bransch/kliniker-vard" className="text-muted-foreground hover:text-primary transition-colors text-sm">
+                  Kliniker & Vård
                 </a>
               </li>
               <li>
-                <a href="#" className="text-muted-foreground hover:text-primary transition-colors text-sm">
-                  Priser
+                <a href="/bransch/skonhetssalonger" className="text-muted-foreground hover:text-primary transition-colors text-sm">
+                  Skönhetssalonger
                 </a>
               </li>
               <li>
-                <a href="#" className="text-muted-foreground hover:text-primary transition-colors text-sm">
-                  Integrationer
+                <a href="/bransch/butikskedjor" className="text-muted-foreground hover:text-primary transition-colors text-sm">
+                  Butikskedjor
                 </a>
               </li>
               <li>
-                <a href="#" className="text-muted-foreground hover:text-primary transition-colors text-sm">
-                  API Dokumentation
+                <a href="/bransch/restauranger-cafeer" className="text-muted-foreground hover:text-primary transition-colors text-sm">
+                  Restauranger & Caféer
                 </a>
               </li>
             </ul>
           </div>
 
           <div>
-            <h4 className="font-bold text-foreground mb-4">Kontakt & Support</h4>
+            <h4 className="font-bold text-foreground mb-4">Företag & Kontakt</h4>
             <ul className="space-y-3 mb-6">
-              
-              <li className="flex items-center gap-2 text-sm">
+              <li>
+                <a href="/om-oss" className="text-muted-foreground hover:text-primary transition-colors text-sm">
+                  Om oss
+                </a>
+              </li>
+              <li>
+                <a href="/resultat" className="text-muted-foreground hover:text-primary transition-colors text-sm">
+                  Resultat
+                </a>
+              </li>
+              <li>
+                <a href="/kontakt" className="text-muted-foreground hover:text-primary transition-colors text-sm">
+                  Kontakt
+                </a>
+              </li>
+              <li>
+                <a href="/prova-gratis" className="text-primary hover:text-primary/80 transition-colors text-sm font-semibold">
+                  Prova gratis
+                </a>
+              </li>
+              <li className="flex items-center gap-2 text-sm pt-2">
                 <Mail className="w-4 h-4 text-primary" />
-                <a href="mailto:kontakt@boost08.se" className="text-muted-foreground hover:text-primary transition-colors">hello@boost08.se</a>
+                <a href="mailto:hello@boost08.se" className="text-muted-foreground hover:text-primary transition-colors">hello@boost08.se</a>
               </li>
             </ul>
 
