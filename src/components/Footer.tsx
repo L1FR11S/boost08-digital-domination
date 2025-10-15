@@ -61,9 +61,7 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="/losningar/lokalt-seo" className="text-muted-foreground hover:text-primary transition-colors text-sm">
-                  Lokalt SEO
-                </a>
+                <a href="/losningar/lokalt-seo" className="text-muted-foreground hover:text-primary transition-colors text-sm">Lokal SEO</a>
               </li>
             </ul>
           </div>
@@ -113,9 +111,7 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="/prova-gratis" className="text-primary hover:text-primary/80 transition-colors text-sm font-semibold">
-                  Prova gratis
-                </a>
+                
               </li>
               <li className="flex items-center gap-2 text-sm pt-2">
                 <Mail className="w-4 h-4 text-primary" />
