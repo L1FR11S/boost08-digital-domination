@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  
+  <!-- Homepage Images -->
+  <url>
+    <loc>https://boost08.com/</loc>
+    <image:image>
+      <image:loc>https://boost08.com/logo.png</image:loc>
+      <image:title>Boost08 Logo - Intelligent Tillväxtplattform</image:title>
+      <image:caption>Boost08 logotyp för smart lokal automatisering</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://boost08.com/dashboard-hero.png</image:loc>
+      <image:title>Boost08 Dashboard Interface</image:title>
+      <image:caption>Smart dashboard för lokal närvaro och recensionshantering</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://boost08.com/testimonial-person.png</image:loc>
+      <image:title>Nöjd Boost08-kund</image:title>
+      <image:caption>Testimonial från nöjd kund som använder Boost08</image:caption>
+    </image:image>
+  </url>
+  
+  <!-- Favicons and App Icons -->
+  <url>
+    <loc>https://boost08.com/manifest.json</loc>
+    <image:image>
+      <image:loc>https://boost08.com/favicon.png</image:loc>
+      <image:title>Boost08 Favicon</image:title>
+      <image:caption>Boost08 webbplatsikon</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://boost08.com/apple-touch-icon.png</image:loc>
+      <image:title>Boost08 Apple Touch Icon</image:title>
+      <image:caption>Boost08 iOS app-ikon</image:caption>
+    </image:image>
+  </url>
+</urlset>

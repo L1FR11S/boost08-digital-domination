@@ -1,0 +1,41 @@
+{
+  "name": "Boost08 - Lokal Tillväxtplattform",
+  "short_name": "Boost08",
+  "description": "Smart automatisering för lokal kundtillväxt med AI-driven digital närvaro och recensionshantering",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0066FF",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "32x32",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/favicon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["business", "productivity", "marketing"],
+  "lang": "sv-SE",
+  "dir": "ltr",
+  "scope": "/",
+  "prefer_related_applications": false
+}

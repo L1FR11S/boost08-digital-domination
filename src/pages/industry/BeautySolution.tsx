@@ -6,6 +6,7 @@ import IndustryCaseStudies from "@/components/industry/IndustryCaseStudies";
 import RecommendedProducts from "@/components/industry/RecommendedProducts";
 import IndustryROICalculator from "@/components/industry/IndustryROICalculator";
 import CTASection from "@/components/shared/CTASection";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 import { Globe, MessageSquare, Sparkles, MapPin } from "lucide-react";
 import dashboardImage from "@/assets/dashboard-hero.png";
 
@@ -127,6 +128,13 @@ const BeautySolution = () => {
       title="Boost08 för Skönhetssalonger & Spa"
       description="Fyll er kalender med bokningar från lokala sökningar. Specialiserade lösningar för skönhetsbranschen."
     >
+      <BreadcrumbSchema
+        items={[
+          { name: "Hem", url: "https://boost08.com" },
+          { name: "Branscher", url: "https://boost08.com" },
+          { name: "Skönhetssalonger & Spa", url: "https://boost08.com/bransch/skonhetssalonger" }
+        ]}
+      />
       <IndustryHero
         badge="För Skönhetssalonger & Spa"
         title="Fyll er kalender med bokningar från lokala sökningar"

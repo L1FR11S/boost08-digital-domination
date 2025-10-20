@@ -6,6 +6,7 @@ import IndustryCaseStudies from "@/components/industry/IndustryCaseStudies";
 import RecommendedProducts from "@/components/industry/RecommendedProducts";
 import IndustryROICalculator from "@/components/industry/IndustryROICalculator";
 import CTASection from "@/components/shared/CTASection";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 import { Globe, MessageSquare, Star, Sparkles } from "lucide-react";
 import dashboardImage from "@/assets/dashboard-hero.png";
 
@@ -127,6 +128,13 @@ const RestaurantSolution = () => {
       title="Boost08 för Restauranger & Caféer"
       description="Fler bord bokade och fler positiva recensioner - helt automatiskt. Specialiserade lösningar för restaurangbranschen."
     >
+      <BreadcrumbSchema
+        items={[
+          { name: "Hem", url: "https://boost08.com" },
+          { name: "Branscher", url: "https://boost08.com" },
+          { name: "Restauranger & Caféer", url: "https://boost08.com/bransch/restauranger-cafeer" }
+        ]}
+      />
       <IndustryHero
         badge="För Restauranger & Caféer"
         title="Fler bord bokade och fler positiva recensioner - helt automatiskt"

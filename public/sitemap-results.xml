@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Case Study: Healthcare Clinic Malmö -->
+  <url>
+    <loc>https://boost08.com/resultat/vardcentral-malmo</loc>
+    <lastmod>2025-10-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  
+  <!-- Case Study: Beauty Salon Stockholm -->
+  <url>
+    <loc>https://boost08.com/resultat/skönhetssalong-stockholm</loc>
+    <lastmod>2025-10-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  
+  <!-- Case Study: Dental Clinic Gothenburg -->
+  <url>
+    <loc>https://boost08.com/resultat/tandvardsklinik-goteborg</loc>
+    <lastmod>2025-10-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  
+  <!-- Case Study: Restaurant Chain Stockholm -->
+  <url>
+    <loc>https://boost08.com/resultat/restaurang-stockholm</loc>
+    <lastmod>2025-10-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  
+  <!-- Case Study: Retail Chain -->
+  <url>
+    <loc>https://boost08.com/resultat/butikskedja-sverige</loc>
+    <lastmod>2025-10-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  
+  <!-- Case Study: Spa Chain -->
+  <url>
+    <loc>https://boost08.com/resultat/spa-kedja-norden</loc>
+    <lastmod>2025-10-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+</urlset>

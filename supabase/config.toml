@@ -8,3 +8,6 @@ verify_jwt = false
 
 [functions.send-roi-email]
 verify_jwt = false
+
+[functions.ai-context]
+verify_jwt = false

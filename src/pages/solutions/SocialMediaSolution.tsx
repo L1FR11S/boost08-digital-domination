@@ -8,6 +8,7 @@ import BenefitsGrid from "@/components/solutions/BenefitsGrid";
 import FeaturedCaseStudy from "@/components/solutions/FeaturedCaseStudy";
 import SolutionFAQ from "@/components/solutions/SolutionFAQ";
 import CTASection from "@/components/shared/CTASection";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 import { Sparkles, Calendar, Share2, BarChart, Image, Target } from "lucide-react";
 import dashboardImage from "@/assets/dashboard-hero.png";
 
@@ -109,6 +110,13 @@ const SocialMediaSolution = () => {
       title="Social Media-automatisering - Boost08"
       description="Spara 10+ timmar/vecka på sociala medier med bättre resultat. AI-genererat innehåll för alla era kanaler."
     >
+      <BreadcrumbSchema
+        items={[
+          { name: "Hem", url: "https://boost08.com" },
+          { name: "Lösningar", url: "https://boost08.com/losningar" },
+          { name: "Social Media Automatisering", url: "https://boost08.com/losningar/social-media-automatisering" }
+        ]}
+      />
       <SolutionHero
         badge="Social Media-automatisering"
         title="Spara 10+ timmar/vecka på sociala medier - med bättre resultat"

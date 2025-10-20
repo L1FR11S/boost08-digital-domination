@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Healthcare & Clinics -->
+  <url>
+    <loc>https://boost08.com/bransch/kliniker-vard</loc>
+    <lastmod>2025-10-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Beauty Salons & Spa -->
+  <url>
+    <loc>https://boost08.com/bransch/skonhetssalonger</loc>
+    <lastmod>2025-10-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Retail Chains -->
+  <url>
+    <loc>https://boost08.com/bransch/butikskedjor</loc>
+    <lastmod>2025-10-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Restaurants & Cafes -->
+  <url>
+    <loc>https://boost08.com/bransch/restauranger-cafeer</loc>
+    <lastmod>2025-10-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+</urlset>

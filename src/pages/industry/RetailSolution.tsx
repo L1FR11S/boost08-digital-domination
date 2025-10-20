@@ -6,6 +6,7 @@ import IndustryCaseStudies from "@/components/industry/IndustryCaseStudies";
 import RecommendedProducts from "@/components/industry/RecommendedProducts";
 import IndustryROICalculator from "@/components/industry/IndustryROICalculator";
 import CTASection from "@/components/shared/CTASection";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 import { Globe, MessageSquare, MapPin, BarChart } from "lucide-react";
 import dashboardImage from "@/assets/dashboard-hero.png";
 
@@ -127,6 +128,13 @@ const RetailSolution = () => {
       title="Boost08 för Butikskedjor"
       description="Hantera alla era butiker från en enda plattform. Specialiserade lösningar för retail."
     >
+      <BreadcrumbSchema
+        items={[
+          { name: "Hem", url: "https://boost08.com" },
+          { name: "Branscher", url: "https://boost08.com" },
+          { name: "Butikskedjor", url: "https://boost08.com/bransch/butikskedjor" }
+        ]}
+      />
       <IndustryHero
         badge="För Butikskedjor"
         title="Hantera alla era butiker från en enda plattform"

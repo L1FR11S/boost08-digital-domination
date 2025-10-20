@@ -8,6 +8,7 @@ import BenefitsGrid from "@/components/solutions/BenefitsGrid";
 import FeaturedCaseStudy from "@/components/solutions/FeaturedCaseStudy";
 import SolutionFAQ from "@/components/solutions/SolutionFAQ";
 import CTASection from "@/components/shared/CTASection";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 import { MapPin, TrendingUp, Target, Eye, Search, Award } from "lucide-react";
 import dashboardImage from "@/assets/dashboard-hero.png";
 
@@ -109,6 +110,13 @@ const LocalSEOSolution = () => {
       title="Lokalt SEO-dominans - Boost08"
       description="Dominera lokala sökningar i er stad och grannskaper. Grannskapsbaserad rankingspårning och optimering."
     >
+      <BreadcrumbSchema
+        items={[
+          { name: "Hem", url: "https://boost08.com" },
+          { name: "Lösningar", url: "https://boost08.com/losningar" },
+          { name: "Lokalt SEO", url: "https://boost08.com/losningar/lokalt-seo" }
+        ]}
+      />
       <SolutionHero
         badge="Lokalt SEO-dominans"
         title="Dominera lokala sökningar i er stad och grannskaper"

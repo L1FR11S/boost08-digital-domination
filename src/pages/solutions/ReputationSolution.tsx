@@ -8,6 +8,7 @@ import BenefitsGrid from "@/components/solutions/BenefitsGrid";
 import FeaturedCaseStudy from "@/components/solutions/FeaturedCaseStudy";
 import SolutionFAQ from "@/components/solutions/SolutionFAQ";
 import CTASection from "@/components/shared/CTASection";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 import { MessageSquare, Bot, TrendingUp, Bell, Star, BarChart3 } from "lucide-react";
 import dashboardImage from "@/assets/dashboard-hero.png";
 
@@ -109,6 +110,13 @@ const ReputationSolution = () => {
       title="Intelligent Rykteshantering - Boost08"
       description="Förvandla recensioner till tillväxtmotorn för ert företag. AI-drivna svar och automatiska kampanjer."
     >
+      <BreadcrumbSchema
+        items={[
+          { name: "Hem", url: "https://boost08.com" },
+          { name: "Lösningar", url: "https://boost08.com/losningar" },
+          { name: "Intelligent Rykteshantering", url: "https://boost08.com/losningar/intelligent-rykteshantering" }
+        ]}
+      />
       <SolutionHero
         badge="Intelligent Rykteshantering"
         title="Förvandla recensioner till tillväxtmotorn för ert företag"

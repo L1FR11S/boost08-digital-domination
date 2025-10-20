@@ -6,6 +6,7 @@ import IndustryCaseStudies from "@/components/industry/IndustryCaseStudies";
 import RecommendedProducts from "@/components/industry/RecommendedProducts";
 import IndustryROICalculator from "@/components/industry/IndustryROICalculator";
 import CTASection from "@/components/shared/CTASection";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 import { Globe, MessageSquare, MapPin, Star } from "lucide-react";
 import dashboardImage from "@/assets/dashboard-hero.png";
 
@@ -127,6 +128,13 @@ const HealthcareSolution = () => {
       title="Boost08 för Kliniker & Vård"
       description="Hjälp fler patienter hitta er utan extra marknadsföringskostnader. Specialiserade lösningar för vårdgivare."
     >
+      <BreadcrumbSchema
+        items={[
+          { name: "Hem", url: "https://boost08.com" },
+          { name: "Branscher", url: "https://boost08.com" },
+          { name: "Kliniker & Vård", url: "https://boost08.com/bransch/kliniker-vard" }
+        ]}
+      />
       <IndustryHero
         badge="För Kliniker & Vård"
         title="Hjälp fler patienter hitta er - utan extra marknadsföringskostnader"

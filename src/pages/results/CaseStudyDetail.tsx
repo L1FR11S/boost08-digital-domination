@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Quote, TrendingUp, CheckCircle2 } from "lucide-react";
 import CTASection from "@/components/shared/CTASection";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 const CaseStudyDetail = () => {
   const { slug } = useParams();
@@ -99,6 +100,13 @@ const CaseStudyDetail = () => {
       title={`${caseStudy.company} - Kundcase - Boost08`}
       description={`Läs om hur ${caseStudy.company} lyckades med Boost08`}
     >
+      <BreadcrumbSchema
+        items={[
+          { name: "Hem", url: "https://boost08.com" },
+          { name: "Resultat", url: "https://boost08.com/resultat" },
+          { name: caseStudy.company, url: `https://boost08.com/resultat/${slug}` }
+        ]}
+      />
       <section className="pt-32 pb-24">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">

@@ -1,0 +1,24 @@
+/* TEAM */
+  Company: Boost08
+  Location: Stockholm, Sverige
+  Website: https://boost08.com
+  Email: hello@boost08.se
+
+/* SITE */
+  Last update: 2025-10-20
+  Standards: HTML5, CSS3, JavaScript ES6+
+  Components: React 18, TypeScript, Tailwind CSS
+  Backend: Supabase, Edge Functions
+  Build tool: Vite
+  Fonts: System fonts
+  Design: Responsive, Mobile-first
+  
+/* THANKS */
+  All our customers who trust us with their local growth
+  The open source community
+  Our partners and integrations
+  
+/* FUN FACT */
+  We help local businesses dominate their market with AI-driven automation
+  Our platform manages 500+ data fields across 50+ platforms automatically
+  We save our customers an average of 10-25 hours per week

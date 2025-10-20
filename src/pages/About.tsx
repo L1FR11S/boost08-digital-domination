@@ -5,6 +5,7 @@ import TrustBadges from "@/components/TrustBadges";
 import OurStory from "@/components/about/OurStory";
 import OurValues from "@/components/about/OurValues";
 import CTASection from "@/components/shared/CTASection";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 const About = () => {
   return (
@@ -12,6 +13,12 @@ const About = () => {
       title="Om Oss - Boost08"
       description="Vi hjälper svenska företag bli synliga lokalt. Läs mer om vår mission och vad som gör oss annorlunda."
     >
+      <BreadcrumbSchema
+        items={[
+          { name: "Hem", url: "https://boost08.com" },
+          { name: "Om Oss", url: "https://boost08.com/om-oss" }
+        ]}
+      />
       {/* Hero */}
       <section className="pt-32 pb-16 bg-gradient-to-br from-primary/5 via-background to-secondary/5">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">

@@ -5,6 +5,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Mail, Phone, MapPin } from "lucide-react";
 import FAQShortcuts from "@/components/contact/FAQShortcuts";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
 
@@ -58,6 +59,12 @@ const Contact = () => {
       title="Kontakt - Boost08"
       description="Kontakta oss för frågor eller boka en demo. Vi svarar inom 24 timmar."
     >
+      <BreadcrumbSchema
+        items={[
+          { name: "Hem", url: "https://boost08.com" },
+          { name: "Kontakt", url: "https://boost08.com/kontakt" }
+        ]}
+      />
       <section className="pt-32 pb-24">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-6xl mx-auto">

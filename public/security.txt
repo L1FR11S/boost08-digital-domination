@@ -1,0 +1,10 @@
+Contact: mailto:security@boost08.se
+Expires: 2026-10-20T23:59:59.000Z
+Preferred-Languages: sv, en
+Canonical: https://boost08.com/.well-known/security.txt
+Encryption: https://boost08.com/pgp-key.txt
+Acknowledgments: https://boost08.com/security-acknowledgments
+
+# Security Policy
+# If you discover a security vulnerability, please email security@boost08.se
+# We appreciate responsible disclosure and will respond within 48 hours

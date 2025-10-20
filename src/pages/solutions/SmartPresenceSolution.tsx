@@ -8,6 +8,7 @@ import BenefitsGrid from "@/components/solutions/BenefitsGrid";
 import FeaturedCaseStudy from "@/components/solutions/FeaturedCaseStudy";
 import SolutionFAQ from "@/components/solutions/SolutionFAQ";
 import CTASection from "@/components/shared/CTASection";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 import { Globe, RefreshCw, Zap, Search, MapPin, Clock } from "lucide-react";
 import dashboardImage from "@/assets/dashboard-hero.png";
 
@@ -109,6 +110,13 @@ const SmartPresenceSolution = () => {
       title="Smart Närvarohantering - Boost08"
       description="Var synlig överallt där dina kunder söker. Automatisk hantering av 500+ datafält över alla plattformar."
     >
+      <BreadcrumbSchema
+        items={[
+          { name: "Hem", url: "https://boost08.com" },
+          { name: "Lösningar", url: "https://boost08.com/losningar" },
+          { name: "Smart Närvarohantering", url: "https://boost08.com/losningar/smart-narvarohantering" }
+        ]}
+      />
       <SolutionHero
         badge="Smart Närvarohantering"
         title="Var synlig överallt där dina kunder söker - automatiskt"
