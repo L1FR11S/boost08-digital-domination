@@ -18,7 +18,6 @@ import RestaurantSolution from "./pages/industry/RestaurantSolution";
 import ResultsOverview from "./pages/results/ResultsOverview";
 import CaseStudyDetail from "./pages/results/CaseStudyDetail";
 import About from "./pages/About";
-import FreeTrial from "./pages/FreeTrial";
 import Contact from "./pages/Contact";
 
 const queryClient = new QueryClient();
@@ -58,7 +57,6 @@ const AppContent = () => {
           
           {/* Other pages */}
           <Route path="/om-oss" element={<About />} />
-          <Route path="/prova-gratis" element={<FreeTrial />} />
           <Route path="/kontakt" element={<Contact />} />
           
           {/* Catch-all */}

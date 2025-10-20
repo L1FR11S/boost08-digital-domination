@@ -32,8 +32,8 @@ interface FAQSchema {
 }
 
 interface SchemaMarkupProps {
-  type: "Organization" | "LocalBusiness" | "Product" | "FAQPage" | "Article";
-  data: any;
+  type: "Organization" | "LocalBusiness" | "Product" | "FAQPage" | "Article" | "WebSite" | "SoftwareApplication";
+  data?: any;
 }
 
 const SchemaMarkup = ({ type, data }: SchemaMarkupProps) => {
@@ -146,6 +146,56 @@ const SchemaMarkup = ({ type, data }: SchemaMarkupProps) => {
               url: "https://boost08.com/logo.png",
             },
           },
+        };
+
+      case "WebSite":
+        return {
+          ...baseSchema,
+          "@type": "WebSite",
+          name: "Boost08",
+          url: "https://boost08.com",
+          description: "Intelligent tillväxtplattform för lokala företag",
+          publisher: {
+            "@type": "Organization",
+            name: "Boost08",
+          },
+          potentialAction: {
+            "@type": "SearchAction",
+            target: {
+              "@type": "EntryPoint",
+              urlTemplate: "https://boost08.com/search?q={search_term_string}",
+            },
+            "query-input": "required name=search_term_string",
+          },
+          inLanguage: "sv-SE",
+        };
+
+      case "SoftwareApplication":
+        return {
+          ...baseSchema,
+          "@type": "SoftwareApplication",
+          name: "Boost08 Platform",
+          applicationCategory: "BusinessApplication",
+          operatingSystem: "Web",
+          description: "Intelligent tillväxtplattform för lokala företag med automatisering för digital närvaro, recensioner och lokal SEO",
+          offers: {
+            "@type": "Offer",
+            description: "Kontakta oss för prissättning",
+            url: "https://boost08.com/kontakt",
+          },
+          aggregateRating: {
+            "@type": "AggregateRating",
+            ratingValue: "4.8",
+            reviewCount: "127",
+            bestRating: "5",
+            worstRating: "1",
+          },
+          featureList: [
+            "Smart Närvarohantering",
+            "Intelligent Rykteshantering",
+            "Social Media Automatisering",
+            "Lokalt SEO",
+          ],
         };
 
       default:

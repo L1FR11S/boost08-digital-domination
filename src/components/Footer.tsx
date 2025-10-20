@@ -110,9 +110,6 @@ const Footer = () => {
                   Kontakt
                 </a>
               </li>
-              <li>
-                
-              </li>
               <li className="flex items-center gap-2 text-sm pt-2">
                 <Mail className="w-4 h-4 text-primary" />
                 <a href="mailto:hello@boost08.se" className="text-muted-foreground hover:text-primary transition-colors">hello@boost08.se</a>

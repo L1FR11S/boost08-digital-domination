@@ -8,7 +8,7 @@ interface FAQShortcut {
 
 const FAQShortcuts = () => {
   const faqs: FAQShortcut[] = [
-    { question: "Hur kommer jag igång?", href: "/prova-gratis" },
+    { question: "Hur kommer jag igång?", href: "/kontakt" },
     { question: "Vilka lösningar erbjuder ni?", href: "/losningar" },
     { question: "Se kundcase och resultat", href: "/resultat" },
     { question: "Läs mer om oss", href: "/om-oss" }

@@ -1,96 +1,96 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <!-- Homepage -->
   <url>
     <loc>https://boost08.com/</loc>
-    <lastmod>2025-01-11</lastmod>
+    <lastmod>2025-10-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://boost08.com/logo.png</image:loc>
+      <image:title>Boost08 Logo</image:title>
+      <image:caption>Smart automatisering för lokal kundtillväxt</image:caption>
+    </image:image>
   </url>
   
   <!-- Solution Pages -->
   <url>
     <loc>https://boost08.com/losningar</loc>
-    <lastmod>2025-01-11</lastmod>
+    <lastmod>2025-10-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://boost08.com/losningar/smart-narvarohantering</loc>
-    <lastmod>2025-01-11</lastmod>
+    <lastmod>2025-10-20</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://boost08.com/losningar/intelligent-rykteshantering</loc>
-    <lastmod>2025-01-11</lastmod>
+    <lastmod>2025-10-20</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://boost08.com/losningar/social-media-automatisering</loc>
-    <lastmod>2025-01-11</lastmod>
+    <lastmod>2025-10-20</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://boost08.com/losningar/lokalt-seo</loc>
-    <lastmod>2025-01-11</lastmod>
+    <lastmod>2025-10-20</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.85</priority>
   </url>
   
   <!-- Industry Pages -->
   <url>
     <loc>https://boost08.com/bransch/kliniker-vard</loc>
-    <lastmod>2025-01-11</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2025-10-20</lastmod>
+    <changefreq>biweekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://boost08.com/bransch/skonhetssalonger</loc>
-    <lastmod>2025-01-11</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2025-10-20</lastmod>
+    <changefreq>biweekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://boost08.com/bransch/butikskedjor</loc>
-    <lastmod>2025-01-11</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2025-10-20</lastmod>
+    <changefreq>biweekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://boost08.com/bransch/restauranger-cafeer</loc>
-    <lastmod>2025-01-11</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2025-10-20</lastmod>
+    <changefreq>biweekly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <!-- Results Pages -->
   <url>
     <loc>https://boost08.com/resultat</loc>
-    <lastmod>2025-01-11</lastmod>
+    <lastmod>2025-10-20</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.75</priority>
   </url>
   
   <!-- Other Pages -->
   <url>
     <loc>https://boost08.com/om-oss</loc>
-    <lastmod>2025-01-11</lastmod>
+    <lastmod>2025-10-20</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://boost08.com/prova-gratis</loc>
-    <lastmod>2025-01-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://boost08.com/kontakt</loc>
-    <lastmod>2025-01-11</lastmod>
+    <lastmod>2025-10-20</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
   </url>
 </urlset>
