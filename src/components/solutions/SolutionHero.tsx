@@ -25,7 +25,7 @@ const SolutionHero = ({
               <span className="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium">
                 {badge}
               </span>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">
                 {title}
               </h1>
               <p className="text-xl text-muted-foreground">
