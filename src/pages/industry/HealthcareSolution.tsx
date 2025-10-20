@@ -1,5 +1,5 @@
 import Layout from "@/components/Layout";
-import IndustryHero from "@/components/industry/IndustryHero";
+import HealthcareHero from "@/components/industry/HealthcareHero";
 import IndustryPainpoints from "@/components/industry/IndustryPainpoints";
 import IndustrySolutions from "@/components/industry/IndustrySolutions";
 import IndustryCaseStudies from "@/components/industry/IndustryCaseStudies";
@@ -135,12 +135,7 @@ const HealthcareSolution = () => {
           { name: "Kliniker & Vård", url: "https://boost08.com/bransch/kliniker-vard" }
         ]}
       />
-      <IndustryHero
-        badge="För Kliniker & Vård"
-        title="Hjälp fler patienter hitta er - utan extra marknadsföringskostnader"
-        subtitle="Automatisera er digitala närvaro och få fler patienter genom lokala sökningar"
-        image={dashboardImage}
-      />
+      <HealthcareHero image={dashboardImage} />
 
       <IndustryPainpoints painpoints={painpoints} />
 
