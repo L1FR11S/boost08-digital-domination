@@ -14,6 +14,155 @@ export type Database = {
   }
   public: {
     Tables: {
+      blog_categories: {
+        Row: {
+          created_at: string | null
+          description: string | null
+          id: string
+          name: string
+          slug: string
+        }
+        Insert: {
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          name: string
+          slug: string
+        }
+        Update: {
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          name?: string
+          slug?: string
+        }
+        Relationships: []
+      }
+      blog_leads: {
+        Row: {
+          company: string | null
+          created_at: string | null
+          email: string
+          id: string
+          lead_type: string | null
+          name: string | null
+          source_post_id: string | null
+        }
+        Insert: {
+          company?: string | null
+          created_at?: string | null
+          email: string
+          id?: string
+          lead_type?: string | null
+          name?: string | null
+          source_post_id?: string | null
+        }
+        Update: {
+          company?: string | null
+          created_at?: string | null
+          email?: string
+          id?: string
+          lead_type?: string | null
+          name?: string | null
+          source_post_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "blog_leads_source_post_id_fkey"
+            columns: ["source_post_id"]
+            isOneToOne: false
+            referencedRelation: "blog_posts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      blog_post_categories: {
+        Row: {
+          category_id: string
+          post_id: string
+        }
+        Insert: {
+          category_id: string
+          post_id: string
+        }
+        Update: {
+          category_id?: string
+          post_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "blog_post_categories_category_id_fkey"
+            columns: ["category_id"]
+            isOneToOne: false
+            referencedRelation: "blog_categories"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "blog_post_categories_post_id_fkey"
+            columns: ["post_id"]
+            isOneToOne: false
+            referencedRelation: "blog_posts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      blog_posts: {
+        Row: {
+          author_id: string | null
+          content: string
+          created_at: string | null
+          excerpt: string
+          featured_image: string | null
+          id: string
+          keywords: string[] | null
+          meta_description: string | null
+          meta_title: string | null
+          published_at: string | null
+          reading_time: number | null
+          slug: string
+          status: string | null
+          title: string
+          updated_at: string | null
+          views: number | null
+        }
+        Insert: {
+          author_id?: string | null
+          content: string
+          created_at?: string | null
+          excerpt: string
+          featured_image?: string | null
+          id?: string
+          keywords?: string[] | null
+          meta_description?: string | null
+          meta_title?: string | null
+          published_at?: string | null
+          reading_time?: number | null
+          slug: string
+          status?: string | null
+          title: string
+          updated_at?: string | null
+          views?: number | null
+        }
+        Update: {
+          author_id?: string | null
+          content?: string
+          created_at?: string | null
+          excerpt?: string
+          featured_image?: string | null
+          id?: string
+          keywords?: string[] | null
+          meta_description?: string | null
+          meta_title?: string | null
+          published_at?: string | null
+          reading_time?: number | null
+          slug?: string
+          status?: string | null
+          title?: string
+          updated_at?: string | null
+          views?: number | null
+        }
+        Relationships: []
+      }
       contact_leads: {
         Row: {
           company: string | null
@@ -137,15 +286,42 @@ export type Database = {
         }
         Relationships: []
       }
+      user_roles: {
+        Row: {
+          created_at: string | null
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "user"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -272,6 +448,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "user"],
+    },
   },
 } as const
