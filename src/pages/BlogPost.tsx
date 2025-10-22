@@ -1,0 +1,180 @@
+import { useParams } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
+import Layout from "@/components/Layout";
+import SEOHead from "@/components/seo/SEOHead";
+import SchemaMarkup from "@/components/seo/SchemaMarkup";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
+import BlogLeadForm from "@/components/blog/BlogLeadForm";
+import BlogExitIntent from "@/components/blog/BlogExitIntent";
+import BlogFloatingCTA from "@/components/blog/BlogFloatingCTA";
+import { Badge } from "@/components/ui/badge";
+import { formatDate } from "@/utils/blogUtils";
+import { useExitIntent } from "@/hooks/useExitIntent";
+import { trackPageView } from "@/utils/analytics";
+import { useEffect } from "react";
+import { Clock, Calendar } from "lucide-react";
+import NotFound from "./NotFound";
+
+const BlogPost = () => {
+  const { slug } = useParams();
+  const { showExitIntent, setShowExitIntent } = useExitIntent();
+
+  const { data: post, isLoading } = useQuery({
+    queryKey: ["blog-post", slug],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("blog_posts")
+        .select(`
+          *,
+          blog_post_categories (
+            blog_categories (name, slug)
+          )
+        `)
+        .eq("slug", slug)
+        .eq("status", "published")
+        .single();
+
+      if (error) throw error;
+
+      // Increment view count
+      await supabase
+        .from("blog_posts")
+        .update({ views: (data.views || 0) + 1 })
+        .eq("id", data.id);
+
+      return data;
+    },
+  });
+
+  useEffect(() => {
+    if (post) {
+      trackPageView(`/blogg/${post.slug}`, post.title);
+    }
+  }, [post]);
+
+  if (isLoading) {
+    return (
+      <Layout>
+        <div className="container mx-auto px-4 py-16">
+          <p>Laddar...</p>
+        </div>
+      </Layout>
+    );
+  }
+
+  if (!post) {
+    return <NotFound />;
+  }
+
+  const categories = post.blog_post_categories?.map(
+    (pc: any) => pc.blog_categories
+  ) || [];
+
+  return (
+    <Layout>
+      <SEOHead
+        title={post.meta_title || post.title}
+        description={post.meta_description || post.excerpt}
+        keywords={post.keywords || []}
+        ogType="article"
+        article={{
+          publishedTime: post.published_at || post.created_at,
+          modifiedTime: post.updated_at,
+          tags: categories.map((c: any) => c.name),
+        }}
+      />
+
+      <SchemaMarkup
+        type="Article"
+        data={{
+          headline: post.title,
+          image: post.featured_image,
+          datePublished: post.published_at || post.created_at,
+          dateModified: post.updated_at,
+        }}
+      />
+
+      <BreadcrumbSchema
+        items={[
+          { name: "Hem", url: "https://boost08.com" },
+          { name: "Blogg", url: "https://boost08.com/blogg" },
+          { name: post.title, url: `https://boost08.com/blogg/${post.slug}` },
+        ]}
+      />
+
+      <article className="container mx-auto px-4 py-16">
+        <div className="max-w-4xl mx-auto">
+          {post.featured_image && (
+            <img
+              src={post.featured_image}
+              alt={post.title}
+              className="w-full aspect-video object-cover rounded-lg mb-8"
+            />
+          )}
+
+          <div className="mb-8">
+            <div className="flex flex-wrap gap-2 mb-4">
+              {categories.map((category: any) => (
+                <Badge key={category.slug} variant="secondary">
+                  {category.name}
+                </Badge>
+              ))}
+            </div>
+
+            <h1 className="text-4xl md:text-5xl font-bold mb-4">{post.title}</h1>
+
+            <div className="flex items-center gap-6 text-sm text-muted-foreground">
+              <span className="flex items-center gap-2">
+                <Calendar className="h-4 w-4" />
+                {formatDate(post.published_at || post.created_at)}
+              </span>
+              <span className="flex items-center gap-2">
+                <Clock className="h-4 w-4" />
+                {post.reading_time} min läsning
+              </span>
+            </div>
+          </div>
+
+          <div className="prose prose-lg max-w-none mb-12">
+            <p className="lead text-xl text-muted-foreground">{post.excerpt}</p>
+            
+            <div className="whitespace-pre-wrap">{post.content}</div>
+
+            <BlogLeadForm
+              type="inline"
+              title="Vill du ha fler tips som dessa?"
+              description="Få vår kompletta guide till lokal SEO direkt i din inkorg"
+              postId={post.id}
+              leadType="inline_mid"
+            />
+          </div>
+
+          <div className="border-t pt-8">
+            <BlogLeadForm
+              type="inline"
+              title="Redo att växa ditt företag?"
+              description="Få en gratis ROI-analys och se hur mycket mer du kan tjäna"
+              postId={post.id}
+              leadType="inline_end"
+            />
+          </div>
+        </div>
+      </article>
+
+      <BlogExitIntent
+        title="Vänta! Ta med dig våra bästa tips"
+        postId={post.id}
+        open={showExitIntent}
+        onOpenChange={setShowExitIntent}
+      />
+
+      <BlogFloatingCTA
+        text="Vill du ha fler tips som dessa?"
+        postId={post.id}
+      />
+    </Layout>
+  );
+};
+
+export default BlogPost;

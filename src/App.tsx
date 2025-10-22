@@ -19,6 +19,15 @@ import ResultsOverview from "./pages/results/ResultsOverview";
 import CaseStudyDetail from "./pages/results/CaseStudyDetail";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import BlogOverview from "./pages/BlogOverview";
+import BlogPost from "./pages/BlogPost";
+import AdminLayout from "./pages/admin/AdminLayout";
+import AdminLogin from "./pages/admin/AdminLogin";
+import AdminDashboard from "./pages/admin/AdminDashboard";
+import AdminPosts from "./pages/admin/AdminPosts";
+import AdminPostEditor from "./pages/admin/AdminPostEditor";
+import AdminCategories from "./pages/admin/AdminCategories";
+import AdminLeads from "./pages/admin/AdminLeads";
 
 const queryClient = new QueryClient();
 
@@ -58,6 +67,21 @@ const AppContent = () => {
           {/* Other pages */}
           <Route path="/om-oss" element={<About />} />
           <Route path="/kontakt" element={<Contact />} />
+          
+          {/* Blog */}
+          <Route path="/blogg" element={<BlogOverview />} />
+          <Route path="/blogg/:slug" element={<BlogPost />} />
+          
+          {/* Admin */}
+          <Route path="/admin/login" element={<AdminLogin />} />
+          <Route path="/admin" element={<AdminLayout />}>
+            <Route index element={<AdminDashboard />} />
+            <Route path="posts" element={<AdminPosts />} />
+            <Route path="posts/new" element={<AdminPostEditor />} />
+            <Route path="posts/:id/edit" element={<AdminPostEditor />} />
+            <Route path="categories" element={<AdminCategories />} />
+            <Route path="leads" element={<AdminLeads />} />
+          </Route>
           
           {/* Catch-all */}
           <Route path="*" element={<NotFound />} />
