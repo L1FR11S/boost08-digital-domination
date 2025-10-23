@@ -16,36 +16,60 @@ import { useEffect } from "react";
 import { Clock, Calendar } from "lucide-react";
 import NotFound from "./NotFound";
 
+interface BlogCategory {
+  name: string;
+  slug: string;
+}
+
+interface BlogPostCategory {
+  blog_categories: BlogCategory;
+}
+
 const BlogPost = () => {
   const { slug } = useParams();
   const { showExitIntent, setShowExitIntent } = useExitIntent();
 
-  const { data: post, isLoading } = useQuery({
+  const { data: post, isLoading, error } = useQuery({
     queryKey: ["blog-post", slug],
     queryFn: async () => {
-      const { data, error } = await supabase
-        .from("blog_posts")
-        .select(`
-          *,
-          blog_post_categories (
-            blog_categories (name, slug)
-          )
-        `)
-        .eq("slug", slug)
-        .eq("status", "published")
-        .maybeSingle();
+      try {
+        console.log('[BlogPost] Fetching post with slug:', slug);
+        
+        const { data, error } = await supabase
+          .from("blog_posts")
+          .select(`
+            *,
+            blog_post_categories (
+              blog_categories (name, slug)
+            )
+          `)
+          .eq("slug", slug)
+          .eq("status", "published")
+          .maybeSingle();
 
-      if (error) throw error;
-      if (!data) return null;
+        if (error) {
+          console.error('[BlogPost] Database error:', error);
+          throw error;
+        }
+        
+        if (!data) {
+          console.log('[BlogPost] No post found for slug:', slug);
+          return null;
+        }
 
-      // Increment view count (async, fire-and-forget)
-      supabase
-        .from("blog_posts")
-        .update({ views: (data.views || 0) + 1 })
-        .eq("id", data.id)
-        .then();
+        console.log('[BlogPost] Post fetched successfully:', data.title);
 
-      return data;
+        // Increment view count (async, fire-and-forget)
+        void supabase
+          .from("blog_posts")
+          .update({ views: (data.views || 0) + 1 })
+          .eq("id", data.id);
+
+        return data;
+      } catch (err) {
+        console.error('[BlogPost] Error in queryFn:', err);
+        throw err;
+      }
     },
   });
 
@@ -65,13 +89,23 @@ const BlogPost = () => {
     );
   }
 
+  if (error) {
+    console.error('[BlogPost] Render error:', error);
+    return <NotFound />;
+  }
+
   if (!post) {
     return <NotFound />;
   }
 
-  const categories = post.blog_post_categories?.map(
-    (pc: any) => pc.blog_categories
-  ) || [];
+  let categories: BlogCategory[] = [];
+  try {
+    categories = (post.blog_post_categories as BlogPostCategory[])?.map(
+      (pc) => pc.blog_categories
+    ) || [];
+  } catch (err) {
+    console.error('[BlogPost] Error mapping categories:', err);
+  }
 
   return (
     <Layout>

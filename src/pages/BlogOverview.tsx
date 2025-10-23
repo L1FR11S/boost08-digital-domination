@@ -28,41 +28,77 @@ const BlogOverview = () => {
     },
   });
 
-  const { data: posts } = useQuery({
+  const { data: posts, isLoading, error } = useQuery({
     queryKey: ["blog-posts", selectedCategory],
     queryFn: async () => {
-      let query = supabase
-        .from("blog_posts")
-        .select(`
-          *,
-          blog_post_categories (
-            blog_categories (name)
-          )
-        `)
-        .eq("status", "published")
-        .order("published_at", { ascending: false });
+      try {
+        console.log('[BlogOverview] Fetching posts, category:', selectedCategory || 'all');
 
-      if (selectedCategory) {
-        const { data: categoryData } = await supabase
-          .from("blog_categories")
-          .select("id")
-          .eq("slug", selectedCategory)
-          .maybeSingle();
+        let query = supabase
+          .from("blog_posts")
+          .select(`
+            *,
+            blog_post_categories (
+              blog_categories (name)
+            )
+          `)
+          .eq("status", "published")
+          .order("published_at", { ascending: false });
 
-        if (categoryData) {
-          const { data: postIds } = await supabase
-            .from("blog_post_categories")
-            .select("post_id")
-            .eq("category_id", categoryData.id);
+        if (selectedCategory) {
+          try {
+            const { data: categoryData, error: categoryError } = await supabase
+              .from("blog_categories")
+              .select("id")
+              .eq("slug", selectedCategory)
+              .maybeSingle();
 
-          const ids = postIds?.map(p => p.post_id) || [];
-          query = query.in("id", ids.length > 0 ? ids : ["none"]);
+            if (categoryError) {
+              console.error('[BlogOverview] Category query error:', categoryError);
+            }
+
+            if (categoryData) {
+              console.log('[BlogOverview] Found category:', categoryData.id);
+              
+              const { data: postIds, error: postIdsError } = await supabase
+                .from("blog_post_categories")
+                .select("post_id")
+                .eq("category_id", categoryData.id);
+
+              if (postIdsError) {
+                console.error('[BlogOverview] Post IDs query error:', postIdsError);
+              }
+
+              const ids = postIds?.map(p => p.post_id) || [];
+              console.log('[BlogOverview] Found post IDs:', ids.length);
+              
+              if (ids.length > 0) {
+                query = query.in("id", ids);
+              } else {
+                return [];
+              }
+            } else {
+              console.log('[BlogOverview] Category not found:', selectedCategory);
+              return [];
+            }
+          } catch (categoryErr) {
+            console.error('[BlogOverview] Error in category filtering:', categoryErr);
+          }
         }
-      }
 
-      const { data, error } = await query;
-      if (error) throw error;
-      return data;
+        const { data, error: postsError } = await query;
+
+        if (postsError) {
+          console.error('[BlogOverview] Posts query error:', postsError);
+          throw postsError;
+        }
+
+        console.log('[BlogOverview] Fetched posts:', data?.length || 0);
+        return data || [];
+      } catch (err) {
+        console.error('[BlogOverview] Error in queryFn:', err);
+        throw err;
+      }
     },
   });
 
@@ -108,31 +144,46 @@ const BlogOverview = () => {
 
         <div className="grid lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2">
-            <div className="grid gap-6 md:grid-cols-2">
-              {posts?.map((post) => {
-                const postCategories = post.blog_post_categories?.map(
-                  (pc: any) => pc.blog_categories.name
-                ) || [];
-
-                return (
-                  <BlogCard
-                    key={post.id}
-                    id={post.id}
-                    title={post.title}
-                    excerpt={post.excerpt}
-                    slug={post.slug}
-                    featuredImage={post.featured_image || undefined}
-                    publishedAt={post.published_at || post.created_at}
-                    readingTime={post.reading_time || 5}
-                    categories={postCategories}
-                  />
-                );
-              })}
-            </div>
-
-            {posts?.length === 0 && (
+            {isLoading ? (
+              <p>Laddar...</p>
+            ) : error ? (
               <div className="text-center py-12">
-                <p className="text-muted-foreground">Inga inlägg hittades</p>
+                <p className="text-muted-foreground">Ett fel uppstod vid laddning av blogginlägg.</p>
+              </div>
+            ) : posts && posts.length === 0 ? (
+              <div className="text-center py-12">
+                <p className="text-muted-foreground">
+                  {selectedCategory 
+                    ? 'Inga inlägg hittades i denna kategori.' 
+                    : 'Inga blogginlägg tillgängliga än.'}
+                </p>
+              </div>
+            ) : (
+              <div className="grid gap-6 md:grid-cols-2">
+                {posts?.map((post) => {
+                  let postCategories: string[] = [];
+                  try {
+                    postCategories = post.blog_post_categories?.map(
+                      (pc: any) => pc.blog_categories.name
+                    ) || [];
+                  } catch (err) {
+                    console.error('[BlogOverview] Error mapping categories for post:', post.id, err);
+                  }
+
+                  return (
+                    <BlogCard
+                      key={post.id}
+                      id={post.id}
+                      title={post.title}
+                      excerpt={post.excerpt}
+                      slug={post.slug}
+                      featuredImage={post.featured_image || undefined}
+                      publishedAt={post.published_at || post.created_at}
+                      readingTime={post.reading_time || 5}
+                      categories={postCategories}
+                    />
+                  );
+                })}
               </div>
             )}
           </div>

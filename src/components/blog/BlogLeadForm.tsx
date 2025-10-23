@@ -38,7 +38,9 @@ const BlogLeadForm = ({
     if (step === 2) {
       setLoading(true);
       try {
-        const { error } = await supabase.from("blog_leads").insert({
+        console.log('[BlogLeadForm] Submitting lead:', { email, name, company, postId, leadType });
+
+        const { error: dbError } = await supabase.from("blog_leads").insert({
           email,
           name: name || null,
           company: company || null,
@@ -46,11 +48,26 @@ const BlogLeadForm = ({
           lead_type: leadType
         });
 
-        if (error) throw error;
+        if (dbError) {
+          console.error('[BlogLeadForm] Database error:', dbError);
+          throw dbError;
+        }
 
-        await supabase.functions.invoke("send-blog-lead-email", {
-          body: { email, name, postId }
-        });
+        // Send email with timeout (non-blocking)
+        try {
+          const emailPromise = supabase.functions.invoke("send-blog-lead-email", {
+            body: { email, name, postId }
+          });
+
+          const timeoutPromise = new Promise((_, reject) =>
+            setTimeout(() => reject(new Error('Email timeout')), 10000)
+          );
+
+          await Promise.race([emailPromise, timeoutPromise]);
+          console.log('[BlogLeadForm] Email sent successfully');
+        } catch (emailError) {
+          console.error('[BlogLeadForm] Email error (non-critical):', emailError);
+        }
 
         toast.success("Tack! Kolla din inkorg för guiden.");
         setEmail("");
@@ -58,7 +75,7 @@ const BlogLeadForm = ({
         setCompany("");
         setStep(1);
       } catch (error) {
-        console.error("Error submitting lead:", error);
+        console.error('[BlogLeadForm] Submission error:', error);
         toast.error("Något gick fel. Försök igen.");
       } finally {
         setLoading(false);

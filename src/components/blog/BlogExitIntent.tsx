@@ -22,23 +22,40 @@ const BlogExitIntent = ({ title, postId, open, onOpenChange }: BlogExitIntentPro
     setLoading(true);
 
     try {
-      const { error } = await supabase.from("blog_leads").insert({
+      console.log('[BlogExitIntent] Submitting lead:', { email, postId });
+
+      const { error: dbError } = await supabase.from("blog_leads").insert({
         email,
         source_post_id: postId,
         lead_type: "exit_intent"
       });
 
-      if (error) throw error;
+      if (dbError) {
+        console.error('[BlogExitIntent] Database error:', dbError);
+        throw dbError;
+      }
 
-      await supabase.functions.invoke("send-blog-lead-email", {
-        body: { email, postId }
-      });
+      // Send email with timeout (non-blocking)
+      try {
+        const emailPromise = supabase.functions.invoke("send-blog-lead-email", {
+          body: { email, postId }
+        });
+
+        const timeoutPromise = new Promise((_, reject) =>
+          setTimeout(() => reject(new Error('Email timeout')), 10000)
+        );
+
+        await Promise.race([emailPromise, timeoutPromise]);
+        console.log('[BlogExitIntent] Email sent successfully');
+      } catch (emailError) {
+        console.error('[BlogExitIntent] Email error (non-critical):', emailError);
+      }
 
       toast.success("Tack! Kolla din inkorg.");
       setEmail("");
       onOpenChange(false);
     } catch (error) {
-      console.error("Error:", error);
+      console.error('[BlogExitIntent] Submission error:', error);
       toast.error("Något gick fel. Försök igen.");
     } finally {
       setLoading(false);
