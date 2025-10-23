@@ -1,4 +1,5 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
+import { z } from "https://deno.land/x/zod@v3.22.4/mod.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -6,11 +7,13 @@ const corsHeaders = {
     "authorization, x-client-info, apikey, content-type",
 };
 
-interface BlogLeadEmailRequest {
-  email: string;
-  name?: string;
-  postId?: string;
-}
+const blogLeadSchema = z.object({
+  email: z.string().email().max(255),
+  name: z.string().max(100).optional(),
+  postId: z.string().uuid().optional(),
+});
+
+type BlogLeadEmailRequest = z.infer<typeof blogLeadSchema>;
 
 const handler = async (req: Request): Promise<Response> => {
   if (req.method === "OPTIONS") {
@@ -18,11 +21,25 @@ const handler = async (req: Request): Promise<Response> => {
   }
 
   try {
-    const { email, name, postId }: BlogLeadEmailRequest = await req.json();
+    const rawData = await req.json();
+    
+    // Validate input
+    const validationResult = blogLeadSchema.safeParse(rawData);
+    if (!validationResult.success) {
+      console.error('Validation error:', validationResult.error);
+      return new Response(
+        JSON.stringify({ error: 'Invalid input data' }),
+        {
+          status: 400,
+          headers: { "Content-Type": "application/json", ...corsHeaders },
+        }
+      );
+    }
 
+    const { email, name, postId } = validationResult.data;
+    
     // TODO: Implement email sending with Resend
-    // Temporarily logging instead
-    console.log("Blog lead received:", { email, name, postId });
+    console.log("Blog lead submission received");
 
     return new Response(JSON.stringify({ success: true, message: "Lead captured" }), {
       status: 200,

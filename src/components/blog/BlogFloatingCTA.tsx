@@ -19,10 +19,19 @@ const BlogFloatingCTA = ({ text, postId }: BlogFloatingCTAProps) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Validate input
+    try {
+      const { exitIntentSchema } = await import('@/lib/validation');
+      exitIntentSchema.parse({ email });
+    } catch (error: any) {
+      toast.error(error.errors?.[0]?.message || "Ogiltig e-postadress");
+      return;
+    }
+
     setLoading(true);
 
     try {
-      console.log('[BlogFloatingCTA] Submitting lead:', { email, postId });
 
       const { error: dbError } = await supabase.from("blog_leads").insert({
         email,

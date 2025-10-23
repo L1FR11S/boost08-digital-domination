@@ -31,6 +31,14 @@ const BlogLeadForm = ({
     e.preventDefault();
     
     if (step === 1 && email) {
+      // Validate email before moving to step 2
+      try {
+        const { blogLeadSchema } = await import('@/lib/validation');
+        blogLeadSchema.parse({ email });
+      } catch (error: any) {
+        toast.error(error.errors?.[0]?.message || "Ogiltig e-postadress");
+        return;
+      }
       setStep(2);
       return;
     }
@@ -38,7 +46,9 @@ const BlogLeadForm = ({
     if (step === 2) {
       setLoading(true);
       try {
-        console.log('[BlogLeadForm] Submitting lead:', { email, name, company, postId, leadType });
+        // Validate all data
+        const { blogLeadSchema } = await import('@/lib/validation');
+        blogLeadSchema.parse({ email, name, company, leadType, postId });
 
         const { error: dbError } = await supabase.from("blog_leads").insert({
           email,

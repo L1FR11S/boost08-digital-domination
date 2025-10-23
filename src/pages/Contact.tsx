@@ -25,6 +25,20 @@ const Contact = () => {
       message: formData.get('message') as string,
     };
 
+    // Validate input
+    try {
+      const { contactSchema } = await import('@/lib/validation');
+      contactSchema.parse(data);
+    } catch (error: any) {
+      toast({
+        title: "Valideringsfel",
+        description: error.errors?.[0]?.message || "Ogiltig inmatning",
+        variant: "destructive",
+      });
+      setIsLoading(false);
+      return;
+    }
+
     try {
       const response = await fetch('https://vllpaaomsmuhcngiikhf.supabase.co/functions/v1/send-contact-email', {
         method: 'POST',

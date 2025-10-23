@@ -1,17 +1,29 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
+import { z } from "https://deno.land/x/zod@v3.22.4/mod.ts";
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
 
-interface TrialRequest {
-  companyName: string;
-  fullName: string;
-  email: string;
-  phone: string;
-  locations: number;
-  industry: string;
+const trialRequestSchema = z.object({
+  companyName: z.string().min(1).max(200),
+  fullName: z.string().min(1).max(100),
+  email: z.string().email().max(255),
+  phone: z.string().min(1).max(20),
+  locations: z.number().int().positive().max(10000),
+  industry: z.string().min(1).max(100),
+});
+
+type TrialRequest = z.infer<typeof trialRequestSchema>;
+
+function sanitizeHtml(text: string): string {
+  return text
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
 }
 
 serve(async (req) => {
@@ -20,9 +32,23 @@ serve(async (req) => {
   }
 
   try {
-    const { companyName, fullName, email, phone, locations, industry }: TrialRequest = await req.json();
+    const rawData = await req.json();
+    
+    // Validate input
+    const validationResult = trialRequestSchema.safeParse(rawData);
+    if (!validationResult.success) {
+      console.error('Validation error:', validationResult.error);
+      return new Response(
+        JSON.stringify({ error: 'Invalid input data' }),
+        {
+          status: 400,
+          headers: { 'Content-Type': 'application/json', ...corsHeaders },
+        }
+      );
+    }
 
-    console.log('Processing free trial:', { companyName, fullName, email });
+    const { companyName, fullName, email, phone, locations, industry } = validationResult.data;
+    console.log('Processing free trial submission');
 
     // Send email using Resend
     const resendApiKey = Deno.env.get('RESEND_API_KEY');
@@ -39,12 +65,12 @@ serve(async (req) => {
           to: [email],
           subject: 'Välkommen till din 14-dagars gratis provperiod!',
           html: `
-            <h1>Välkommen ${fullName}!</h1>
+            <h1>Välkommen ${sanitizeHtml(fullName)}!</h1>
             <p>Tack för att du registrerade dig för vår 14-dagars gratis provperiod.</p>
             <h2>Dina uppgifter:</h2>
             <ul>
-              <li><strong>Företag:</strong> ${companyName}</li>
-              <li><strong>Bransch:</strong> ${industry}</li>
+              <li><strong>Företag:</strong> ${sanitizeHtml(companyName)}</li>
+              <li><strong>Bransch:</strong> ${sanitizeHtml(industry)}</li>
               <li><strong>Antal platser:</strong> ${locations}</li>
             </ul>
             <p>Vi kommer att kontakta dig inom kort för att sätta igång din provperiod.</p>

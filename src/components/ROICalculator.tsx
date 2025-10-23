@@ -57,6 +57,28 @@ const ROICalculator = () => {
       revenue: `${revenue.toLocaleString()} kr`,
     };
 
+    // Validate input
+    try {
+      const { roiCalculatorSchema } = await import('@/lib/validation');
+      roiCalculatorSchema.parse({
+        name: data.name,
+        email: data.email,
+        phone: data.phone,
+        company: data.company,
+        industry: data.industry,
+        locations: data.locations,
+        reviews: data.reviews,
+      });
+    } catch (error: any) {
+      toast({
+        title: "Valideringsfel",
+        description: error.errors?.[0]?.message || "Ogiltig inmatning",
+        variant: "destructive",
+      });
+      setIsLoading(false);
+      return;
+    }
+
     try {
       const response = await fetch('https://vllpaaomsmuhcngiikhf.supabase.co/functions/v1/send-roi-email', {
         method: 'POST',
@@ -76,7 +98,6 @@ const ROICalculator = () => {
       setIsDialogOpen(false);
       (e.target as HTMLFormElement).reset();
     } catch (error: any) {
-      console.error('Error:', error);
       toast({
         title: "Ett fel uppstod",
         description: "Försök igen senare.",

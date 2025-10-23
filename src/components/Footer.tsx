@@ -8,7 +8,7 @@ const Footer = () => {
   const [email, setEmail] = useState("");
   const handleNewsletterSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Newsletter signup:", email);
+    // Newsletter signup logic here
     setEmail("");
   };
   return <footer className="bg-gradient-hero border-t border-border py-16">
