@@ -16,8 +16,8 @@ export default defineConfig(({ mode }) => ({
     },
   },
   define: {
-    'import.meta.env.VITE_SUPABASE_URL': JSON.stringify('https://xllsdlqptbrwjjinxgca.supabase.co'),
-    'import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY': JSON.stringify('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhsbHNkbHFwdGJyd2pqaW54Z2NhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjExNzM0MTUsImV4cCI6MjA3Njc0OTQxNX0.0vUZutiU40hn9QtD8pJwlYooj22lU_7CS-PsASDJgjo'),
-    'import.meta.env.VITE_SUPABASE_PROJECT_ID': JSON.stringify('xllsdlqptbrwjjinxgca'),
+    'import.meta.env.VITE_SUPABASE_URL': JSON.stringify('https://vllpaaomsmuhcngiikhf.supabase.co'),
+    'import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY': JSON.stringify('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZsbHBhYW9tc211aGNuZ2lpa2hmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjAwODYzNDgsImV4cCI6MjA3NTY2MjM0OH0.vwOOzdWRobxq80j8aE7SpBeHbm_GMVD5J0QkVqk9ctE'),
+    'import.meta.env.VITE_SUPABASE_PROJECT_ID': JSON.stringify('vllpaaomsmuhcngiikhf'),
   },
 }));
