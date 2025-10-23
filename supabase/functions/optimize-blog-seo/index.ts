@@ -83,23 +83,17 @@ Introduktionsstycke med **viktigt keyword** som fångar uppmärksamhet.
 Mer strukturerat innehåll...
 
 6. **CTA-Generering** (Call-To-Action):
-   - Skapa **två olika CTAs** baserat på innehållet:
-     * **Mid-Content CTA**: Placeras mitt i artikeln. Ska locka läsaren att gå djupare (t.ex. "Ladda ner guide", "Få gratis analys")
-     * **End-Content CTA**: Placeras i slutet. Ska fokusera på nästa steg (t.ex. "Boka demo", "Kontakta oss", "Starta gratis test")
-   - Varje CTA ska ha:
+   - Skapa **EN dynamisk CTA** baserat på innehållet som passar artikelns tema
+   - CTA:n ska locka läsaren att ta nästa steg (t.ex. "Ladda ner guide", "Få gratis analys", "Boka demo")
+   - CTA ska ha:
      * En kort, lockande titel (max 50 tecken)
      * En beskrivning (max 100 tecken)
-   - Anpassa CTA:er efter innehållets tema och målgrupp
+   - Anpassa CTA efter innehållets tema och målgrupp
    - Använd kraftfulla verb och skapa känsla av värde/brådska
 
 **CTA-EXEMPEL:**
-Mid-Content: 
 - Titel: "Vill du ha fler tips som dessa?"
 - Beskrivning: "Få vår kompletta guide till lokal SEO direkt i din inkorg"
-
-End-Content:
-- Titel: "Redo att växa ditt företag?"
-- Beskrivning: "Få en gratis ROI-analys och se hur mycket mer du kan tjäna"
 
 Returnera JSON med följande struktur:
 {
@@ -108,10 +102,8 @@ Returnera JSON med följande struktur:
   "optimizedMetaDescription": "...",
   "optimizedKeywords": "keyword1, keyword2, ...",
   "optimizedContent": "... (använd Markdown med ##, ###, **, -, >, etc.)",
-  "ctaMidTitle": "...",
-  "ctaMidDescription": "...",
-  "ctaEndTitle": "...",
-  "ctaEndDescription": "...",
+  "ctaTitle": "...",
+  "ctaDescription": "...",
   "seoScore": 85,
   "improvements": ["förbättring 1", "förbättring 2", ...],
   "internalLinkSuggestions": ["länk 1", "länk 2", ...]

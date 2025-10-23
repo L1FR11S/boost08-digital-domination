@@ -26,10 +26,8 @@ const AdminPostEditor = () => {
   const [metaTitle, setMetaTitle] = useState("");
   const [metaDescription, setMetaDescription] = useState("");
   const [keywords, setKeywords] = useState("");
-  const [ctaMidTitle, setCtaMidTitle] = useState("");
-  const [ctaMidDescription, setCtaMidDescription] = useState("");
-  const [ctaEndTitle, setCtaEndTitle] = useState("");
-  const [ctaEndDescription, setCtaEndDescription] = useState("");
+  const [ctaTitle, setCtaTitle] = useState("");
+  const [ctaDescription, setCtaDescription] = useState("");
   const [isPublished, setIsPublished] = useState(false);
   const [loading, setLoading] = useState(false);
   const [isOptimizing, setIsOptimizing] = useState(false);
@@ -61,10 +59,8 @@ const AdminPostEditor = () => {
       setMetaTitle(post.meta_title || "");
       setMetaDescription(post.meta_description || "");
       setKeywords(post.keywords?.join(", ") || "");
-      setCtaMidTitle(post.cta_mid_title || "");
-      setCtaMidDescription(post.cta_mid_description || "");
-      setCtaEndTitle(post.cta_end_title || "");
-      setCtaEndDescription(post.cta_end_description || "");
+      setCtaTitle(post.cta_title || "");
+      setCtaDescription(post.cta_description || "");
       setIsPublished(post.status === "published");
     }
   }, [post]);
@@ -131,17 +127,11 @@ const AdminPostEditor = () => {
     if (optimizedData.optimizedContent) {
       setContent(optimizedData.optimizedContent);
     }
-    if (optimizedData.ctaMidTitle) {
-      setCtaMidTitle(optimizedData.ctaMidTitle);
+    if (optimizedData.ctaTitle) {
+      setCtaTitle(optimizedData.ctaTitle);
     }
-    if (optimizedData.ctaMidDescription) {
-      setCtaMidDescription(optimizedData.ctaMidDescription);
-    }
-    if (optimizedData.ctaEndTitle) {
-      setCtaEndTitle(optimizedData.ctaEndTitle);
-    }
-    if (optimizedData.ctaEndDescription) {
-      setCtaEndDescription(optimizedData.ctaEndDescription);
+    if (optimizedData.ctaDescription) {
+      setCtaDescription(optimizedData.ctaDescription);
     }
 
     setShowOptimizationDialog(false);
@@ -172,10 +162,8 @@ const AdminPostEditor = () => {
         meta_title: metaTitle || title,
         meta_description: metaDescription || excerpt,
         keywords: keywordsArray,
-        cta_mid_title: ctaMidTitle || null,
-        cta_mid_description: ctaMidDescription || null,
-        cta_end_title: ctaEndTitle || null,
-        cta_end_description: ctaEndDescription || null,
+        cta_title: ctaTitle || null,
+        cta_description: ctaDescription || null,
         reading_time: readingTime,
         status: isPublished ? "published" : "draft",
         published_at: isPublished ? new Date().toISOString() : null,
@@ -333,47 +321,27 @@ const AdminPostEditor = () => {
           </Card>
 
           <Card className="p-6 space-y-4">
-            <h3 className="font-semibold">CTA:er (Call-To-Action)</h3>
+            <h3 className="font-semibold">Call-To-Action (CTA)</h3>
             <p className="text-xs text-muted-foreground">
-              AI genererar automatiskt CTAs vid optimering, eller fyll i manuellt
+              AI genererar automatiskt en CTA vid optimering, eller fyll i manuellt
             </p>
             
-            <div className="space-y-3">
-              <div>
-                <Label className="text-xs font-medium">CTA Mitt i Artikeln</Label>
-                <div className="space-y-2 mt-2">
-                  <Input
-                    value={ctaMidTitle}
-                    onChange={(e) => setCtaMidTitle(e.target.value)}
-                    placeholder="T.ex. 'Vill du ha fler tips?'"
-                    maxLength={50}
-                  />
-                  <Input
-                    value={ctaMidDescription}
-                    onChange={(e) => setCtaMidDescription(e.target.value)}
-                    placeholder="T.ex. 'Få vår guide direkt i din inkorg'"
-                    maxLength={100}
-                  />
-                </div>
-              </div>
-
-              <div>
-                <Label className="text-xs font-medium">CTA Slutet av Artikeln</Label>
-                <div className="space-y-2 mt-2">
-                  <Input
-                    value={ctaEndTitle}
-                    onChange={(e) => setCtaEndTitle(e.target.value)}
-                    placeholder="T.ex. 'Redo att växa ditt företag?'"
-                    maxLength={50}
-                  />
-                  <Input
-                    value={ctaEndDescription}
-                    onChange={(e) => setCtaEndDescription(e.target.value)}
-                    placeholder="T.ex. 'Få en gratis ROI-analys'"
-                    maxLength={100}
-                  />
-                </div>
-              </div>
+            <div className="space-y-2">
+              <Input
+                value={ctaTitle}
+                onChange={(e) => setCtaTitle(e.target.value)}
+                placeholder='T.ex. "Vill du ha fler tips?"'
+                maxLength={50}
+              />
+              <Input
+                value={ctaDescription}
+                onChange={(e) => setCtaDescription(e.target.value)}
+                placeholder='T.ex. "Få vår guide direkt i din inkorg"'
+                maxLength={100}
+              />
+              <p className="text-xs text-muted-foreground">
+                Denna CTA visas mitt i artikeln
+              </p>
             </div>
           </Card>
         </div>

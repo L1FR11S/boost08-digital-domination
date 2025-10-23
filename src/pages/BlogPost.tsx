@@ -221,8 +221,8 @@ const BlogPost = () => {
 
             <BlogLeadForm
               type="inline"
-              title={post.cta_mid_title || "Vill du ha fler tips som dessa?"}
-              description={post.cta_mid_description || "Få vår kompletta guide till lokal SEO direkt i din inkorg"}
+              title={post.cta_title || "Vill du ha fler tips som dessa?"}
+              description={post.cta_description || "Få vår kompletta guide till lokal SEO direkt i din inkorg"}
               postId={post.id}
               leadType="inline_mid"
             />
@@ -231,8 +231,8 @@ const BlogPost = () => {
           <div className="border-t pt-8">
             <BlogLeadForm
               type="inline"
-              title={post.cta_end_title || "Redo att växa ditt företag?"}
-              description={post.cta_end_description || "Få en gratis ROI-analys och se hur mycket mer du kan tjäna"}
+              title="Redo att växa ditt företag?"
+              description="Få en gratis ROI-analys och se hur mycket mer du kan tjäna"
               postId={post.id}
               leadType="inline_end"
             />
