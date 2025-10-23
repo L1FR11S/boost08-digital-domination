@@ -114,7 +114,7 @@ const SEOOptimizationDialog = ({
                     <div className="p-3 bg-primary/5 rounded border border-primary/20">
                       <p className="text-xs text-muted-foreground mb-1">Optimerad:</p>
                       <p className="text-sm font-medium">{optimizedData.optimizedMetaTitle}</p>
-                      <p className="text-xs text-muted-foreground mt-1">{optimizedData.optimizedMetaTitle.length} tecken</p>
+                      <p className="text-xs text-muted-foreground mt-1">{optimizedData.optimizedMetaTitle?.length || 0} tecken</p>
                     </div>
                   </div>
                 </div>
@@ -134,7 +134,7 @@ const SEOOptimizationDialog = ({
                     <div className="p-3 bg-primary/5 rounded border border-primary/20">
                       <p className="text-xs text-muted-foreground mb-1">Optimerad:</p>
                       <p className="text-sm font-medium">{optimizedData.optimizedMetaDescription}</p>
-                      <p className="text-xs text-muted-foreground mt-1">{optimizedData.optimizedMetaDescription.length} tecken</p>
+                      <p className="text-xs text-muted-foreground mt-1">{optimizedData.optimizedMetaDescription?.length || 0} tecken</p>
                     </div>
                   </div>
                 </div>
