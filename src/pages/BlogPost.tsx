@@ -218,14 +218,6 @@ const BlogPost = () => {
             >
               {post.content}
             </ReactMarkdown>
-
-            <BlogLeadForm
-              type="inline"
-              title={post.cta_title || "Vill du ha fler tips som dessa?"}
-              description={post.cta_description || "Få vår kompletta guide till lokal SEO direkt i din inkorg"}
-              postId={post.id}
-              leadType="inline_mid"
-            />
           </div>
 
           <div className="border-t pt-8">
