@@ -5,6 +5,7 @@ import { Card } from "@/components/ui/card";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { X } from "lucide-react";
+import { exitIntentSchema } from "@/lib/validation";
 
 interface BlogFloatingCTAProps {
   text: string;
@@ -22,7 +23,6 @@ const BlogFloatingCTA = ({ text, postId }: BlogFloatingCTAProps) => {
 
     // Validate input
     try {
-      const { exitIntentSchema } = await import('@/lib/validation');
       exitIntentSchema.parse({ email });
     } catch (error: any) {
       toast.error(error.errors?.[0]?.message || "Ogiltig e-postadress");

@@ -19,6 +19,7 @@ import {
   DialogTrigger,
 } from "./ui/dialog";
 import { useToast } from "@/hooks/use-toast";
+import { roiCalculatorSchema } from "@/lib/validation";
 
 const ROICalculator = () => {
   const { toast } = useToast();
@@ -59,7 +60,6 @@ const ROICalculator = () => {
 
     // Validate input
     try {
-      const { roiCalculatorSchema } = await import('@/lib/validation');
       roiCalculatorSchema.parse({
         name: data.name,
         email: data.email,

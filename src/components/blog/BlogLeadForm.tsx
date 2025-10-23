@@ -5,6 +5,7 @@ import { Card } from "@/components/ui/card";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { Download } from "lucide-react";
+import { blogLeadSchema } from "@/lib/validation";
 
 interface BlogLeadFormProps {
   type?: "inline" | "sidebar";
@@ -33,8 +34,7 @@ const BlogLeadForm = ({
     if (step === 1 && email) {
       // Validate email before moving to step 2
       try {
-        const { blogLeadSchema } = await import('@/lib/validation');
-        blogLeadSchema.parse({ email });
+        blogLeadSchema.parse({ email, name: 'temp', company: 'temp', lead_type: leadType, source_post_id: postId });
       } catch (error: any) {
         toast.error(error.errors?.[0]?.message || "Ogiltig e-postadress");
         return;
@@ -47,8 +47,7 @@ const BlogLeadForm = ({
       setLoading(true);
       try {
         // Validate all data
-        const { blogLeadSchema } = await import('@/lib/validation');
-        blogLeadSchema.parse({ email, name, company, leadType, postId });
+        blogLeadSchema.parse({ email, name, company, lead_type: leadType, source_post_id: postId });
 
         const { error: dbError } = await supabase.from("blog_leads").insert({
           email,

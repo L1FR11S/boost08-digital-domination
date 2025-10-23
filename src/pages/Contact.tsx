@@ -8,6 +8,7 @@ import FAQShortcuts from "@/components/contact/FAQShortcuts";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
+import { contactSchema } from "@/lib/validation";
 
 const Contact = () => {
   const { toast } = useToast();
@@ -27,7 +28,6 @@ const Contact = () => {
 
     // Validate input
     try {
-      const { contactSchema } = await import('@/lib/validation');
       contactSchema.parse(data);
     } catch (error: any) {
       toast({
