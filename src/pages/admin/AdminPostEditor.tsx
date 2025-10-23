@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Card } from "@/components/ui/card";
 import { Switch } from "@/components/ui/switch";
 import RichTextEditor from "@/components/blog/RichTextEditor";
+import SEOOptimizationDialog from "@/components/blog/SEOOptimizationDialog";
 import { generateSlug, calculateReadingTime } from "@/utils/blogUtils";
 import { toast } from "sonner";
 import { ArrowLeft, Save } from "lucide-react";
@@ -27,6 +28,9 @@ const AdminPostEditor = () => {
   const [keywords, setKeywords] = useState("");
   const [isPublished, setIsPublished] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [isOptimizing, setIsOptimizing] = useState(false);
+  const [showOptimizationDialog, setShowOptimizationDialog] = useState(false);
+  const [optimizedData, setOptimizedData] = useState<any>(null);
 
   const { data: post } = useQuery({
     queryKey: ["post", id],
@@ -62,6 +66,67 @@ const AdminPostEditor = () => {
       setSlug(generateSlug(title));
     }
   }, [title, isEdit]);
+
+  const handleOptimize = async () => {
+    if (!title && !content) {
+      toast.error("Du behöver minst en titel eller innehåll för att optimera");
+      return;
+    }
+
+    setIsOptimizing(true);
+    setShowOptimizationDialog(true);
+
+    try {
+      const { data, error } = await supabase.functions.invoke("optimize-blog-seo", {
+        body: {
+          title,
+          excerpt,
+          content,
+          keywords,
+        },
+      });
+
+      if (error) throw error;
+
+      setOptimizedData(data);
+      toast.success("SEO-optimering klar!");
+    } catch (error: any) {
+      console.error("Error optimizing:", error);
+      if (error.message?.includes("Rate limit")) {
+        toast.error("För många förfrågningar. Vänta en stund och försök igen.");
+      } else if (error.message?.includes("Payment")) {
+        toast.error("Lägg till credits i ditt Lovable workspace för att fortsätta.");
+      } else {
+        toast.error("Kunde inte optimera innehåll. Försök igen.");
+      }
+      setShowOptimizationDialog(false);
+    } finally {
+      setIsOptimizing(false);
+    }
+  };
+
+  const handleApplyOptimization = () => {
+    if (!optimizedData) return;
+
+    if (optimizedData.optimizedTitle) {
+      setTitle(optimizedData.optimizedTitle);
+    }
+    if (optimizedData.optimizedMetaTitle) {
+      setMetaTitle(optimizedData.optimizedMetaTitle);
+    }
+    if (optimizedData.optimizedMetaDescription) {
+      setMetaDescription(optimizedData.optimizedMetaDescription);
+    }
+    if (optimizedData.optimizedKeywords) {
+      setKeywords(optimizedData.optimizedKeywords);
+    }
+    if (optimizedData.optimizedContent) {
+      setContent(optimizedData.optimizedContent);
+    }
+
+    setShowOptimizationDialog(false);
+    toast.success("SEO-optimering tillämpad!");
+  };
 
   const handleSave = async () => {
     if (!title || !slug || !excerpt || !content) {
@@ -174,6 +239,8 @@ const AdminPostEditor = () => {
                 value={content}
                 onChange={setContent}
                 placeholder="Skriv ditt innehåll här... Använd Markdown för formatering."
+                onOptimizeClick={handleOptimize}
+                isOptimizing={isOptimizing}
               />
             </div>
           </Card>
@@ -242,6 +309,20 @@ const AdminPostEditor = () => {
           </Card>
         </div>
       </div>
+
+      <SEOOptimizationDialog
+        open={showOptimizationDialog}
+        onOpenChange={setShowOptimizationDialog}
+        isLoading={isOptimizing}
+        optimizedData={optimizedData}
+        onApply={handleApplyOptimization}
+        originalData={{
+          title,
+          metaTitle,
+          metaDescription,
+          keywords,
+        }}
+      />
     </div>
   );
 };
