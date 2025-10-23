@@ -3,7 +3,7 @@
   <!-- Homepage -->
   <url>
     <loc>https://boost08.com/</loc>
-    <lastmod>2025-10-20</lastmod>
+    <lastmod>2025-10-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -11,15 +11,23 @@
   <!-- Solutions Overview -->
   <url>
     <loc>https://boost08.com/losningar</loc>
-    <lastmod>2025-10-20</lastmod>
+    <lastmod>2025-10-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+  </url>
+  
+  <!-- Blog Overview -->
+  <url>
+    <loc>https://boost08.com/blogg</loc>
+    <lastmod>2025-10-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
   
   <!-- Results Overview -->
   <url>
     <loc>https://boost08.com/resultat</loc>
-    <lastmod>2025-10-20</lastmod>
+    <lastmod>2025-10-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
   </url>
@@ -27,7 +35,7 @@
   <!-- About -->
   <url>
     <loc>https://boost08.com/om-oss</loc>
-    <lastmod>2025-10-20</lastmod>
+    <lastmod>2025-10-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -35,7 +43,7 @@
   <!-- Contact -->
   <url>
     <loc>https://boost08.com/kontakt</loc>
-    <lastmod>2025-10-20</lastmod>
+    <lastmod>2025-10-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

@@ -2,22 +2,26 @@
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <sitemap>
     <loc>https://boost08.com/sitemap-pages.xml</loc>
-    <lastmod>2025-10-20</lastmod>
+    <lastmod>2025-10-23</lastmod>
   </sitemap>
   <sitemap>
     <loc>https://boost08.com/sitemap-solutions.xml</loc>
-    <lastmod>2025-10-20</lastmod>
+    <lastmod>2025-10-23</lastmod>
   </sitemap>
   <sitemap>
     <loc>https://boost08.com/sitemap-industries.xml</loc>
-    <lastmod>2025-10-20</lastmod>
+    <lastmod>2025-10-23</lastmod>
   </sitemap>
   <sitemap>
     <loc>https://boost08.com/sitemap-results.xml</loc>
-    <lastmod>2025-10-20</lastmod>
+    <lastmod>2025-10-23</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://boost08.com/sitemap-blog.xml</loc>
+    <lastmod>2025-10-23</lastmod>
   </sitemap>
   <sitemap>
     <loc>https://boost08.com/sitemap-images.xml</loc>
-    <lastmod>2025-10-20</lastmod>
+    <lastmod>2025-10-23</lastmod>
   </sitemap>
 </sitemapindex>
