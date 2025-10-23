@@ -47,7 +47,7 @@ const BlogOverview = () => {
           .from("blog_categories")
           .select("id")
           .eq("slug", selectedCategory)
-          .single();
+          .maybeSingle();
 
         if (categoryData) {
           const { data: postIds } = await supabase

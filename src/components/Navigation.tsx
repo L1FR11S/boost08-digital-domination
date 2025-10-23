@@ -102,6 +102,9 @@ const Navigation = () => {
             <Link to="/resultat" className="text-foreground hover:text-primary transition-colors">
               Resultat
             </Link>
+            <Link to="/blogg" className="text-foreground hover:text-primary transition-colors">
+              Blogg
+            </Link>
             <Link to="/om-oss" className="text-foreground hover:text-primary transition-colors">
               Om Oss
             </Link>
@@ -169,6 +172,14 @@ const Navigation = () => {
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Resultat
+            </Link>
+            
+            <Link
+              to="/blogg"
+              className="block py-2 font-medium text-foreground hover:text-primary"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Blogg
             </Link>
             
             <Link

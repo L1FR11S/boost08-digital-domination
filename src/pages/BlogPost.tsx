@@ -33,15 +33,17 @@ const BlogPost = () => {
         `)
         .eq("slug", slug)
         .eq("status", "published")
-        .single();
+        .maybeSingle();
 
       if (error) throw error;
+      if (!data) return null;
 
-      // Increment view count
-      await supabase
+      // Increment view count (async, fire-and-forget)
+      supabase
         .from("blog_posts")
         .update({ views: (data.views || 0) + 1 })
-        .eq("id", data.id);
+        .eq("id", data.id)
+        .then();
 
       return data;
     },
