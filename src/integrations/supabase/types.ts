@@ -111,6 +111,10 @@ export type Database = {
           author_id: string | null
           content: string
           created_at: string | null
+          cta_end_description: string | null
+          cta_end_title: string | null
+          cta_mid_description: string | null
+          cta_mid_title: string | null
           excerpt: string
           featured_image: string | null
           id: string
@@ -129,6 +133,10 @@ export type Database = {
           author_id?: string | null
           content: string
           created_at?: string | null
+          cta_end_description?: string | null
+          cta_end_title?: string | null
+          cta_mid_description?: string | null
+          cta_mid_title?: string | null
           excerpt: string
           featured_image?: string | null
           id?: string
@@ -147,6 +155,10 @@ export type Database = {
           author_id?: string | null
           content?: string
           created_at?: string | null
+          cta_end_description?: string | null
+          cta_end_title?: string | null
+          cta_mid_description?: string | null
+          cta_mid_title?: string | null
           excerpt?: string
           featured_image?: string | null
           id?: string

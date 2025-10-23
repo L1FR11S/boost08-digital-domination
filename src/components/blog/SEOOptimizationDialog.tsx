@@ -15,6 +15,10 @@ interface SEOOptimizationDialogProps {
     optimizedMetaDescription?: string;
     optimizedKeywords?: string;
     optimizedContent?: string;
+    ctaMidTitle?: string;
+    ctaMidDescription?: string;
+    ctaEndTitle?: string;
+    ctaEndDescription?: string;
     seoScore?: number;
     improvements?: string[];
     internalLinkSuggestions?: string[];
@@ -180,6 +184,32 @@ const SEOOptimizationDialog = ({
                     ))}
                   </ul>
                 </div>
+              )}
+
+              {/* CTA Suggestions */}
+              {(optimizedData.ctaMidTitle || optimizedData.ctaEndTitle) && (
+                <>
+                  <Separator />
+                  <div>
+                    <h3 className="font-semibold mb-3">AI-Genererade CTA:er</h3>
+                    
+                    {optimizedData.ctaMidTitle && (
+                      <div className="mb-4 p-4 bg-primary/5 rounded-lg border border-primary/20">
+                        <p className="text-xs font-medium text-muted-foreground mb-2">CTA Mitt i Artikeln:</p>
+                        <p className="font-semibold text-sm mb-1">{optimizedData.ctaMidTitle}</p>
+                        <p className="text-xs text-muted-foreground">{optimizedData.ctaMidDescription}</p>
+                      </div>
+                    )}
+
+                    {optimizedData.ctaEndTitle && (
+                      <div className="p-4 bg-primary/5 rounded-lg border border-primary/20">
+                        <p className="text-xs font-medium text-muted-foreground mb-2">CTA Slutet av Artikeln:</p>
+                        <p className="font-semibold text-sm mb-1">{optimizedData.ctaEndTitle}</p>
+                        <p className="text-xs text-muted-foreground">{optimizedData.ctaEndDescription}</p>
+                      </div>
+                    )}
+                  </div>
+                </>
               )}
             </div>
           </ScrollArea>
