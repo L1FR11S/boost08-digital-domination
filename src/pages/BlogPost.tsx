@@ -15,6 +15,9 @@ import { trackPageView } from "@/utils/analytics";
 import { useEffect } from "react";
 import { Clock, Calendar } from "lucide-react";
 import NotFound from "./NotFound";
+import ReactMarkdown from "react-markdown";
+import rehypeRaw from "rehype-raw";
+import remarkGfm from "remark-gfm";
 
 interface BlogCategory {
   name: string;
@@ -172,10 +175,49 @@ const BlogPost = () => {
             </div>
           </div>
 
-          <div className="prose prose-lg max-w-none mb-12">
-            <p className="lead text-xl text-muted-foreground">{post.excerpt}</p>
+          <div className="prose prose-lg max-w-none mb-12 markdown-content">
+            <p className="lead text-xl text-muted-foreground mb-8">{post.excerpt}</p>
             
-            <div className="whitespace-pre-wrap">{post.content}</div>
+            <ReactMarkdown
+              rehypePlugins={[rehypeRaw]}
+              remarkPlugins={[remarkGfm]}
+              components={{
+                h2: ({ children }) => (
+                  <h2 className="text-3xl font-bold mt-8 mb-4 text-foreground">{children}</h2>
+                ),
+                h3: ({ children }) => (
+                  <h3 className="text-2xl font-semibold mt-6 mb-3 text-foreground">{children}</h3>
+                ),
+                p: ({ children }) => (
+                  <p className="text-base leading-relaxed mb-4 text-foreground/90">{children}</p>
+                ),
+                strong: ({ children }) => (
+                  <strong className="font-bold text-primary">{children}</strong>
+                ),
+                ul: ({ children }) => (
+                  <ul className="list-disc pl-6 mb-4 space-y-2">{children}</ul>
+                ),
+                ol: ({ children }) => (
+                  <ol className="list-decimal pl-6 mb-4 space-y-2">{children}</ol>
+                ),
+                li: ({ children }) => (
+                  <li className="text-foreground/90">{children}</li>
+                ),
+                blockquote: ({ children }) => (
+                  <blockquote className="border-l-4 border-primary pl-4 italic my-4 bg-primary/5 py-2 rounded-r">
+                    {children}
+                  </blockquote>
+                ),
+                code: ({ children }) => (
+                  <code className="bg-muted px-1.5 py-0.5 rounded text-sm font-mono">{children}</code>
+                ),
+                a: ({ children, href }) => (
+                  <a href={href} className="text-primary hover:underline font-medium">{children}</a>
+                ),
+              }}
+            >
+              {post.content}
+            </ReactMarkdown>
 
             <BlogLeadForm
               type="inline"

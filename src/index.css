@@ -259,4 +259,37 @@ All colors MUST be HSL.
   p {
     @apply leading-relaxed;
   }
+
+  /* Markdown Content Styling */
+  .markdown-content {
+    @apply text-foreground;
+  }
+
+  .markdown-content h2 {
+    @apply scroll-mt-20;
+  }
+
+  .markdown-content h3 {
+    @apply scroll-mt-20;
+  }
+
+  .markdown-content img {
+    @apply rounded-lg shadow-md my-6;
+  }
+
+  .markdown-content pre {
+    @apply bg-muted p-4 rounded-lg overflow-x-auto my-4;
+  }
+
+  .markdown-content table {
+    @apply w-full border-collapse my-4;
+  }
+
+  .markdown-content th {
+    @apply bg-muted font-semibold p-2 text-left border border-border;
+  }
+
+  .markdown-content td {
+    @apply p-2 border border-border;
+  }
 }

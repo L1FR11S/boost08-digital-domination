@@ -43,16 +43,44 @@ serve(async (req) => {
    - Inkludera LSI keywords (Latent Semantic Indexing)
    - Baserat på innehållets ämne
 
-5. **Innehåll**:
-   - Strukturera med tydliga H2 och H3 rubriker
-   - Keyword density 1-2%
-   - Använd bullet points för läsbarhet
-   - Optimera första stycket (hook + keyword)
-   - Lägg till FAQ-sektion om relevant
-   - Föreslå interna länk-möjligheter
-   - Optimera för featured snippets
-   - Håll läsbarhetsnivån hög
-   - Använd korta meningar och stycken
+5. **Innehåll & Layout-optimering** (VIKTIGT - Använd Markdown):
+   - **Struktur**: Använd H2 (##) var 200-300 ord för huvudsektioner
+   - **Delsektioner**: Använd H3 (###) för underrubriker
+   - **Första stycket**: Hook + huvudkeyword inom första 100 orden
+   - **Keyword density**: 1-2% naturlig integration
+   - **Läsbarhet**: 
+     * Max 3-4 rader per stycke
+     * Korta meningar (max 20 ord)
+     * Använd **fetstil** för viktiga koncept
+     * Använd *kursiv* för betoning
+   - **Listor**: Bullet points (- ) eller numrerade listor (1. ) för scanbarhet
+   - **Visuella element**:
+     * Använd > för blockquotes/tips (t.ex. "> **💡 Pro-Tips:** ...")
+     * Skapa "Viktigt att veta"-sektioner
+     * Lägg till sammanfattningar i listor
+   - **Spacing**: Skapa visuella pausar mellan sektioner
+   - **Länkar**: Föreslå interna länkmöjligheter med [länktext](url)
+   - **FAQ**: Lägg till FAQ-sektion om relevant med H3 frågor
+   - **Featured snippets**: Optimera för featured snippets med tydliga svar
+
+**MARKDOWN-FORMAT EXEMPEL:**
+## Huvudrubrik (H2)
+
+Introduktionsstycke med **viktigt keyword** som fångar uppmärksamhet.
+
+### Delrubrik (H3)
+
+**Viktigt koncept** förklaras här. Korta stycken gör texten lättare att läsa.
+
+- Bullet point för viktig information
+- Scanbar och lättläst format
+- Konkreta exempel
+
+> **💡 Tips:** Framhävd information i quote-block
+
+### Nästa Sektion (H3)
+
+Mer strukturerat innehåll...
 
 Returnera JSON med följande struktur:
 {
@@ -60,7 +88,7 @@ Returnera JSON med följande struktur:
   "optimizedMetaTitle": "...",
   "optimizedMetaDescription": "...",
   "optimizedKeywords": "keyword1, keyword2, ...",
-  "optimizedContent": "...",
+  "optimizedContent": "... (använd Markdown med ##, ###, **, -, >, etc.)",
   "seoScore": 85,
   "improvements": ["förbättring 1", "förbättring 2", ...],
   "internalLinkSuggestions": ["länk 1", "länk 2", ...]
