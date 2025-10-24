@@ -4,6 +4,18 @@ import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 import { LayoutDashboard, FileText, FolderOpen, Users, LogOut } from "lucide-react";
 
+/**
+ * Admin Layout Component
+ * 
+ * SECURITY NOTE: The client-side authentication check below is for UX only.
+ * Real security is enforced through Row-Level Security (RLS) policies in the database.
+ * Even if a user bypasses this redirect, all database operations are protected by RLS
+ * which verifies the user has the 'admin' role via the has_role() function.
+ * 
+ * This layered approach provides:
+ * - Client-side: Good UX by redirecting non-admins immediately
+ * - Server-side: Actual security through RLS policies on all tables
+ */
 const AdminLayout = () => {
   const { isAdmin, loading } = useAdmin();
   const location = useLocation();
