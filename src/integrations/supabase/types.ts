@@ -196,6 +196,74 @@ export type Database = {
         }
         Relationships: []
       }
+      content_schedule: {
+        Row: {
+          auto_publish: boolean | null
+          content_type: string | null
+          created_at: string | null
+          error_message: string | null
+          generated_post_id: string | null
+          id: string
+          keywords: string[]
+          primary_keyword: string | null
+          published_at: string | null
+          retry_count: number | null
+          scheduled_date: string
+          scheduled_time: string | null
+          status: string | null
+          target_audience: string | null
+          target_word_count: number | null
+          topic: string
+          updated_at: string | null
+        }
+        Insert: {
+          auto_publish?: boolean | null
+          content_type?: string | null
+          created_at?: string | null
+          error_message?: string | null
+          generated_post_id?: string | null
+          id?: string
+          keywords: string[]
+          primary_keyword?: string | null
+          published_at?: string | null
+          retry_count?: number | null
+          scheduled_date: string
+          scheduled_time?: string | null
+          status?: string | null
+          target_audience?: string | null
+          target_word_count?: number | null
+          topic: string
+          updated_at?: string | null
+        }
+        Update: {
+          auto_publish?: boolean | null
+          content_type?: string | null
+          created_at?: string | null
+          error_message?: string | null
+          generated_post_id?: string | null
+          id?: string
+          keywords?: string[]
+          primary_keyword?: string | null
+          published_at?: string | null
+          retry_count?: number | null
+          scheduled_date?: string
+          scheduled_time?: string | null
+          status?: string | null
+          target_audience?: string | null
+          target_word_count?: number | null
+          topic?: string
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "content_schedule_generated_post_id_fkey"
+            columns: ["generated_post_id"]
+            isOneToOne: false
+            referencedRelation: "blog_posts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       exit_intent_leads: {
         Row: {
           created_at: string | null

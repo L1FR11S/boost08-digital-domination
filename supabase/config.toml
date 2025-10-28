@@ -17,3 +17,12 @@ verify_jwt = false
 
 [functions.optimize-blog-seo]
 verify_jwt = false
+
+[functions.generate-blog-post]
+verify_jwt = false
+
+[functions.content-scheduler]
+verify_jwt = false
+
+[functions.send-content-notification]
+verify_jwt = false

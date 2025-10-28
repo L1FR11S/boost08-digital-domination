@@ -28,6 +28,7 @@ import AdminPosts from "./pages/admin/AdminPosts";
 import AdminPostEditor from "./pages/admin/AdminPostEditor";
 import AdminCategories from "./pages/admin/AdminCategories";
 import AdminLeads from "./pages/admin/AdminLeads";
+import AdminContentSchedule from "./pages/admin/AdminContentSchedule";
 import ErrorBoundary from "./components/ErrorBoundary";
 
 const queryClient = new QueryClient();
@@ -82,6 +83,7 @@ const AppContent = () => {
             <Route path="posts/:id/edit" element={<AdminPostEditor />} />
             <Route path="categories" element={<AdminCategories />} />
             <Route path="leads" element={<AdminLeads />} />
+            <Route path="content-schedule" element={<AdminContentSchedule />} />
           </Route>
           
           {/* Catch-all */}

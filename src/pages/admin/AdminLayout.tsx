@@ -2,7 +2,7 @@ import { Navigate, Outlet, Link, useLocation } from "react-router-dom";
 import { useAdmin } from "@/hooks/useAdmin";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
-import { LayoutDashboard, FileText, FolderOpen, Users, LogOut } from "lucide-react";
+import { LayoutDashboard, FileText, FolderOpen, Users, LogOut, Calendar } from "lucide-react";
 
 /**
  * Admin Layout Component
@@ -40,6 +40,7 @@ const AdminLayout = () => {
     { to: "/admin", icon: LayoutDashboard, label: "Dashboard" },
     { to: "/admin/posts", icon: FileText, label: "Inlägg" },
     { to: "/admin/categories", icon: FolderOpen, label: "Kategorier" },
+    { to: "/admin/content-schedule", icon: Calendar, label: "Content Automation" },
     { to: "/admin/leads", icon: Users, label: "Leads" },
   ];
 
