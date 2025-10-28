@@ -26,14 +26,15 @@ serve(async (req) => {
     const resendApiKey = Deno.env.get('RESEND_API_KEY');
     
     if (resendApiKey) {
-      const emailResponse = await fetch('https://api.resend.com/emails', {
+      // Send confirmation email to user
+      const confirmationResponse = await fetch('https://api.resend.com/emails', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${resendApiKey}`,
         },
         body: JSON.stringify({
-          from: 'Boost08 <onboarding@resend.dev>',
+          from: 'Boost08 <noreply@boost08.com>',
           to: [email],
           subject: 'Tack för ditt meddelande!',
           html: `
@@ -47,10 +48,39 @@ serve(async (req) => {
         }),
       });
 
-      if (!emailResponse.ok) {
-        console.error('Email error:', await emailResponse.text());
+      if (!confirmationResponse.ok) {
+        console.error('Confirmation email error:', await confirmationResponse.text());
       } else {
-        console.log('Email sent successfully');
+        console.log('Confirmation email sent successfully');
+      }
+
+      // Send notification email to hello@boost08.com
+      const notificationResponse = await fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${resendApiKey}`,
+        },
+        body: JSON.stringify({
+          from: 'Boost08 <noreply@boost08.com>',
+          to: ['hello@boost08.com'],
+          subject: '🔔 Nytt kontaktformulär från boost08.com',
+          html: `
+            <h1>Nytt kontaktformulär</h1>
+            <p><strong>Namn:</strong> ${name}</p>
+            <p><strong>Email:</strong> ${email}</p>
+            <p><strong>Företag:</strong> ${company || 'Ej angivet'}</p>
+            <hr>
+            <p><strong>Meddelande:</strong></p>
+            <p>${message}</p>
+          `,
+        }),
+      });
+
+      if (!notificationResponse.ok) {
+        console.error('Notification email error:', await notificationResponse.text());
+      } else {
+        console.log('Notification email sent successfully');
       }
     }
 

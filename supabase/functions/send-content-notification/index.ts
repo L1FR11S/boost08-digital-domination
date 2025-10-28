@@ -47,8 +47,8 @@ const handler = async (req: Request): Promise<Response> => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        from: "Boost08 Content Bot <onboarding@resend.dev>",
-        to: ["admin@boost08.com"], // Ändra till rätt admin-email
+        from: "Boost08 Content Bot <noreply@boost08.com>",
+        to: ["linus.friis@boost08.com"],
         subject: `🤖 Nytt AI-genererat blogginlägg: ${postTitle}`,
         html: `
         <!DOCTYPE html>

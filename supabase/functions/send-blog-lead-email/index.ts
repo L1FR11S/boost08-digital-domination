@@ -38,8 +38,65 @@ const handler = async (req: Request): Promise<Response> => {
 
     const { email, name, postId } = validationResult.data;
     
-    // TODO: Implement email sending with Resend
     console.log("Blog lead submission received");
+
+    // Send emails using Resend
+    const resendApiKey = Deno.env.get('RESEND_API_KEY');
+    
+    if (resendApiKey) {
+      // Send confirmation email to user
+      const confirmationResponse = await fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${resendApiKey}`,
+        },
+        body: JSON.stringify({
+          from: 'Boost08 <noreply@boost08.com>',
+          to: [email],
+          subject: 'Tack för din anmälan!',
+          html: `
+            <h1>Hej ${name || 'där'}!</h1>
+            <p>Tack för ditt intresse för vårt innehåll. Vi har tagit emot din anmälan!</p>
+            <p>Håll utkik efter mer värdefull information från oss inom kort.</p>
+            <br>
+            <p>Med vänliga hälsningar,<br>Boost08 Teamet</p>
+          `,
+        }),
+      });
+
+      if (!confirmationResponse.ok) {
+        console.error('Confirmation email error:', await confirmationResponse.text());
+      } else {
+        console.log('Confirmation email sent successfully');
+      }
+
+      // Send notification to hello@boost08.com
+      const notificationResponse = await fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${resendApiKey}`,
+        },
+        body: JSON.stringify({
+          from: 'Boost08 <noreply@boost08.com>',
+          to: ['hello@boost08.com'],
+          subject: '📥 Ny blog lead från boost08.com',
+          html: `
+            <h1>Ny blog lead</h1>
+            <p><strong>Email:</strong> ${email}</p>
+            <p><strong>Namn:</strong> ${name || 'Ej angivet'}</p>
+            <p><strong>Post ID:</strong> ${postId || 'Ej angivet'}</p>
+          `,
+        }),
+      });
+
+      if (!notificationResponse.ok) {
+        console.error('Notification email error:', await notificationResponse.text());
+      } else {
+        console.log('Notification email sent successfully');
+      }
+    }
 
     return new Response(JSON.stringify({ success: true, message: "Lead captured" }), {
       status: 200,

@@ -54,14 +54,15 @@ serve(async (req) => {
     const resendApiKey = Deno.env.get('RESEND_API_KEY');
     
     if (resendApiKey) {
-      const emailResponse = await fetch('https://api.resend.com/emails', {
+      // Send welcome email to user
+      const welcomeResponse = await fetch('https://api.resend.com/emails', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${resendApiKey}`,
         },
         body: JSON.stringify({
-          from: 'Boost08 <onboarding@resend.dev>',
+          from: 'Boost08 <noreply@boost08.com>',
           to: [email],
           subject: 'Välkommen till din 14-dagars gratis provperiod!',
           html: `
@@ -80,10 +81,40 @@ serve(async (req) => {
         }),
       });
 
-      if (!emailResponse.ok) {
-        console.error('Email error:', await emailResponse.text());
+      if (!welcomeResponse.ok) {
+        console.error('Welcome email error:', await welcomeResponse.text());
       } else {
-        console.log('Email sent successfully');
+        console.log('Welcome email sent successfully');
+      }
+
+      // Send notification to hello@boost08.com
+      const notificationResponse = await fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${resendApiKey}`,
+        },
+        body: JSON.stringify({
+          from: 'Boost08 <noreply@boost08.com>',
+          to: ['hello@boost08.com'],
+          subject: '🎉 Ny Free Trial registrering från boost08.com',
+          html: `
+            <h1>Ny Free Trial registrering</h1>
+            <p><strong>Företagsnamn:</strong> ${sanitizeHtml(companyName)}</p>
+            <p><strong>Kontaktperson:</strong> ${sanitizeHtml(fullName)}</p>
+            <p><strong>Email:</strong> ${sanitizeHtml(email)}</p>
+            <p><strong>Telefon:</strong> ${sanitizeHtml(phone)}</p>
+            <hr>
+            <p><strong>Antal platser:</strong> ${locations}</p>
+            <p><strong>Bransch:</strong> ${sanitizeHtml(industry)}</p>
+          `,
+        }),
+      });
+
+      if (!notificationResponse.ok) {
+        console.error('Notification email error:', await notificationResponse.text());
+      } else {
+        console.log('Notification email sent successfully');
       }
     }
 

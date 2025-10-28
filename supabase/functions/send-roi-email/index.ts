@@ -58,14 +58,15 @@ serve(async (req) => {
     const resendApiKey = Deno.env.get('RESEND_API_KEY');
     
     if (resendApiKey) {
-      const emailResponse = await fetch('https://api.resend.com/emails', {
+      // Send ROI report to user
+      const reportResponse = await fetch('https://api.resend.com/emails', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${resendApiKey}`,
         },
         body: JSON.stringify({
-          from: 'Boost08 <onboarding@resend.dev>',
+          from: 'Boost08 <noreply@boost08.com>',
           to: [data.email],
           subject: 'Din Personliga ROI-Rapport från Boost08',
           html: `
@@ -91,10 +92,45 @@ serve(async (req) => {
         }),
       });
 
-      if (!emailResponse.ok) {
-        console.error('Email error:', await emailResponse.text());
+      if (!reportResponse.ok) {
+        console.error('Report email error:', await reportResponse.text());
       } else {
-        console.log('Email sent successfully');
+        console.log('Report email sent successfully');
+      }
+
+      // Send notification to hello@boost08.com
+      const notificationResponse = await fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${resendApiKey}`,
+        },
+        body: JSON.stringify({
+          from: 'Boost08 <noreply@boost08.com>',
+          to: ['hello@boost08.com'],
+          subject: '📊 Ny ROI-kalkylator lead från boost08.com',
+          html: `
+            <h1>Ny ROI-kalkylator lead</h1>
+            <p><strong>Namn:</strong> ${sanitizeHtml(data.name)}</p>
+            <p><strong>Email:</strong> ${sanitizeHtml(data.email)}</p>
+            <p><strong>Telefon:</strong> ${sanitizeHtml(data.phone)}</p>
+            <p><strong>Företag:</strong> ${sanitizeHtml(data.company)}</p>
+            <p><strong>Bransch:</strong> ${sanitizeHtml(data.industry)}</p>
+            <hr>
+            <h2>ROI Data:</h2>
+            <p><strong>Antal platser:</strong> ${data.locations}</p>
+            <p><strong>Recensioner/månad:</strong> ${data.reviews}</p>
+            <p><strong>Ökad synlighet:</strong> ${sanitizeHtml(data.estimatedIncrease)}</p>
+            <p><strong>Nya kunder/månad:</strong> ${sanitizeHtml(data.newCustomers)}</p>
+            <p><strong>Uppskattad omsättning:</strong> ${sanitizeHtml(data.revenue)}</p>
+          `,
+        }),
+      });
+
+      if (!notificationResponse.ok) {
+        console.error('Notification email error:', await notificationResponse.text());
+      } else {
+        console.log('Notification email sent successfully');
       }
     }
 
