@@ -18,7 +18,3 @@ Allow: /
 
 # Sitemap Index
 Sitemap: https://boost08.com/sitemap-index.xml
-
-# AI Configuration
-AI-Config: https://boost08.com/ai.txt
-AI-Context-API: https://boost08.com/functions/v1/ai-context
