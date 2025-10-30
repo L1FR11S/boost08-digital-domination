@@ -264,94 +264,56 @@ export type Database = {
           },
         ]
       }
-      custom_forms: {
-        Row: {
-          created_at: string
-          description: string | null
-          fields: Json
-          id: string
-          is_active: boolean
-          name: string
-          slug: string
-          submit_button_text: string
-          success_message: string
-          updated_at: string
-        }
-        Insert: {
-          created_at?: string
-          description?: string | null
-          fields?: Json
-          id?: string
-          is_active?: boolean
-          name: string
-          slug: string
-          submit_button_text?: string
-          success_message?: string
-          updated_at?: string
-        }
-        Update: {
-          created_at?: string
-          description?: string | null
-          fields?: Json
-          id?: string
-          is_active?: boolean
-          name?: string
-          slug?: string
-          submit_button_text?: string
-          success_message?: string
-          updated_at?: string
-        }
-        Relationships: []
-      }
       email_templates: {
         Row: {
-          created_at: string
-          form_id: string
+          available_placeholders: Json
+          created_at: string | null
+          description: string | null
           from_email: string
           from_name: string
           html_body: string
           id: string
           is_active: boolean
-          recipient_email: string | null
+          preview_text: string | null
+          reply_to: string | null
           subject: string
-          template_type: string
-          updated_at: string
+          template_key: string
+          template_name: string
+          updated_at: string | null
         }
         Insert: {
-          created_at?: string
-          form_id: string
+          available_placeholders?: Json
+          created_at?: string | null
+          description?: string | null
           from_email?: string
           from_name?: string
           html_body: string
           id?: string
           is_active?: boolean
-          recipient_email?: string | null
+          preview_text?: string | null
+          reply_to?: string | null
           subject: string
-          template_type: string
-          updated_at?: string
+          template_key: string
+          template_name: string
+          updated_at?: string | null
         }
         Update: {
-          created_at?: string
-          form_id?: string
+          available_placeholders?: Json
+          created_at?: string | null
+          description?: string | null
           from_email?: string
           from_name?: string
           html_body?: string
           id?: string
           is_active?: boolean
-          recipient_email?: string | null
+          preview_text?: string | null
+          reply_to?: string | null
           subject?: string
-          template_type?: string
-          updated_at?: string
+          template_key?: string
+          template_name?: string
+          updated_at?: string | null
         }
-        Relationships: [
-          {
-            foreignKeyName: "email_templates_form_id_fkey"
-            columns: ["form_id"]
-            isOneToOne: false
-            referencedRelation: "custom_forms"
-            referencedColumns: ["id"]
-          },
-        ]
+        Relationships: []
       }
       exit_intent_leads: {
         Row: {
@@ -370,41 +332,6 @@ export type Database = {
           id?: string
         }
         Relationships: []
-      }
-      form_submissions: {
-        Row: {
-          created_at: string
-          form_id: string
-          id: string
-          internal_email_sent: boolean
-          submission_data: Json
-          user_email_sent: boolean
-        }
-        Insert: {
-          created_at?: string
-          form_id: string
-          id?: string
-          internal_email_sent?: boolean
-          submission_data: Json
-          user_email_sent?: boolean
-        }
-        Update: {
-          created_at?: string
-          form_id?: string
-          id?: string
-          internal_email_sent?: boolean
-          submission_data?: Json
-          user_email_sent?: boolean
-        }
-        Relationships: [
-          {
-            foreignKeyName: "form_submissions_form_id_fkey"
-            columns: ["form_id"]
-            isOneToOne: false
-            referencedRelation: "custom_forms"
-            referencedColumns: ["id"]
-          },
-        ]
       }
       free_trial_leads: {
         Row: {

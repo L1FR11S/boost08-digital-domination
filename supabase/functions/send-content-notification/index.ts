@@ -1,4 +1,5 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2.75.0";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -9,8 +10,8 @@ interface NotificationRequest {
   postTitle: string;
   postSlug: string;
   postId: string;
-  wasAutoPublished: boolean;
   topic: string;
+  wasAutoPublished: boolean;
 }
 
 const handler = async (req: Request): Promise<Response> => {
@@ -19,114 +20,96 @@ const handler = async (req: Request): Promise<Response> => {
   }
 
   try {
-    const { postTitle, postSlug, postId, wasAutoPublished, topic }: NotificationRequest = await req.json();
-    const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
+    const { postTitle, postSlug, postId, topic, wasAutoPublished }: NotificationRequest = await req.json();
+    
+    // Initialize Supabase client
+    const supabase = createClient(
+      Deno.env.get("SUPABASE_URL") ?? "",
+      Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? ""
+    );
 
-    if (!RESEND_API_KEY) {
-      console.error("RESEND_API_KEY not configured");
-      throw new Error("RESEND_API_KEY not configured");
+    // Fetch email template
+    const { data: template, error: templateError } = await supabase
+      .from("email_templates")
+      .select("*")
+      .eq("template_key", "blog_notification")
+      .eq("is_active", true)
+      .single();
+
+    if (templateError) throw templateError;
+    if (!template) throw new Error("Email template not found or inactive");
+
+    const resendApiKey = Deno.env.get("RESEND_API_KEY");
+    if (!resendApiKey) {
+      throw new Error("RESEND_API_KEY is not set");
     }
 
-    const postUrl = `https://boost08.com/blogg/${postSlug}`;
+    // Prepare data for placeholders
+    const statusText = wasAutoPublished ? "✅ Publicerat" : "📝 Utkast";
+    const statusClass = wasAutoPublished ? "status-published" : "status-draft";
+    const actionText = wasAutoPublished ? "Visa inlägg" : "Granska och publicera";
     const editUrl = `https://boost08.com/admin/posts/${postId}/edit`;
+    const postUrl = `https://boost08.com/blogg/${postSlug}`;
+    const actionUrl = wasAutoPublished ? postUrl : editUrl;
 
-    const statusText = wasAutoPublished 
-      ? '✅ Publicerat och live på webbplatsen' 
-      : '📝 Sparat som utkast för granskning';
+    // Replace placeholders in HTML and subject
+    let htmlContent = template.html_body;
+    let subject = template.subject;
 
-    const actionText = wasAutoPublished
-      ? `<p><strong>Åtgärd:</strong> Inlägget är redan publicerat. Du kan granska det på:</p>
-         <p><a href="${postUrl}" style="color: #0066cc;">${postUrl}</a></p>`
-      : `<p><strong>Åtgärd krävs:</strong> Granska och publicera inlägget här:</p>
-         <p><a href="${editUrl}" style="color: #0066cc;">${editUrl}</a></p>`;
+    const replacements: Record<string, string> = {
+      "{{postTitle}}": postTitle,
+      "{{postSlug}}": postSlug,
+      "{{postId}}": postId,
+      "{{postUrl}}": postUrl,
+      "{{editUrl}}": editUrl,
+      "{{topic}}": topic,
+      "{{wasAutoPublished}}": wasAutoPublished.toString(),
+      "{{statusText}}": statusText,
+      "{{statusClass}}": statusClass,
+      "{{actionText}}": actionText,
+      "{{actionUrl}}": actionUrl,
+    };
+
+    Object.entries(replacements).forEach(([placeholder, value]) => {
+      htmlContent = htmlContent.replace(new RegExp(placeholder, "g"), value);
+      subject = subject.replace(new RegExp(placeholder, "g"), value);
+    });
+
+    console.log("Sending notification email for:", postTitle);
 
     const emailResponse = await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: {
-        "Authorization": `Bearer ${RESEND_API_KEY}`,
         "Content-Type": "application/json",
+        "Authorization": `Bearer ${resendApiKey}`,
       },
       body: JSON.stringify({
-        from: "Boost08 Content Bot <noreply@boost08.com>",
+        from: `${template.from_name} <${template.from_email}>`,
         to: ["linus.friis@boost08.com"],
-        subject: `🤖 Nytt AI-genererat blogginlägg: ${postTitle}`,
-        html: `
-        <!DOCTYPE html>
-        <html>
-        <head>
-          <style>
-            body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
-            .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-            .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; border-radius: 10px 10px 0 0; }
-            .content { background: #f9f9f9; padding: 30px; border-radius: 0 0 10px 10px; }
-            .status { display: inline-block; padding: 8px 16px; background: ${wasAutoPublished ? '#10b981' : '#f59e0b'}; color: white; border-radius: 5px; font-weight: bold; margin: 10px 0; }
-            .details { background: white; padding: 20px; border-left: 4px solid #667eea; margin: 20px 0; }
-            .button { display: inline-block; padding: 12px 24px; background: #667eea; color: white; text-decoration: none; border-radius: 5px; margin: 10px 0; }
-            .footer { text-align: center; color: #666; font-size: 12px; margin-top: 30px; }
-          </style>
-        </head>
-        <body>
-          <div class="container">
-            <div class="header">
-              <h1>🤖 Nytt Blogginlägg Skapat!</h1>
-            </div>
-            <div class="content">
-              <p><span class="status">${statusText}</span></p>
-              
-              <div class="details">
-                <h2 style="margin-top: 0; color: #667eea;">📄 Inlägg Detaljer</h2>
-                <p><strong>Titel:</strong> ${postTitle}</p>
-                <p><strong>Ämne:</strong> ${topic}</p>
-                <p><strong>Slug:</strong> ${postSlug}</p>
-                <p><strong>Post ID:</strong> ${postId}</p>
-                <p><strong>Genererad:</strong> ${new Date().toLocaleString('sv-SE', { dateStyle: 'long', timeStyle: 'short' })}</p>
-              </div>
-
-              ${actionText}
-
-              ${wasAutoPublished 
-                ? `<a href="${postUrl}" class="button">Visa publicerat inlägg →</a>` 
-                : `<a href="${editUrl}" class="button">Granska och publicera →</a>`
-              }
-
-              <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd;">
-                <h3 style="color: #667eea;">💡 Tips</h3>
-                <ul>
-                  <li>Kolla att AI:n använt rätt tonalitet</li>
-                  <li>Verifiera att alla fakta stämmer</li>
-                  <li>Lägg till featured image om det saknas</li>
-                  <li>Dela på sociala medier efter publicering</li>
-                </ul>
-              </div>
-
-              <div class="footer">
-                <p>Detta är ett automatiskt meddelande från Boost08 Content Automation System</p>
-                <p>Alla inlägg genereras med AI (Lovable AI / Google Gemini 2.5 Flash)</p>
-              </div>
-            </div>
-          </div>
-        </body>
-        </html>
-        `,
+        subject: subject,
+        html: htmlContent,
       }),
     });
 
     if (!emailResponse.ok) {
       const errorText = await emailResponse.text();
-      console.error("Resend API error:", emailResponse.status, errorText);
+      console.error("Resend error:", errorText);
       throw new Error(`Failed to send email: ${errorText}`);
     }
 
     const emailData = await emailResponse.json();
-    console.log("Notification email sent successfully:", emailData);
+    console.log("Email sent successfully:", emailData);
 
-    return new Response(JSON.stringify(emailData), {
-      status: 200,
-      headers: {
-        "Content-Type": "application/json",
-        ...corsHeaders,
-      },
-    });
+    return new Response(
+      JSON.stringify(emailData),
+      {
+        status: 200,
+        headers: {
+          "Content-Type": "application/json",
+          ...corsHeaders,
+        },
+      }
+    );
   } catch (error: any) {
     console.error("Error in send-content-notification function:", error);
     return new Response(

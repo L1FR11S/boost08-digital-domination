@@ -27,5 +27,5 @@ verify_jwt = false
 [functions.send-content-notification]
 verify_jwt = false
 
-[functions.send-custom-form-email]
+[functions.send-test-email]
 verify_jwt = false
