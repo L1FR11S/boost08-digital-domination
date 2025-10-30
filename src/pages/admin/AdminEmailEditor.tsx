@@ -92,7 +92,7 @@ export default function AdminEmailEditor() {
     );
   }
 
-  const placeholders = JSON.parse(template.available_placeholders as string);
+  const placeholders = template.available_placeholders as string[];
 
   return (
     <div className="container mx-auto py-8 px-4 max-w-7xl">
