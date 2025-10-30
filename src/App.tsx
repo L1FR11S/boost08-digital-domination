@@ -29,6 +29,10 @@ import AdminPostEditor from "./pages/admin/AdminPostEditor";
 import AdminCategories from "./pages/admin/AdminCategories";
 import AdminLeads from "./pages/admin/AdminLeads";
 import AdminContentSchedule from "./pages/admin/AdminContentSchedule";
+import AdminForms from "./pages/admin/AdminForms";
+import AdminFormEditor from "./pages/admin/AdminFormEditor";
+import AdminFormEmails from "./pages/admin/AdminFormEmails";
+import AdminFormSubmissions from "./pages/admin/AdminFormSubmissions";
 import ErrorBoundary from "./components/ErrorBoundary";
 
 const queryClient = new QueryClient();
@@ -81,10 +85,14 @@ const AppContent = () => {
             <Route path="posts" element={<AdminPosts />} />
             <Route path="posts/new" element={<AdminPostEditor />} />
             <Route path="posts/:id/edit" element={<AdminPostEditor />} />
-            <Route path="categories" element={<AdminCategories />} />
-            <Route path="leads" element={<AdminLeads />} />
-            <Route path="content-schedule" element={<AdminContentSchedule />} />
-          </Route>
+              <Route path="categories" element={<AdminCategories />} />
+              <Route path="leads" element={<AdminLeads />} />
+              <Route path="forms" element={<AdminForms />} />
+              <Route path="forms/:id/edit" element={<AdminFormEditor />} />
+              <Route path="forms/:id/emails" element={<AdminFormEmails />} />
+              <Route path="forms/:id/submissions" element={<AdminFormSubmissions />} />
+              <Route path="content-schedule" element={<AdminContentSchedule />} />
+            </Route>
           
           {/* Catch-all */}
           <Route path="*" element={<NotFound />} />
