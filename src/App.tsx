@@ -87,8 +87,9 @@ const AppContent = () => {
             <Route path="posts/:id/edit" element={<AdminPostEditor />} />
               <Route path="categories" element={<AdminCategories />} />
               <Route path="leads" element={<AdminLeads />} />
-              <Route path="forms" element={<AdminForms />} />
-              <Route path="forms/:id/edit" element={<AdminFormEditor />} />
+            <Route path="forms" element={<AdminForms />} />
+            <Route path="forms/new" element={<AdminFormEditor />} />
+            <Route path="forms/:id/edit" element={<AdminFormEditor />} />
               <Route path="forms/:id/emails" element={<AdminFormEmails />} />
               <Route path="forms/:id/submissions" element={<AdminFormSubmissions />} />
               <Route path="content-schedule" element={<AdminContentSchedule />} />
