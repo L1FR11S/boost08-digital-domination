@@ -106,7 +106,7 @@ export default function AdminEmails() {
                   <div className="flex items-center gap-2 text-sm">
                     <span className="font-medium">Placeholders:</span>
                     <div className="flex flex-wrap gap-1">
-                      {JSON.parse(template.available_placeholders as string).map((p: string) => (
+                      {(template.available_placeholders as string[]).map((p: string) => (
                         <Badge key={p} variant="outline" className="text-xs">
                           {p}
                         </Badge>
