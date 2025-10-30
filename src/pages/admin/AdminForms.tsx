@@ -3,7 +3,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Plus, Edit, Mail, FileText, Copy, Trash2 } from "lucide-react";
+import { Plus, Edit, Mail, FileText, Copy, Trash2, ExternalLink } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import {
@@ -180,6 +180,14 @@ export default function AdminForms() {
                     </p>
                   </div>
                   <div className="flex items-center gap-2">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => window.open(`/form/${form.slug}`, '_blank')}
+                    >
+                      <ExternalLink className="h-4 w-4 mr-1" />
+                      Visa
+                    </Button>
                     <Button
                       variant="outline"
                       size="sm"

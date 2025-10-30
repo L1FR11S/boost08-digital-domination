@@ -33,6 +33,7 @@ import AdminForms from "./pages/admin/AdminForms";
 import AdminFormEditor from "./pages/admin/AdminFormEditor";
 import AdminFormEmails from "./pages/admin/AdminFormEmails";
 import AdminFormSubmissions from "./pages/admin/AdminFormSubmissions";
+import PublicForm from "./pages/PublicForm";
 import ErrorBoundary from "./components/ErrorBoundary";
 
 const queryClient = new QueryClient();
@@ -77,6 +78,9 @@ const AppContent = () => {
           {/* Blog */}
           <Route path="/blogg" element={<BlogOverview />} />
           <Route path="/blogg/:slug" element={<BlogPost />} />
+          
+          {/* Public Forms */}
+          <Route path="/form/:slug" element={<PublicForm />} />
           
           {/* Admin */}
           <Route path="/admin/login" element={<AdminLogin />} />
