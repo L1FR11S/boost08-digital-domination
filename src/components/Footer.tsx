@@ -11,7 +11,8 @@ const Footer = () => {
     // Newsletter signup logic here
     setEmail("");
   };
-  return <footer className="bg-gradient-hero border-t border-border py-16">
+  return (
+    <footer className="bg-gradient-hero border-t border-border py-16">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           <div>
@@ -25,13 +26,22 @@ const Footer = () => {
               Smart automatisering för lokal kundtillväxt. Maximera er synlighet i Svenska lokala sökningar.
             </p>
             <div className="flex items-center space-x-4">
-              <a href="#" className="w-10 h-10 rounded-full bg-card border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-all">
+              <a
+                href="#"
+                className="w-10 h-10 rounded-full bg-card border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-all"
+              >
                 <span className="text-lg">𝕏</span>
               </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-card border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-all">
+              <a
+                href="#"
+                className="w-10 h-10 rounded-full bg-card border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-all"
+              >
                 <span className="text-lg">in</span>
               </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-card border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-all">
+              <a
+                href="#"
+                className="w-10 h-10 rounded-full bg-card border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-all"
+              >
                 <span className="text-lg">f</span>
               </a>
             </div>
@@ -46,22 +56,36 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="/losningar/smart-narvarohantering" className="text-muted-foreground hover:text-primary transition-colors text-sm">
+                <a
+                  href="/losningar/smart-narvarohantering"
+                  className="text-muted-foreground hover:text-primary transition-colors text-sm"
+                >
                   Smart Närvarohantering
                 </a>
               </li>
               <li>
-                <a href="/losningar/intelligent-rykteshantering" className="text-muted-foreground hover:text-primary transition-colors text-sm">
+                <a
+                  href="/losningar/intelligent-rykteshantering"
+                  className="text-muted-foreground hover:text-primary transition-colors text-sm"
+                >
                   Intelligent Rykteshantering
                 </a>
               </li>
               <li>
-                <a href="/losningar/social-media-automatisering" className="text-muted-foreground hover:text-primary transition-colors text-sm">
+                <a
+                  href="/losningar/social-media-automatisering"
+                  className="text-muted-foreground hover:text-primary transition-colors text-sm"
+                >
                   Social Media Automatisering
                 </a>
               </li>
               <li>
-                <a href="/losningar/lokalt-seo" className="text-muted-foreground hover:text-primary transition-colors text-sm">Lokal SEO</a>
+                <a
+                  href="/losningar/lokalt-seo"
+                  className="text-muted-foreground hover:text-primary transition-colors text-sm"
+                >
+                  Lokal SEO
+                </a>
               </li>
             </ul>
           </div>
@@ -70,22 +94,34 @@ const Footer = () => {
             <h4 className="font-bold text-foreground mb-4">Branscher</h4>
             <ul className="space-y-3">
               <li>
-                <a href="/bransch/kliniker-vard" className="text-muted-foreground hover:text-primary transition-colors text-sm">
+                <a
+                  href="/bransch/kliniker-vard"
+                  className="text-muted-foreground hover:text-primary transition-colors text-sm"
+                >
                   Kliniker & Vård
                 </a>
               </li>
               <li>
-                <a href="/bransch/skonhetssalonger" className="text-muted-foreground hover:text-primary transition-colors text-sm">
+                <a
+                  href="/bransch/skonhetssalonger"
+                  className="text-muted-foreground hover:text-primary transition-colors text-sm"
+                >
                   Skönhetssalonger
                 </a>
               </li>
               <li>
-                <a href="/bransch/butikskedjor" className="text-muted-foreground hover:text-primary transition-colors text-sm">
+                <a
+                  href="/bransch/butikskedjor"
+                  className="text-muted-foreground hover:text-primary transition-colors text-sm"
+                >
                   Butikskedjor
                 </a>
               </li>
               <li>
-                <a href="/bransch/restauranger-cafeer" className="text-muted-foreground hover:text-primary transition-colors text-sm">
+                <a
+                  href="/bransch/restauranger-cafeer"
+                  className="text-muted-foreground hover:text-primary transition-colors text-sm"
+                >
                   Restauranger & Caféer
                 </a>
               </li>
@@ -112,7 +148,12 @@ const Footer = () => {
               </li>
               <li className="flex items-center gap-2 text-sm pt-2">
                 <Mail className="w-4 h-4 text-primary" />
-                <a href="mailto:hello@boost08.se" className="text-muted-foreground hover:text-primary transition-colors">hello@boost08.se</a>
+                <a
+                  href="mailto:hello@boost08.com"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
+                  hello@boost08.se
+                </a>
               </li>
             </ul>
 
@@ -120,7 +161,14 @@ const Footer = () => {
               <p className="text-xs font-semibold text-foreground mb-2">Få månatliga tips om lokal SEO</p>
               <p className="text-xs text-muted-foreground mb-3">Gå med 3,500+ prenumeranter</p>
               <form onSubmit={handleNewsletterSubmit} className="flex gap-2">
-                <Input type="email" placeholder="Din e-post" value={email} onChange={e => setEmail(e.target.value)} required className="text-sm h-9" />
+                <Input
+                  type="email"
+                  placeholder="Din e-post"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  className="text-sm h-9"
+                />
                 <Button type="submit" variant="hero" size="sm">
                   Gå med
                 </Button>
@@ -135,6 +183,7 @@ const Footer = () => {
           </p>
         </div>
       </div>
-    </footer>;
+    </footer>
+  );
 };
 export default Footer;
