@@ -59,13 +59,10 @@ const SchemaMarkup = ({ type, data }: SchemaMarkupProps) => {
           contactPoint: {
             "@type": "ContactPoint",
             contactType: "Customer Service",
-            email: "hej@boost08.se",
+            email: "hello@boost08.com",
             availableLanguage: ["Swedish"],
           },
-          sameAs: [
-            "https://www.facebook.com/boost08",
-            "https://www.linkedin.com/company/boost08",
-          ],
+          sameAs: ["https://www.facebook.com/boost08", "https://www.linkedin.com/company/booost08"],
         };
 
       case "LocalBusiness":
@@ -177,7 +174,8 @@ const SchemaMarkup = ({ type, data }: SchemaMarkupProps) => {
           name: "Boost08 Platform",
           applicationCategory: "BusinessApplication",
           operatingSystem: "Web",
-          description: "Intelligent tillväxtplattform för lokala företag med automatisering för digital närvaro, recensioner och lokal SEO",
+          description:
+            "Intelligent tillväxtplattform för lokala företag med automatisering för digital närvaro, recensioner och lokal SEO",
           offers: {
             "@type": "Offer",
             description: "Kontakta oss för prissättning",
