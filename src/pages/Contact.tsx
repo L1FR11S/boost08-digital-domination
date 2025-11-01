@@ -20,10 +20,10 @@ const Contact = () => {
 
     const formData = new FormData(e.currentTarget);
     const data = {
-      name: formData.get('name') as string,
-      email: formData.get('email') as string,
-      company: formData.get('company') as string,
-      message: formData.get('message') as string,
+      name: formData.get("name") as string,
+      email: formData.get("email") as string,
+      company: formData.get("company") as string,
+      message: formData.get("message") as string,
     };
 
     // Validate input
@@ -40,15 +40,15 @@ const Contact = () => {
     }
 
     try {
-      const response = await fetch('https://vllpaaomsmuhcngiikhf.supabase.co/functions/v1/send-contact-email', {
-        method: 'POST',
+      const response = await fetch("https://vllpaaomsmuhcngiikhf.supabase.co/functions/v1/send-contact-email", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
       });
 
-      if (!response.ok) throw new Error('Failed to send email');
+      if (!response.ok) throw new Error("Failed to send email");
 
       toast({
         title: "Tack för ditt meddelande!",
@@ -57,7 +57,7 @@ const Contact = () => {
 
       (e.target as HTMLFormElement).reset();
     } catch (error: any) {
-      console.error('Error:', error);
+      console.error("Error:", error);
       toast({
         title: "Ett fel uppstod",
         description: "Försök igen senare.",
@@ -76,19 +76,15 @@ const Contact = () => {
       <BreadcrumbSchema
         items={[
           { name: "Hem", url: "https://boost08.com" },
-          { name: "Kontakt", url: "https://boost08.com/kontakt" }
+          { name: "Kontakt", url: "https://boost08.com/kontakt" },
         ]}
       />
       <section className="pt-32 pb-24">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
-              <h1 className="text-4xl sm:text-5xl font-bold mb-6">
-                Kontakta oss
-              </h1>
-              <p className="text-xl text-muted-foreground">
-                Vi svarar inom 24 timmar
-              </p>
+              <h1 className="text-4xl sm:text-5xl font-bold mb-6">Kontakta oss</h1>
+              <p className="text-xl text-muted-foreground">Vi svarar inom 24 timmar</p>
             </div>
 
             <div className="grid lg:grid-cols-2 gap-12">
@@ -109,7 +105,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <Label htmlFor="contact-message">Meddelande *</Label>
-                    <Textarea 
+                    <Textarea
                       id="contact-message"
                       name="message"
                       placeholder="Berätta hur vi kan hjälpa dig..."
@@ -134,8 +130,8 @@ const Contact = () => {
                       </div>
                       <div>
                         <p className="text-sm text-muted-foreground mb-1">Telefon</p>
-                        <p className="font-semibold">+46 XX XXX XX XX</p>
-                        <p className="text-xs text-muted-foreground mt-1">Mån-Fre 9:00-17:00</p>
+                        <p className="font-semibold">+46 73 555 87 70</p>
+                        <p className="text-xs text-muted-foreground mt-1">Mån-Fre 8:00-17:00</p>
                       </div>
                     </div>
                     <div className="flex items-start gap-4">
@@ -144,7 +140,7 @@ const Contact = () => {
                       </div>
                       <div>
                         <p className="text-sm text-muted-foreground mb-1">E-post</p>
-                        <p className="font-semibold">hej@boost08.se</p>
+                        <p className="font-semibold">hello@boost08.com</p>
                         <p className="text-xs text-muted-foreground mt-1">Vi svarar inom 24 timmar</p>
                       </div>
                     </div>
@@ -154,7 +150,7 @@ const Contact = () => {
                       </div>
                       <div>
                         <p className="text-sm text-muted-foreground mb-1">Support</p>
-                        <p className="font-semibold">support@boost08.se</p>
+                        <p className="font-semibold">support@boost08.com</p>
                         <p className="text-xs text-muted-foreground mt-1">För befintliga kunder</p>
                       </div>
                     </div>
@@ -164,7 +160,7 @@ const Contact = () => {
                       </div>
                       <div>
                         <p className="text-sm text-muted-foreground mb-1">Adress</p>
-                        <p className="font-semibold">Stockholm, Sverige</p>
+                        <p className="font-semibold">Klarabergsviadukten 63, 111 64 Stockholm, Sverige</p>
                       </div>
                     </div>
                   </div>
