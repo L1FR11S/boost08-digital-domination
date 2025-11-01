@@ -9,6 +9,7 @@ import FeaturedCaseStudy from "@/components/solutions/FeaturedCaseStudy";
 import SolutionFAQ from "@/components/solutions/SolutionFAQ";
 import CTASection from "@/components/shared/CTASection";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
+import SchemaMarkup from "@/components/seo/SchemaMarkup";
 import { Sparkles, Calendar, Share2, BarChart, Image, Target } from "lucide-react";
 import dashboardImage from "@/assets/dashboard-hero.png";
 
@@ -116,6 +117,22 @@ const SocialMediaSolution = () => {
           { name: "Lösningar", url: "https://boost08.com/losningar" },
           { name: "Social Media Automatisering", url: "https://boost08.com/losningar/social-media-automatisering" }
         ]}
+      />
+      <SchemaMarkup
+        type="Product"
+        data={{
+          name: "Social Media-automatisering",
+          description: "Spara 10+ timmar/vecka på sociala medier med AI-genererat innehåll för alla era kanaler.",
+          brand: "Boost08",
+          offers: {
+            price: "Kontakta oss",
+            priceCurrency: "SEK"
+          }
+        }}
+      />
+      <SchemaMarkup
+        type="FAQPage"
+        data={{ faqs }}
       />
       <SolutionHero
         badge="Social Media-automatisering"

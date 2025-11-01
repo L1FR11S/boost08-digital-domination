@@ -9,6 +9,7 @@ import FeaturedCaseStudy from "@/components/solutions/FeaturedCaseStudy";
 import SolutionFAQ from "@/components/solutions/SolutionFAQ";
 import CTASection from "@/components/shared/CTASection";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
+import SchemaMarkup from "@/components/seo/SchemaMarkup";
 import { MapPin, TrendingUp, Target, Eye, Search, Award } from "lucide-react";
 import dashboardImage from "@/assets/dashboard-hero.png";
 
@@ -116,6 +117,22 @@ const LocalSEOSolution = () => {
           { name: "Lösningar", url: "https://boost08.com/losningar" },
           { name: "Lokalt SEO", url: "https://boost08.com/losningar/lokalt-seo" }
         ]}
+      />
+      <SchemaMarkup
+        type="Product"
+        data={{
+          name: "Lokalt SEO-dominans",
+          description: "Dominera lokala sökningar i er stad och grannskaper med grannskapsbaserad rankingspårning.",
+          brand: "Boost08",
+          offers: {
+            price: "Kontakta oss",
+            priceCurrency: "SEK"
+          }
+        }}
+      />
+      <SchemaMarkup
+        type="FAQPage"
+        data={{ faqs }}
       />
       <SolutionHero
         badge="Lokalt SEO-dominans"

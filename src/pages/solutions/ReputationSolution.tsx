@@ -9,6 +9,7 @@ import FeaturedCaseStudy from "@/components/solutions/FeaturedCaseStudy";
 import SolutionFAQ from "@/components/solutions/SolutionFAQ";
 import CTASection from "@/components/shared/CTASection";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
+import SchemaMarkup from "@/components/seo/SchemaMarkup";
 import { MessageSquare, Bot, TrendingUp, Bell, Star, BarChart3 } from "lucide-react";
 import dashboardImage from "@/assets/dashboard-hero.png";
 
@@ -116,6 +117,22 @@ const ReputationSolution = () => {
           { name: "Lösningar", url: "https://boost08.com/losningar" },
           { name: "Intelligent Rykteshantering", url: "https://boost08.com/losningar/intelligent-rykteshantering" }
         ]}
+      />
+      <SchemaMarkup
+        type="Product"
+        data={{
+          name: "Intelligent Rykteshantering",
+          description: "Förvandla recensioner till tillväxtmotorn för ert företag med AI-drivna svar och automatiska kampanjer.",
+          brand: "Boost08",
+          offers: {
+            price: "Kontakta oss",
+            priceCurrency: "SEK"
+          }
+        }}
+      />
+      <SchemaMarkup
+        type="FAQPage"
+        data={{ faqs }}
       />
       <SolutionHero
         badge="Intelligent Rykteshantering"

@@ -9,6 +9,7 @@ import FeaturedCaseStudy from "@/components/solutions/FeaturedCaseStudy";
 import SolutionFAQ from "@/components/solutions/SolutionFAQ";
 import CTASection from "@/components/shared/CTASection";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
+import SchemaMarkup from "@/components/seo/SchemaMarkup";
 import { Globe, RefreshCw, Zap, Search, MapPin, Clock } from "lucide-react";
 import dashboardImage from "@/assets/dashboard-hero.png";
 
@@ -116,6 +117,22 @@ const SmartPresenceSolution = () => {
           { name: "Lösningar", url: "https://boost08.com/losningar" },
           { name: "Smart Närvarohantering", url: "https://boost08.com/losningar/smart-narvarohantering" }
         ]}
+      />
+      <SchemaMarkup
+        type="Product"
+        data={{
+          name: "Smart Närvarohantering",
+          description: "Var synlig överallt där dina kunder söker - automatiskt. Synkronisera företagsinformation över 100+ plattformar.",
+          brand: "Boost08",
+          offers: {
+            price: "Kontakta oss",
+            priceCurrency: "SEK"
+          }
+        }}
+      />
+      <SchemaMarkup
+        type="FAQPage"
+        data={{ faqs }}
       />
       <SolutionHero
         badge="Smart Närvarohantering"
