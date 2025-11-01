@@ -160,7 +160,7 @@ const Contact = () => {
                       </div>
                       <div>
                         <p className="text-sm text-muted-foreground mb-1">Adress</p>
-                        <p className="font-semibold">Klarabergsviadukten 63, 111 64 Stockholm, Sverige</p>
+                        <p className="font-semibold">Klarabergsviadukten 63, 111 64 Stockholm</p>
                       </div>
                     </div>
                   </div>
