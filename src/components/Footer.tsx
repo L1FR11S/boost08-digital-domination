@@ -152,7 +152,7 @@ const Footer = () => {
                   href="mailto:hello@boost08.com"
                   className="text-muted-foreground hover:text-primary transition-colors"
                 >
-                  hello@boost08.se
+                  hello@boost08.com
                 </a>
               </li>
             </ul>
