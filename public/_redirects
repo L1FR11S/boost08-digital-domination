@@ -1,1 +1,13 @@
+# Statiska filer - servera direkt (måste komma FÖRE catch-all)
+/robots.txt    /robots.txt    200
+/sitemap*.xml  /sitemap*.xml  200
+/*.png         /*.png         200
+/*.jpg         /*.jpg         200
+/*.jpeg        /*.jpeg        200
+/*.svg         /*.svg         200
+/*.ico         /*.ico         200
+/*.json        /*.json        200
+/*.txt         /*.txt         200
+
+# React Router catch-all - måste vara SIST
 /*    /index.html   200
