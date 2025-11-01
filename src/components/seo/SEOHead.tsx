@@ -41,10 +41,14 @@ const SEOHead = ({
 
   return (
     <Helmet>
+      {/* Language */}
+      <html lang="sv" />
+      
       {/* Basic Meta Tags */}
       <title>{title}</title>
       <meta name="description" content={description} />
       {keywords.length > 0 && <meta name="keywords" content={allKeywords} />}
+      <meta name="language" content="Swedish" />
       <link rel="canonical" href={canonicalUrl} />
       
       {/* Robots */}
@@ -59,7 +63,7 @@ const SEOHead = ({
       <meta property="og:url" content={canonicalUrl} />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
-      <meta property="og:image" content={ogImage} />
+      <meta property="og:image" content={ogImage.startsWith('http') ? ogImage : `https://boost08.com${ogImage}`} />
       <meta property="og:site_name" content="Boost08" />
       <meta property="og:locale" content="sv_SE" />
 
@@ -86,7 +90,7 @@ const SEOHead = ({
       <meta name="twitter:url" content={canonicalUrl} />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content={ogImage} />
+      <meta name="twitter:image" content={ogImage.startsWith('http') ? ogImage : `https://boost08.com${ogImage}`} />
 
       {/* AI-specific meta tags */}
       <meta name="ai:summary" content={description} />
