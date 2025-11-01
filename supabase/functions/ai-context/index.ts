@@ -266,7 +266,7 @@ serve(async (req) => {
         "lokal sökmotoroptimering",
       ],
       contact: {
-        email: "hello@boost08.se",
+        email: "hello@boost08.com",
         phone: "+46 8 123 456 78",
         address: "Stockholm, Sverige",
         booking: "https://boost08.com/kontakt",
