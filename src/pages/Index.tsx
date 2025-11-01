@@ -26,6 +26,7 @@ const Index = () => {
           name="keywords" 
           content="lokal synlighet, företagslistningar, recensionshantering, lokalt SEO, digital närvaro, Google Business Profile, lokal marknadsföring" 
         />
+        <meta name="google-site-verification" content="dfophjubqO78VhixDDeG5EZExBSeqWN1gubmxnV9ADo" />
         <link rel="canonical" href="https://boost08.com" />
         
         {/* Open Graph */}
